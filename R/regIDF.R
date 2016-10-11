@@ -34,6 +34,13 @@
 #'
 #' @return A list of
 #' 
+#' \itimize{
+#'  \item 
+#'  \item
+#'  \item
+#'  \item
+#'  \item
+#' }
 #' 
 #' @export
 #'
