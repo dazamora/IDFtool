@@ -1,4 +1,4 @@
-#' Title
+#' regIDF
 #' 
 #' An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation
 #' of the probability that a given average rainfall intensity will occur. 
@@ -24,14 +24,17 @@
 #'  period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear. 
 #' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
 #' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE:  
-#' @param Strategy 
-#' @param M.fit 
-#' @param Type 
-#' @param name 
-#' @param Station 
+#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}. 
+#' @param Strategy: a numeric vector used to identify Strategy when it is use to \code{SAVE}. 
+#' @param M.fit: a character specifying a name or number of pluviographic station where data were measurement, and it use to save results. 
+#' @param Type:  a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
+#' log.pearson3 and wakeby (see \code{\link{selecDIST}}).
+#' @param name: a vector of characters used to save graphs and it allows differentiation strategy to compute IDF curves. 
+#' @param Station: a character specifying a name or number of pluviographic station where data were measurement, and it is used to save results.  
 #'
-#' @return
+#' @return A list of
+#' 
+#' 
 #' @export
 #'
 #' @examples
