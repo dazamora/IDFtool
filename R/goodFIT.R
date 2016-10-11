@@ -1,25 +1,61 @@
 #' Title
+#' 
+#' This function computing of goodness-of-fit for continuous univariate 
+#' distributions using tests: Kolmogorov-Smirnov, Anderson-Darling and 
+#' Cramer-von Mises, it based on \pkg{goftest} package. Moreover information criteria 
+#' are evaluated: Akaike's Information Criterion and Bayesian Information 
+#' Criterion by means of \code{\link{InfoCRIT}} function.
 #'
-#' @param Station 
-#' @param Type 
-#' @param Intensity 
-#' @param Parameters 
-#' @param M.fit 
-#' @param Dura 
-#' @param Plot 
-#' @param Resolution 
-#' @param SAVE 
+#' @param Station: a character specifying a name or number of pluviographic 
+#' station where data were measurement, and it use to save results in *.xls 
+#' format. 
+#' @param Type: a character specifying a name of probability distribution 
+#' function fitted (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function. 
+#' @param Intensity: a numeric vector with intensity values for a specific time 
+#' duration in different return periods. 
+#' @param Parameters: a list with three elements: i) Type of distribution function ii)
+#' Parameters fitted, and iii) source to call specfic function in the \pkg{lmomco} package.
+#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
+#' and Maximum Likelihood (\emph{MLE}). 
+#' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+#' This parameter is used to save results. 
+#' @param Plot: a number (1) to determine if it will be plotted density curves both empirical 
+#' as modeled (\emph{pdf}). If you use other number the graphs will not appear. 
+#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
+#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}. 
+#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.  
 #'
-#' @return
+#' @return A data frame with statistics values of goodness of fit tests and its respective p-value, 
+#' moreover information criteria are evaluated:
+#' 
+#' \itemize{
+#'  \item \emph{Kolmogorov-Smirnov}: statistic= KS and p-value1
+#'  \item \emph{Anderson-Darling}: statistic= AD and p-value2
+#'  \item \emph{Cramer-von Mises}: statistic= Omega2 and p-value3
+#'  \item \emph{Akaike's Information Criterion}: AIC
+#'  \item \emph{Bayesian Information Criterion}: BIC
+#' }
+#' 
+#' @author David Zamora <dazamoraa@unal.edu.co> 
+#' Water Resources Engineering Research Group - GIREH
+#' 
 #' @export
 #'
 #' @examples
+#' # Meteorology station in the Airport Farfan in Tulua, Colombia.
+#' data(Intgum5min)
+#' data(Pagumbel)
+#' # not plotted
+#' test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min,
+#'                     Parameters = Pargumbel,M.fit = "Lmoments", Dura ="5_min", Plot = 0)
+#'  
 goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
-         M.fit =..., Dura =.., Plot =..., Resolution = 300, SAVE = FALSE){
-
+                    M.fit =..., Dura =.., Plot =..., Resolution = 300, SAVE = FALSE){
+  
   Type <- tolower(Type)
   Plot <- as.character(Plot)
-
+  
   if(Type == "exponencial"){
     # ----Exponencial----
     #----Kolmogorov-Smirnov----
@@ -28,7 +64,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     ADT<-goftest::ad.test(Intensity, "pexp1", xi = Parameters$para[1], alpha = Parameters$para[2])
     #--------Cramer-von Mises----
     CWT<-goftest::cvm.test(Intensity, "pexp1", xi = Parameters$para[1], alpha = Parameters$para[2])
-
+    
   }else if(Type == "gamma"){
     # ----Gamma----
     #----Kolmogorov-Smirnov----
@@ -37,7 +73,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     ADT<-goftest::ad.test(Intensity, "pgam1", alpha = Parameters$para[1], beta = Parameters$para[2])
     #--------Cramer-von Mises----
     CWT<-goftest::cvm.test(Intensity, "pgam1", alpha = Parameters$para[1], beta = Parameters$para[2])
-
+    
   }else if(Type == "gev"){
     # ----GEV----
     #----Kolmogorov-Smirnov----
@@ -46,7 +82,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     ADT<-goftest::ad.test(Intensity, "pgev1", xi = Parameters$para[1], alpha = Parameters$para[2], kappa = Parameters$para[3])
     #--------Cramer-von Mises----
     CWT<-goftest::cvm.test(Intensity, "pgev1", xi = Parameters$para[1], alpha = Parameters$para[2], kappa = Parameters$para[3])
-
+    
   }else if(Type == "gumbel"){
     # ----Gumbel----
     #----Kolmogorov-Smirnov----
@@ -55,7 +91,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     ADT<-goftest::ad.test(Intensity, "pgum1", xi = Parameters$para[1], alpha = Parameters$para[2])
     #----Cramer-von Mises----
     CWT<-goftest::cvm.test(Intensity, "pgum1", xi = Parameters$para[1], alpha = Parameters$para[2])
-
+    
   }else if(Type == "log.normal3"){
     # ----Log Normal 3----
     #----Kolmogorov-Smirnov----
@@ -64,7 +100,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     ADT<-goftest::ad.test(Intensity, "pln31", zeta = Parameters$para[1], mulog = Parameters$para[2], sigmalog = Parameters$para[3])
     #----Cramer-von Mises----
     CWT<-goftest::cvm.test(Intensity, "pln31", zeta = Parameters$para[1], mulog = Parameters$para[2], sigmalog = Parameters$para[3])
-
+    
   }else if(Type == "normal"){
     # ----Normal----
     #----Kolmogorov-Smirnov----

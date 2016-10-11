@@ -1,23 +1,62 @@
-#' Title
+#' fitDISTRI
+#' 
+#' This function allows to fit several distribution functions to observed data
+#' by means of the methods L-moments, probability weighted moments and maximum 
+#' likelihood. It also assesses the goodness of fit test with different 
+#' statistics (see \code{\link{goodFIT}}).
 #'
-#' @param Intensity 
-#' @param Type 
-#' @param Plot 
-#' @param M.fit 
-#' @param Periods 
-#' @param Dura 
-#' @param Station 
-#' @param CI 
-#' @param iter 
-#' @param goodtest 
-#' @param Resolution 
-#' @param SAVE 
+#' @param Intensity: a numeric vector with intensity [mm/h] values of different
+#' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
+#' @param Type: a character specifying the name of distribution function that it will 
+#' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, log.pearson3 and 
+#' wakeby (see \code{\link{selecDIST}}).
+#' @param Plot: a number (1) to determine if it will be plotted density curves 
+#' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
+#' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
+#' Or use both numbers to get these graphs. If you use other number the graphs 
+#' will not appear.
+#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
+#' and Maximum Likelihood (\emph{MLE}). 
+#' @param Periods: a numeric vector with return periods.
+#' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+#' This parameter is used to save results.
+#' @param Station: a character specifying a name or number of pluviographic station where data were 
+#' measurement, and it is used to save results.  
+#' @param CI: a logical value specifying whether confidence interval should be 
+#' cumputed to \emph{pdf} fitted by means \code{\link{bootstrapCI}} function.
+#' @param iter: An integer representing number of resamples to conduct when 
+#' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
+#' CI is equal to TRUE.
+#' @param goodtest: a logical value specifying whether goodness-fit tests should be 
+#' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
+#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
+#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
+#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.  
 #'
-#' @return
+#' @return A list of:
+#' 
+#'  \itemize{
+#'    \item \code{Parameters} a list with type of distribution fitted and values of its parameters
+#'    \item \code{Int.pdf} a numeric vector of intensities values per each return \code{Periods} compute by \emph{pdf} fitted. 
+#'    \item \code{Conf.Inter} a matrix with lower and upper limits of confidence 
+#'    interval for \emph{pdf} fitted and computed it for each return \code{Periods}.
+#'    \item \code{goodness.fit} a data frame with statistics values of goodness of fit tests and its respective p-value, 
+#'    moreover information criteria are evaluated (see \code{\link{goodFIT}}) 
+#'    \item \code{Info.PDF} a vector with details about fit method and distribution function employed. 
+#'  }
+#' @author David Zamora <dazamoraa@unal.edu.co> 
+#' Water Resources Engineering Research Group - GIREH
+#'   
 #' @export
 #'
 #' @examples
 #' 
+#' # Meteorology station in the Airport Farfan in Tulua, Colombia.
+#' data(inten)
+#' fit.pdf <- fitDISTRI(Intensity =inten[15:35,1], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
+#'                      Periods =c(2,3,5,10,25,50,100), Dura ="5 min", Station ="2610", CI = TRUE,
+#'                      iter =100,goodtest = TRUE,Resolution = 300, SAVE = FALSE)
 #' 
 fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
          Periods =..., Dura =..., Station =..., CI = FALSE, iter = ..,

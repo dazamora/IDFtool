@@ -1,23 +1,22 @@
 
-
 #' IDFCurve
 #'
 #'
 #'
-#' @param Data:
-#' @param Station:
-#' @param Duration:
-#' @param Periods:
-#' @param Type:
-#' @param M.fit:
-#' @param Plot:
-#' @param Strategy:
-#' @param logaxe:
-#' @param CI:
-#' @param iter:
-#' @param goodtest:
-#' @param Resolution:
-#' @param SAVE:
+#' @param Data: 1
+#' @param Station: 11
+#' @param Duration: 11
+#' @param Periods: 11
+#' @param Type: 11
+#' @param M.fit: 11
+#' @param Plot: 11
+#' @param Strategy: 11
+#' @param logaxe: 11
+#' @param CI: 11
+#' @param iter: 11
+#' @param goodtest: 11
+#' @param Resolution: 11
+#' @param SAVE: 11
 #'
 #' @return A list of:
 #'
@@ -37,7 +36,7 @@
 #'
 IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
               Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-              Plot = 1234, Strategy = 1:3, logaxe="", CI = FALSE, iter = 500,
+              Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE, iter = 500,
               goodtest = FALSE, Resolution = 300, SAVE = FALSE){
 
   # ----INPUTS----
@@ -93,7 +92,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
 
     for(i in 1:nd){
       distri[[nom.dura[i]]]<-fitDISTRI(Intensity = intensities[,i], Type ="Gumbel", Plot = Plot, M.fit = Type,
-                                       Periods = Tp, Dura = paste(as.character(durations[i]), " min.", sep=""),
+                                       Periods = Tp, Dura = paste(as.character(durations[i]), " min.", sep = ""),
                                        Station = Station, CI = CI, iter = iter,
                                        goodtest = goodtest, Resolution = Resolution, SAVE = SAVE)
       idf[i,]<-distri[[i]]$Int.pdf
@@ -122,19 +121,19 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
       path.result <- paste(".", "RESULTS", Station, sep = "/")
     }
 
-    write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
+    xlxs::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
                sheetName = "IDF.by.PDF")
-    write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
+    xlxs::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
                sheetName = "IDF.by.PDF")
-    write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, name[estr], ".xlsx", sep = ""),
+    xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, name[estr], ".xlsx", sep = ""),
                sheetName = "goodness.fit", append = TRUE)
-    write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+    xlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                sheetName = "Coefficients", append = TRUE)
-    write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+    xlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                sheetName = "Prediction.by.C-IDF", append = TRUE)
-    write.xlsx(Output[[name[estr]]]$test.fit.reg = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+    xlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                sheetName="Performance-IDF.reg", append = TRUE)
-    write.xlsx(Output[[name[estr]]]$Confidence.Int = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+    xlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                sheetName="Conf.Int-IDF.reg", append = TRUE)
 
   }
@@ -142,11 +141,11 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
 
 }
 
-  # Salidas de la funcion
+  # Salidas de la funcion----
 
     OUT.FINAL <- list(Intesidades = M.idf, Modelo = Output,
                     Ajuste = M.test.fit, Distibucion = distri)
     print("A")
-  return(OUT.FINAL)
+   return(OUT.FINAL)
 
 }

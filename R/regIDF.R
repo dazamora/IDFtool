@@ -34,17 +34,29 @@
 #'
 #' @return A list of
 #' 
-#' \itimize{
-#'  \item 
-#'  \item
-#'  \item
-#'  \item
-#'  \item
+#' \itemize{
+#'  \item \code{Predict} a numeric matrix with the intensities values of the IDF 
+#'  equation calibrated. Durations by rows and return periods by columns.
+#'  \item \code{Coefficients} a numeric matrix with values of the coefficients \emph{A}, \emph{B} and \emph{C} per each return period.
+#'  \item \code{test.fit.reg} a numeric matrix with perfomance metrics (\emph{rmse}, \emph{mse}, \emph{br2}, \emph{AIC} and \emph{BIC} by each equation.
+#'  \item \code{Prediction.Int} a list with matrices. Each matrix has the lower and upper limit of the \bold{prediction} interval 
+#'  per each specific time duration. Two columns by \emph{n} durations.
+#'  \item \code{Confidence.Int} a list with matrices. Each matrix has the lower and upper limit of the \bold{confidence} interval 
+#'  per each specific time duration. Two columns by \emph{n} durations.
 #' }
+#' 
+#' @author David Zamora <dazamoraa@unal.edu.co> 
+#' Water Resources Engineering Research Group - GIREH
 #' 
 #' @export
 #'
 #' @examples
+#' # Meteorology station in the Airport Farfan in Tulua, Colombia.
+#' data(IDFdata)
+#' TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), Durations = c(5,10,15,20,30,60,120,360),
+#'                  logaxe = "", Plot = 34, Resolution = 300, SAVE = FALSE, Strategy = 1,
+#'                  M.fit = "lmoments", Type = "gumbel", name = "Test", Station = "2601")
+#'                  
 regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
          Plot = 34, Resolution = 300, SAVE = FALSE, Strategy =...,
          M.fit =..., Type =..., name =..., Station =...){
@@ -77,7 +89,7 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
     
     fit.model[iT,1] <- AIC(mod.lm)
     fit.model[iT,2] <- BIC(mod.lm)
-    fit.model[iT,3] <- br2(idf[ ,iT], yfit[ ,iT])
+    fit.model[iT,3] <- hydroGOF::br2(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,4] <- hydroGOF::mse(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,5] <- hydroGOF::rmse(idf[ ,iT], yfit[ ,iT])
     
