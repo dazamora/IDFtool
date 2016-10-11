@@ -4,11 +4,11 @@
 #' of the probability that a given average rainfall intensity will occur. 
 #' This function allows compute the coefficients of a equation that represent 
 #' IDF per each return period: 
-#' 
-#' where \emph{I} are intensities [mm/h] per each return periods, \emph{D} is time duration [min] 
+#' \deqn{I(D) = \frac{A \{(B+D)^C}}{%
+#' I(D) = A/(B+D)^C} where \emph{I} are intensities [mm/h] per each return periods, \emph{D} is time duration [min] 
 #' and \emph{A}, \emph{B} and \emph{C} are coefficients. The last are calibrated by the Levenberg-Marquardt 
 #' algorithm (see  \code{\link{nls.lm}}). Moreover, \code{regIDF} computed confidence and prediction
-#' intervals to calibrated equiations by means of \code{\link{predFit}} function (see \pkg{investr}). Finally, this function 
+#' intervals to calibrated equiations by means of \code{\link{predFit}} function (see \pkg{investr} package). Finally, this function 
 #' assesses the performance of the equations by means of four metrics: roor mean square error (\code{\link{rmse}}),
 #' coefficient of determination (br2) multiplied by the slope of the regression line between sim and obs (\code{\link{br2}}), 
 #' mean square error \code{\link{mse}} and information criteria \code{\link{AIC}} and \code{\link{BIC}}.
