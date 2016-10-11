@@ -1,0 +1,40 @@
+#' selecDIST
+#' 
+#' Definir la abreviatura del nombre
+#'
+#' @param Type: a character specifying the name of distribution function that 
+#' it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, 
+#' log.pearson3 and wakeby. 
+#'
+#' @return a character with a abbreviation of of distribution function defined in \code{Type}.
+#' @export
+#'
+#' @examples
+#' (selecDIST(Type = "log.normal3"))
+#' # "ln3
+#' 
+selecDIST <- function(Type = "Gumbel"){
+  if (Type == "exponential") {
+    distribution <- "exp"
+  } else if (Type == "gamma") {
+    distribution <- "gam"
+  } else if (Type == "gev") {
+    distribution <- "gev"
+  } else if (Type == "gumbel") {
+    distribution <- "gum"
+  } else if (Type == "log.normal3") {
+    distribution <- "ln3"
+  }else if (Type == "normal") {
+    distribution <- "nor"
+  }else if (Type == "pearson3") {
+    distribution <- "pe3"
+  }else if (Type == "log.pearson3") {
+    distribution <- "pe3"
+  }else if (Type == "wakeby") {
+    distribution <- "wak"
+  }else{ #log normal 2P
+    print("En desarrollo")
+  }
+  
+  return(distribution)
+}
