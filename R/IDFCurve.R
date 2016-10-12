@@ -45,13 +45,13 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
   # ----OUTPUTS----
   Output<-list()
 
-  # ----Cargar datos----
-  input <-LISTA.DURACION[[Station]]
+  # ----Load data----
+  input <-Data[[Station]]
   Int.total <-input[ ,2:dim(input)[2]]
   id.info<-which(is.na(Int.total[,1])==TRUE)
   Plot<-as.character(Plot)
 
-  # ----Definir Durationes----
+  # ----Definir Duraciones----
   if(length(Duration)==1){
     duration<-c(5/60, 10/60, 15/60, 20/60, 30/60, 1, 2, 6)   # durations in hr for idf analysis
   }else{
@@ -66,7 +66,28 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
 
 # ----Corre los diferentes escenarios----
   for(estr in Strategy){
-
+    if (Strategy == 0) {
+      print(paste("Min. Year: ", min(input[ ,1]), " - ", "Max. Year: ", max(input[ ,1]), sep = ""))
+      cat("\n Select the range of years")
+      years <- scan(what = numeric(), nmax=2, quiet = TRUE)
+      print("Time duration in hours")
+      print(duration)
+      cat("\n Do you work with durations defined already? (Yes or No)")
+      ans <- scan(what = character(), nmax = 1, quiet = TRUE)
+      
+      if (tolower(ans) == "yes"){
+        print("Right")
+      } else if (tolower(ans) == "no") {
+        print("Select some of the next durations (minutes)")
+        print(colnames(input[,-1])[c(3,5:8)])
+        duration <- scan(what = numeric(), n = 5, quiet = TRUE)
+      } else{
+        stop("Incorrect selection")
+      }
+      idcol <- which(is.element(colnames(input[ ,-1]),as.character(duration)) == TRUE)
+      idrow <- which(input[ ,1] >= years[1] & input[ ,1] <= years[2]) 
+      intensities <- input[idrow,-1][ ,idcol]
+    } else {
     if(estr==1){ # Solo datos digitalizados
       intensities<-Int.total[-id.info,]
       durations<-duration
@@ -80,7 +101,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
       durations<-duration[c(3,5:8)]
       nom.dura<-paste(c(15,30,60,120,360)," min",sep="")
     }
-
+}
 # ----Ajusta la distribucion y calcula intesidades por duracion y periodo de retorno----
     nd = length(durations)
     nTp = length(Tp)
