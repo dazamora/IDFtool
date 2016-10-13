@@ -46,7 +46,7 @@
 bootstrapCI <- function(Intensity =.., Parameters =..,Type = "Gumbel",
                         Rsample = 1000, Return.P =..., Conf.Inter = 0.95) {
   
-  # extract fitted model parameters and flag as to whether the
+  # extract fitted model parameters
   base.params <- Parameters
   
   # create output matrices to store parameter sets and quantile estimates

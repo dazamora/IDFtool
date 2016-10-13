@@ -7,7 +7,7 @@
 IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
   Periods = FALSE, Type = "gumbel", M.fit = "lmoments", Plot = 1234,
   Strategy = 1:3, logaxe = "", CI = FALSE, iter = 500,
-  goodtest = FALSE, Resolution = 300, SAVE = FALSE)
+  goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 }
 \arguments{
 \item{Data:}{1}
@@ -37,6 +37,8 @@ IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
 \item{Resolution:}{11}
 
 \item{SAVE:}{11}
+
+\item{name:}{12}
 }
 \value{
 A list of:
@@ -53,6 +55,11 @@ A list of:
 IDFCurve
 }
 \examples{
+data(inten)
+Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
+Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
+Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, iter = 100,
+goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 
 }
 \author{

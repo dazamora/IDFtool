@@ -52,7 +52,7 @@
 #'
 #' @examples
 #' 
-#' # Meteorology station in the Airport Farfan in Tulua, Colombia.
+#' # Meteorology station in the Farfan Airport in Tulua, Colombia.
 #' data(inten)
 #' fit.pdf <- fitDISTRI(Intensity =inten[15:35,1], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
 #'                      Periods =c(2,3,5,10,25,50,100), Dura ="5 min", Station ="2610", CI = TRUE,
@@ -113,7 +113,7 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
                              Rsample = iter, Return.P = FR.plot, Conf.Inter = 0.95)
   }
   # ----Plot Frecuency versus Intesity----
-  if (grepl("2", Plot)) {
+  if (grepl("2", Plot) & CI) {
 
     if (SAVE) {
       if(file.exists(paste(".", "FIGURES", Station, M.fit, Type, sep = "/"))){

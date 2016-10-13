@@ -1,4 +1,4 @@
-#' Title
+#' goodFIT
 #' 
 #' This function computing of goodness-of-fit for continuous univariate 
 #' distributions using tests: Kolmogorov-Smirnov, Anderson-Darling and 
@@ -45,7 +45,7 @@
 #' @examples
 #' # Meteorology station in the Airport Farfan in Tulua, Colombia.
 #' data(Intgum5min)
-#' data(Pagumbel)
+#' data(Pargumbel)
 #' # not plotted
 #' test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min,
 #'                     Parameters = Pargumbel,M.fit = "Lmoments", Dura ="5_min", Plot = 0)
