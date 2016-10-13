@@ -15,7 +15,7 @@ matrix dimension must be 3 rows and 1 column.}
 
 \item{Periods:}{a numeric vector with return periods.}
 
-\item{Durations:}{a numeric vector specifying a time duration of the \code{Intensity}.}
+\item{Durations:}{a numeric vector specifying a time duration of the \code{Intensity} in minutes.}
 
 \item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
@@ -68,6 +68,7 @@ coefficient of determination (br2) multiplied by the slope of the regression lin
 mean square error \code{\link{mse}} and information criteria \code{\link{AIC}} and \code{\link{BIC}}.
 }
 \examples{
+
 # Meteorology station in the Airport Farfan in Tulua, Colombia.
 data(IDFdata)
 TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), Durations = c(5,10,15,20,30,60,120,360),

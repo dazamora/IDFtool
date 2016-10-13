@@ -43,6 +43,7 @@
 #' @export
 #'
 #' @examples
+#' 
 #' # Meteorology station in the Airport Farfan in Tulua, Colombia.
 #' data(Intgum5min)
 #' data(Pargumbel)

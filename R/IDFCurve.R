@@ -34,6 +34,8 @@
 #' @export
 #'
 #' @examples
+#' 
+#' # Meteorology station in the Farfan Airport in Tulua, Colombia.
 #' data(inten)
 #' Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 #' Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
@@ -104,7 +106,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
       idrow <- which(input[ ,1] >= years[1] & input[ ,1] <= years[2]) 
       intensities <- input[idrow,-1][ ,idcol]
       durations <- duration
-      nom.dura <- colnames(intensities)
+      nom.dura <- paste(colnames(intensities), " min", sep = "")
     } else {
       if (estr == 1) { # Solo datos digitalizados
         intensities <- Int.total[-id.info, ]
@@ -124,7 +126,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     nd <- length(durations)
     nTp <- length(Tp)
     
-    options(warn = 0) # Para mostrar wanings 0
+    #options(warn = 0) # Para mostrar wanings 0
     distri <- list() # Almacena todos los resultados de la funcion fitDISTRI
     idf <- matrix(nrow = nd, ncol = nTp)
     M.test.fit <- matrix(NA, nrow = nd, ncol = 8)
@@ -133,27 +135,39 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     
     for(i in 1:nd){
       distri[[nom.dura[i]]]<-fitDISTRI(Intensity = intensities[,i], Type = Type, Plot = Plot, M.fit = M.fit,
-                                       Periods = Tp, Dura = paste(as.character(durations[i]), " min.", sep = ""),
-                                       Station = Station, CI = CI, iter = iter,
+                                       Periods = Tp, Dura = nom.dura[i], Station = Station, CI = CI, iter = iter,
                                        goodtest = goodtest, Resolution = Resolution, SAVE = SAVE)
       idf[i, ] <- distri[[i]]$Int.pdf
-      M.test.fit[i, ]<- distri[[i]]$goodness.fit
-      CI.pdf.lower <- cbind(CI.pdf.lower, distri[[i]]$Conf.Inter$lower.lim)
-      CI.pdf.upper <- cbind(CI.pdf.upper, distri[[i]]$Conf.Inter$upper.lim)
+      if(!is.null(distri[[i]]$goodness.fit)) {
+        M.test.fit[i, ]<- unlist(distri[[i]]$goodness.fit)
+      } else {
+        M.test.fit <- NULL
+      }
+      if(!is.null(distri[[i]]$Conf.Inter)) {
+        CI.pdf.lower <- cbind(CI.pdf.lower, distri[[i]]$Conf.Inter$Conf.Inter$lower.lim)
+        CI.pdf.upper <- cbind(CI.pdf.upper, distri[[i]]$Conf.Inter$Conf.Inter$upper.lim)
+      } else {
+        CI.pdf.lower <- NULL
+        CI.pdf.upper <- NULL
+      }
     }
     
     colnames(idf) <- as.character(Tp)
     rownames(idf) <- nom.dura
     colnames(M.test.fit) <- names(distri[[i]]$goodness.fit)
     rownames(M.test.fit) <- nom.dura
-    names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$nonexceed.prob),0)
+    names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$Conf.Inter$nonexceed.prob),0)
     colnames(CI.pdf.lower) <- nom.dura
     rownames(CI.pdf.lower) <- as.character(names.periods)
     colnames(CI.pdf.upper) <- nom.dura
     rownames(CI.pdf.upper) <- as.character(names.periods)
     
     # ----Compute idf equations per each time durations----
-    Output[[name[estr]]] <- regIDF(Intensity = idf, Periods = Tp, Durations= durations, logaxe = logaxe,
+    if(option.alt == 4){
+      durations <- durations/60
+    }
+    
+    Output[[name[estr]]] <- regIDF(Intensity = idf, Periods = Tp, Durations= durations*60, logaxe = logaxe,
                                    Plot = Plot, Resolution = Resolution, SAVE = SAVE, Strategy = estr,
                                    M.fit = M.fit, Type = Type, name = name, Station = Station)
     
@@ -166,13 +180,13 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
         path.result <- paste(".", "RESULTS", Station, sep = "/")
       }
       
-      xlxs::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
+      xlsx::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "IDF.by.PDF", row.names = TRUE, col.names = TRUE)
-      xlxs::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
+      xlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "CIL-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlxs::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, name[estr], ".xlsx",sep=""),
+      xlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "CIU-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, name[estr], ".xlsx", sep = ""),
+      xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                        sheetName = "goodness.fit", append = TRUE, row.names = TRUE, col.names = TRUE)
       xlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                        sheetName = "Coefficients", append = TRUE, row.names = TRUE, col.names = TRUE)

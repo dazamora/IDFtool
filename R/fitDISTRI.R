@@ -136,7 +136,7 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
     par(mgp = c(2.2, 0.2, 0))
     plot(Ttick,lmomco::par2qua(FR.plot,Parameters),type = "n",
          main = paste("Intensity vs Frequency ", Type, "-", M.fit, "\n", Station, sep = ""),
-         ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Retorn periods [year]",
+         ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Return periods [year]",
          ylab = "Intensity [mm/h]", cex.lab = 1, cex.main = 0.9,log = "yx")
 
     abline(v = axTicks(1), h = axTicks(2), col = "gray80", lty = 3)

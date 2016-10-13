@@ -17,7 +17,7 @@
 #' (by rows) and return \code{Periods} (by columns). For use this function, the smallest 
 #' matrix dimension must be 3 rows and 1 column.
 #' @param Periods: a numeric vector with return periods.
-#' @param Durations: a numeric vector specifying a time duration of the \code{Intensity}. 
+#' @param Durations: a numeric vector specifying a time duration of the \code{Intensity} in minutes. 
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "". 
 #' @param Plot: The number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
 #'  for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
@@ -49,8 +49,11 @@
 #' Water Resources Engineering Research Group - GIREH
 #' 
 #' @export
+#' 
+#' @import hydroGOF 
 #'
 #' @examples
+#' 
 #' # Meteorology station in the Airport Farfan in Tulua, Colombia.
 #' data(IDFdata)
 #' TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), Durations = c(5,10,15,20,30,60,120,360),
@@ -89,7 +92,7 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
     
     fit.model[iT,1] <- AIC(mod.lm)
     fit.model[iT,2] <- BIC(mod.lm)
-    fit.model[iT,3] <- hydroGOF::br2(idf[ ,iT], yfit[ ,iT])
+    fit.model[iT,3] <- br2(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,4] <- hydroGOF::mse(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,5] <- hydroGOF::rmse(idf[ ,iT], yfit[ ,iT])
     

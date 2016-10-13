@@ -2,7 +2,7 @@
 % Please edit documentation in R/goodFIT.R
 \name{goodFIT}
 \alias{goodFIT}
-\title{Title}
+\title{goodFIT}
 \usage{
 goodFIT(Station = ..., Type = ..., Intensity = ..., Parameters = ...,
   M.fit = ..., Dura = .., Plot = ..., Resolution = 300, SAVE = FALSE)
@@ -56,9 +56,10 @@ are evaluated: Akaike's Information Criterion and Bayesian Information
 Criterion by means of \code{\link{InfoCRIT}} function.
 }
 \examples{
+
 # Meteorology station in the Airport Farfan in Tulua, Colombia.
 data(Intgum5min)
-data(Pagumbel)
+data(Pargumbel)
 # not plotted
 test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min,
                     Parameters = Pargumbel,M.fit = "Lmoments", Dura ="5_min", Plot = 0)

@@ -55,6 +55,8 @@ A list of:
 IDFCurve
 }
 \examples{
+
+# Meteorology station in the Farfan Airport in Tulua, Colombia.
 data(inten)
 Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 Periods = FALSE, Type = "gumbel", M.fit = "lmoments",

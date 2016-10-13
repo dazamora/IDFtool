@@ -1,8 +1,9 @@
 Package: IDFtool
 Title: What the Package Does (one line, title case)
-Version: 0.0.0.9000
-Authors@R: person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre"))
-Description: What the package does (one paragraph).
+Version: 0.0.1
+Authors@R: c(person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre")),
+             person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("aut")))
+Description: Water Resources Engineering Research Group - GIREH
 Depends:
     R (>= 3.2.3)
 Imports: lmomco,
@@ -12,7 +13,7 @@ Imports: lmomco,
          magicaxis,
          scales,
          xlsx,
-License: What license is it under?
+License: GPL-2
 Encoding: UTF-8
 LazyData: true
 RoxygenNote: 5.0.1
