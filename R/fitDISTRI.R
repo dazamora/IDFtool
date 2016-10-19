@@ -78,15 +78,18 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
   FR<-lmomco::T2prob(Tp)
 
   if(M.fit=="lmoments"){
-    LMOM<-lmomco::lmoms(Intensity)
-    Parameters<-lmomco::lmom2par(LMOM, type = distribution)
-    INT<-lmomco::par2qua(FR,Parameters)
+    LMOM <- lmomco::lmoms(Intensity)
+    if(LMOM$ratios[3] < 0 & distribution == "ln3"){
+      LMOM$ratios[3] <- -LMOM$ratios[3]
+    }
+    Parameters <- lmomco::lmom2par(LMOM, type = distribution)
+    INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit=="pwd"){
-    PMP<-lmomco::pwm(Intensity)
+    PMP <- lmomco::pwm(Intensity)
     Parameters<-lmomco::lmom2par(pwm2lmom(PMP),type = distribution)
-    INT <-lmomco::par2qua(FR,Parameters)
+    INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit=="mle"){
-    Parameters <- lmomco::mle2par(Intensity,type=distribution)
+    Parameters <- lmomco::mle2par(Intensity, type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
   }else{
     stop("Error on selecction fit model")
@@ -96,6 +99,7 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
     INT <- 10^INT
     Intensity <- 10^Intensity
   }
+
   names(INT) <- as.character(Tp)
 
   # ----Computed goodness-fit tests-----

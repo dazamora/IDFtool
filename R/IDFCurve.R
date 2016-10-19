@@ -157,11 +157,12 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     colnames(M.test.fit) <- names(distri[[i]]$goodness.fit)
     rownames(M.test.fit) <- nom.dura
     names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$Conf.Inter$nonexceed.prob),0)
+    if (CI) {
     colnames(CI.pdf.lower) <- nom.dura
     rownames(CI.pdf.lower) <- as.character(names.periods)
     colnames(CI.pdf.upper) <- nom.dura
     rownames(CI.pdf.upper) <- as.character(names.periods)
-    
+    }
     # ----Compute idf equations per each time durations----
     if(option.alt == 4){
       durations <- durations/60

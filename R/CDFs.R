@@ -23,7 +23,7 @@ pexp1 <- function(q, xi, alpha) {
   lmomco::cdfexp(q, list(type = "exp", para = c(xi, alpha), source = "parexp"))
 }
 
-#' pagm1
+#' pgam1
 #' 
 #' This function computes the cumulative probability or nonexceedance probability 
 #' of the Gamma distribution given parameters (\eqn{\alpha} and \eqn{\beta}) 
@@ -42,7 +42,7 @@ pexp1 <- function(q, xi, alpha) {
 #'
 #' @examples
 #' 
-pagm1 <- function(q, alpha, beta) {
+pgam1 <- function(q, alpha, beta) {
   # ----Gamma----
   lmomco::cdfgam(q, list(type = "gam", para = c(alpha, beta), source = "pargam"))
 }

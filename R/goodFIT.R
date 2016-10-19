@@ -121,7 +121,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3])
     #----Cramer-von Mises----
-    CWT <- cgoftest::vm.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3])
+    CWT <- goftest::cvm.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3])
 
   }else if(Type == "wakeby"){
     # ----Wakeby----
