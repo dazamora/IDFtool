@@ -8,7 +8,7 @@ selecDIST(Type = "Gumbel")
 }
 \arguments{
 \item{Type:}{a character specifying the name of distribution function that 
-it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, 
+it will be employed: exponential, gamma, gev, gumbel, log.normal3, normal, 
 log.pearson3 and wakeby.}
 }
 \value{
