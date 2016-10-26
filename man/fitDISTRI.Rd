@@ -24,7 +24,7 @@ will not appear.}
 
 \item{M.fit:}{a character specifying a name of fit method employed on pdf, just three 
 options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
-and Maximum Likelihood (\emph{MLE}).}
+and Maximum Likelihood (\code{\link{MLEZ}}).}
 
 \item{Periods:}{a numeric vector with return periods.}
 

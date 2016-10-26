@@ -2,6 +2,7 @@
 
 export(IDFCurve)
 export(InfoCRIT)
+export(MLEZ)
 export(bootstrapCI)
 export(fitDISTRI)
 export(goodFIT)

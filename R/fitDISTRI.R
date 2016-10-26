@@ -17,7 +17,7 @@
 #' will not appear.
 #' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
-#' and Maximum Likelihood (\emph{MLE}). 
+#' and Maximum Likelihood (\code{\link{MLEZ}}). 
 #' @param Periods: a numeric vector with return periods.
 #' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results.
@@ -89,7 +89,7 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
     Parameters<-lmomco::lmom2par(pwm2lmom(PMP),type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit=="mle"){
-    Parameters <- lmomco::mle2par(Intensity, type = distribution)
+    Parameters <- MLEZ(Intensity, type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
   }else{
     stop("Error on selecction fit model")

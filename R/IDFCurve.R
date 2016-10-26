@@ -73,12 +73,12 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
   if (length(Duration) == 1) {
     duration <- c(5/60, 10/60, 15/60, 20/60, 30/60, 1, 2, 6)   # durations in hr for idf analysis
   } else {
-    duration <- c(Duration[Duration < 1]/60, Duration[Duration >= 1])
+    duration <- Duration/60
   }
   # ----Definir Periods----
   if (length(Periods) == 1) {
     Tp<-c(2, 3, 5, 10, 25, 50, 100)
-  }else{
+  } else {
     Tp<-Periods                            # return periods in years for plotting idf curves
   }
   
@@ -109,17 +109,22 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
       nom.dura <- paste(colnames(intensities), " min", sep = "")
     } else {
       if (estr == 1) { # Solo datos digitalizados
-        intensities <- Int.total[-id.info, ]
+        if (length(Duration) == 1){
+          intensities <- Int.total[-id.info, ]
+        } else {
+          in.dura <- is.element(colnames(Int.total),as.character(Duration))
+          intensities <- Int.total[-id.info,in.dura]
+        }
         durations <- duration
-        nom.dura <- paste(c(5, 10, 15, 20, 30, 60, 120, 360), " min", sep = "")
+        nom.dura <- paste(duration*60, " min", sep = "")
       } else if (estr == 2) { # Solo datos Ideam
         intensities <- Int.total[id.info,c(3,5:8)]
         durations <- duration[c(3,5:8)]
-        nom.dura <- paste(c(15, 30, 60, 120, 360), " min", sep = "")
+        nom.dura <- paste(duration[c(3,5:8)]*60, " min", sep = "")
       } else { # Ambos conjunto de datos
         intensities <- Int.total[,c(3,5:8)]
         durations <- duration[c(3,5:8)]
-        nom.dura <- paste(c(15, 30, 60, 120, 360), " min", sep = "")
+        nom.dura <- paste(duration[c(3,5:8)]*60, " min", sep = "")
       }
     }
     # ----Ajusta la distribucion y calcula intesidades por duracion y periodo de retorno----
