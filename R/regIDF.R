@@ -218,6 +218,7 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
               Coefficients = M.coeficientes,
               test.fit.reg = fit.model,
               Prediction.Int = Inter.Pred.R,
-              Confidence.Int = Inter.Conf.R)
+              Confidence.Int = Inter.Conf.R,
+              Modols = Modelos)
   )
 }
