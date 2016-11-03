@@ -22,6 +22,7 @@
 #' @param Plot: The number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
 #'  for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
 #'  period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear. 
+#' @param Intervals: 1
 #' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
 #' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
 #' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}. 
@@ -61,7 +62,7 @@
 #'                  M.fit = "lmoments", Type = "gumbel", name = "Test", Station = "2601")
 #'                  
 regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
-         Plot = 34, Resolution = 300, SAVE = FALSE, Strategy =...,
+         Plot = 34, Intervals = TRUE,Resolution = 300, SAVE = FALSE, Strategy =...,
          M.fit =..., Type =..., name =..., Station =...){
   
   # ----Define variables and outputs----
@@ -95,14 +96,15 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
     fit.model[iT,3] <- br2(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,4] <- hydroGOF::mse(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,5] <- hydroGOF::rmse(idf[ ,iT], yfit[ ,iT])
-    
+  
     nam.int<-paste(as.character(Tp)[iT], " years", sep= "")
-    Inter.Conf.R[[nam.int]] <- investr::predFit(mod.lm, interval = "confidence")
-    Inter.Pred.R[[nam.int]] <- investr::predFit(mod.lm, interval = "prediction")
-    
-    rownames(Inter.Conf.R[[iT]])<-as.character(durations.2)
-    rownames(Inter.Pred.R[[iT]])<-as.character(durations.2)
-    
+    if (Intervals){
+      Inter.Conf.R[[nam.int]] <- investr::predFit(mod.lm, interval = "confidence")
+      Inter.Pred.R[[nam.int]] <- investr::predFit(mod.lm, interval = "prediction")
+      
+      rownames(Inter.Conf.R[[iT]])<-as.character(durations.2)
+      rownames(Inter.Pred.R[[iT]])<-as.character(durations.2)
+    }
   }
   
   # ----Plotting curves by each return period in just a figure-----
@@ -155,13 +157,16 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
   # ----Figuras independientes IDF por duracion----
   
   for (k in 1:length(Tp)) {
-    
-    LI.IC <- Inter.Conf.R[[k]][ ,2]
-    LS.IC <- Inter.Conf.R[[k]][ ,3]
-    LI.PR <- Inter.Pred.R[[k]][ ,2]
-    LS.PR <- Inter.Pred.R[[k]][ ,3]
-    PR.media <- predict(Modelos[[k]])
-    
+    if (Intervals){
+      LI.IC <- Inter.Conf.R[[k]][ ,2]
+      LS.IC <- Inter.Conf.R[[k]][ ,3]
+      LI.PR <- Inter.Pred.R[[k]][ ,2]
+      LS.PR <- Inter.Pred.R[[k]][ ,3]
+      PR.media <- predict(Modelos[[k]])
+    } else {
+      Inter.Conf.R <- NULL
+      Inter.Pred.R <- NULL
+    }
     if (grepl("4",Plot)) {
       
       if (SAVE) {

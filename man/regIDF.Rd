@@ -5,8 +5,8 @@
 \title{regIDF}
 \usage{
 regIDF(Intensity = ..., Periods = ..., Durations = ..., logaxe = ...,
-  Plot = 34, Resolution = 300, SAVE = FALSE, Strategy = ...,
-  M.fit = ..., Type = ..., name = ..., Station = ...)
+  Plot = 34, Intervals = TRUE, Resolution = 300, SAVE = FALSE,
+  Strategy = ..., M.fit = ..., Type = ..., name = ..., Station = ...)
 }
 \arguments{
 \item{Intensity:}{a matrix with intensity values per specific time durations 
@@ -22,6 +22,8 @@ matrix dimension must be 3 rows and 1 column.}
 \item{Plot:}{The number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
 for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
 period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.}
+
+\item{Intervals:}{1}
 
 \item{Resolution:}{a number to determine resolution that the plot function used to save graphs. 
 It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
