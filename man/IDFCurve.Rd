@@ -10,49 +10,69 @@ IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
   goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 }
 \arguments{
-\item{Data:}{1}
+\item{Data:}{a numeric matrix with years in the first column and other columns has intensity [mm/h] values by each a the \code{Duration}s time.}
 
-\item{Station:}{11}
+\item{Station:}{a string with a name to identify source of \code{Data}.}
 
-\item{Duration:}{11}
+\item{Duration:}{a logical value or numeric vector. If it is TRUE will be use the durations (in minutes) 
+by default: 5, 10 ,15, 20, 30, 60, 120 y 360. In case a numeric vector the durations must be in minutes.}
 
-\item{Periods:}{11}
+\item{Periods:}{a logical value or numeric vector.}
 
-\item{Type:}{11}
+\item{Type:}{a character specifying the name of distribution function that it will 
+be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
+wakeby (see \code{\link{selecDIST}}).}
 
-\item{M.fit:}{11}
+\item{M.fit:}{a character specifying a name of fit method employed on pdf, just three 
+options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
+Maximum Likelihood (\code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).}
 
-\item{Plot:}{11}
+\item{Plot:}{it is a number of one to four digits. a number (1) to determine if it will be plotted density curves 
+both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
+plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
+Or use both numbers to get these graphs. If you use other number the graphs 
+will not appear. he number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
+for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
+period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.}
 
-\item{Strategy:}{11}
+\item{Strategy:}{a numeric vector used to identify Strategies to compute IDF curves with different datas sets: 1 just data from Ideam, 
+2 just data from HIDFUN tool and 3 used this data sets.}
 
-\item{logaxe:}{11}
+\item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
-\item{CI:}{11}
+\item{CI:}{a logical value specifying whether confidence and prediction intervals will be computed.}
 
-\item{iter:}{11}
+\item{iter:}{an integer representing number of resamples to conduct when 
+confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
+CI is equal to TRUE.}
 
-\item{goodtest:}{11}
+\item{goodtest:}{a logical value specifying whether goodness-fit tests should be 
+cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.}
 
-\item{Resolution:}{11}
+\item{Resolution:}{a number to determine resolution that the plot function used to save graphs. 
+It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
 
-\item{SAVE:}{11}
+\item{SAVE:}{a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.}
 
-\item{name:}{12}
+\item{name:}{a logical value. TRUE will use a default names to identify strategies: (1) "HIDFUN", (2) "IDEAM", (3) "AMBOS". In other case FALSE
+allows: i) selected years of data sets, ii) insert durations to do IDF curves (in minutes)}
 }
 \value{
 A list of:
 
  \itemize{
-   \item \code{Parameters} a list
-   \item \code{Int.pdf}
-   \item \code{Conf.Inter}
-   \item \code{goodness.fit}
-   \item \code{Info.PDF}
+   \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} compute by \emph{pdf} fitted.
+   \item \code{Models} a list with results of the function \code{\link{regIDF}}.
+   \item \code{Test.fit} a list with results of the function \code{\link{goodFIT}}.
+   \item \code{Distribution} a list with results of the function \code{\link{fitDISRTI}}.
  }
 }
 \description{
-IDFCurve
+An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation 
+of the probability that a given average rainfall intensity will occur. This function allows fit different 
+probability distribution functions (see \code{\link{selecDIST}}) by means of four fit methods (see \code{\link{fitDISTRI}})
+to determined intensity [mm/h] for different return periods and per specific time durations. Finally, it compute parameters of the equations 
+of the IDF curves (see \code{\link{regIDF}})
 }
 \examples{
 
@@ -66,6 +86,7 @@ goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 }
 \author{
 David Zamora <dazamoraa@unal.edu.co>
+Albeiro Figueroa <cafigueroao@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
 

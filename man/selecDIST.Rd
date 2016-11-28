@@ -12,7 +12,7 @@ it will be employed: exponential, gamma, gev, gumbel, log.normal3, normal,
 log.pearson3 and wakeby.}
 }
 \value{
-a character with a abbreviation of of distribution function defined in \code{Type}.
+a character with a abbreviation of distribution function defined in \code{Type}.
 }
 \description{
 This function converts large names of distribution functions in short one 

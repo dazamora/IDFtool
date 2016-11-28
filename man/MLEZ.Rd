@@ -6,11 +6,9 @@
 \usage{
 MLEZ(Intensity, type, para.int = NULL, silent = TRUE,
   null.on.not.converge = TRUE, ptransf = function(t) return(t),
-  pretransf = function(t) return(t), ...)
+  pretransf = function(t) return(t))
 }
 \arguments{
-\item{...}{}
-
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
@@ -18,13 +16,32 @@ years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.)
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
-\item{silent:}{A logical to silence the \code{\link{try}}() function wrapping the \code{\link{DEoptim}}() function.}
+\item{para.int:}{Initial parameters as a vector \eqn{\Theta}.}
 
-\item{null.on.not.converge:}{A logical to trigging simple return of NULL if the optim() function returns a nonzero convergence status.}
+\item{silent:}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
+
+\item{null.on.not.converge:}{A logical to trigging simple return of NULL if the \code{\link{DEoptim}} function 
+returns a nonzero convergence status.}
+}
+\value{
+A list of:
+
+ \itemize{
+   \item \code{Parameters} a list with type of distribution fitted and values of its parameters
+ }
 }
 \description{
 This function fitting parameters of probability distribution functions (see \code{\link{selecDIST}})
 by means of maximum likelihood and Performs evolutionary global optimization via the 
 Differential Evolution algorithm (see \pkg{DEoptim} package).
+}
+\examples{
+
+data(inten)
+TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
+                 ptransf = function(t) return(t), pretransf = function(t) return(t))
+
+## Results: xi = 71.178 ; alpha = 15.204 
+
 }
 

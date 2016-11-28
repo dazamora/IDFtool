@@ -1,14 +1,14 @@
 #' fitDISTRI
 #' 
 #' This function allows to fit several distribution functions to observed data
-#' by means of the methods L-moments, probability weighted moments and maximum 
-#' likelihood. It also assesses the goodness of fit test with different 
+#' by means of the methods L-moments, probability weighted moments, maximum 
+#' likelihood and moments. It also assesses the goodness of fit test with different 
 #' statistics (see \code{\link{goodFIT}}).
 #'
 #' @param Intensity: a numeric vector with intensity [mm/h] values of different
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
 #' @param Type: a character specifying the name of distribution function that it will 
-#' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, log.pearson3 and 
+#' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
 #' @param Plot: a number (1) to determine if it will be plotted density curves 
 #' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
@@ -17,7 +17,7 @@
 #' will not appear.
 #' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
-#' and Maximum Likelihood (\code{\link{MLEZ}}). 
+#' Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}). 
 #' @param Periods: a numeric vector with return periods.
 #' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results.
@@ -48,15 +48,15 @@
 #' @author David Zamora <dazamoraa@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
 #'   
-#' @export
+#' @export lmomco
 #'
 #' @examples
 #' 
 #' # Meteorology station in the Farfan Airport in Tulua, Colombia.
 #' data(inten)
-#' fit.pdf <- fitDISTRI(Intensity =inten[15:35,1], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
+#' fit.pdf <- fitDISTRI(Intensity =inten[15:35,2], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
 #'                      Periods =c(2,3,5,10,25,50,100), Dura ="5 min", Station ="2610", CI = TRUE,
-#'                      iter =100,goodtest = TRUE,Resolution = 300, SAVE = FALSE)
+#'                      iter =100, goodtest = TRUE,Resolution = 300, SAVE = FALSE)
 #' 
 fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
          Periods =..., Dura =..., Station =..., CI = FALSE, iter = ..,
@@ -84,29 +84,41 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
     }
     Parameters <- lmomco::lmom2par(LMOM, type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
-  }else if(M.fit=="pwd"){
+  }else if(M.fit == "pwd"){
     PMP <- lmomco::pwm(Intensity)
     Parameters<-lmomco::lmom2par(pwm2lmom(PMP),type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
-  }else if(M.fit=="mle"){
-    Parameters <- MLEZ(Intensity, type = distribution)
+  }else if(M.fit == "mle"){
+    Parameters <- MLEZ(Intensity, type = Type)
+    INT <- lmomco::par2qua(FR,Parameters)
+  }else if(M.fit == "mme"){
+    Parameters <- MME_DIST(Intensity, PDF = Type)
     INT <- lmomco::par2qua(FR,Parameters)
   }else{
     stop("Error on selecction fit model")
   }
-
+  
   if(Type=="log.pearson3"){
     INT <- 10^INT
     Intensity <- 10^Intensity
   }
-
-  names(INT) <- as.character(Tp)
-
+  
+  if(is.null(INT)){
+    
+  } else {
+    names(INT) <- as.character(Tp)
+  }
+  
   # ----Computed goodness-fit tests-----
+  
   test.fit <- NULL
-  if (goodtest) {
-    test.fit <- goodFIT(Station = Station, Type = Type, Intensity = Intensity, Parameters = Parameters,
-                        M.fit = M.fit,Dura = Dura, Plot = Plot,  Resolution = Resolution ,SAVE = SAVE)
+  if(is.null(INT)){
+    test.fit <- rep(NA,8)
+  } else {
+    if (goodtest) {
+      test.fit <- goodFIT(Station = Station, Type = Type, Intensity = Intensity, Parameters = Parameters,
+                          M.fit = M.fit,Dura = Dura, Plot = Plot,  Resolution = Resolution ,SAVE = SAVE)
+    }
   }
   # ---- Computed confidence interval----
   CI.result <- NULL

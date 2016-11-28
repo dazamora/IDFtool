@@ -13,7 +13,7 @@ fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2, M.fit = "MLE",
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
 \item{Type:}{a character specifying the name of distribution function that it will 
-be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, log.pearson3 and 
+be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
 \item{Plot:}{a number (1) to determine if it will be plotted density curves 
@@ -24,7 +24,7 @@ will not appear.}
 
 \item{M.fit:}{a character specifying a name of fit method employed on pdf, just three 
 options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
-and Maximum Likelihood (\code{\link{MLEZ}}).}
+Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).}
 
 \item{Periods:}{a numeric vector with return periods.}
 
@@ -64,17 +64,17 @@ A list of:
 }
 \description{
 This function allows to fit several distribution functions to observed data
-by means of the methods L-moments, probability weighted moments and maximum 
-likelihood. It also assesses the goodness of fit test with different 
+by means of the methods L-moments, probability weighted moments, maximum 
+likelihood and moments. It also assesses the goodness of fit test with different 
 statistics (see \code{\link{goodFIT}}).
 }
 \examples{
 
 # Meteorology station in the Farfan Airport in Tulua, Colombia.
 data(inten)
-fit.pdf <- fitDISTRI(Intensity =inten[15:35,1], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
+fit.pdf <- fitDISTRI(Intensity =inten[15:35,2], Type ="Gumbel", Plot = 12, M.fit = "LMOMENTS",
                      Periods =c(2,3,5,10,25,50,100), Dura ="5 min", Station ="2610", CI = TRUE,
-                     iter =100,goodtest = TRUE,Resolution = 300, SAVE = FALSE)
+                     iter =100, goodtest = TRUE,Resolution = 300, SAVE = FALSE)
 
 }
 \author{

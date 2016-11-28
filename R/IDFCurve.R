@@ -1,34 +1,56 @@
 
 #' IDFCurve
-#'
-#'
-#'
-#' @param Data: 1
-#' @param Station: 11
-#' @param Duration: 11
-#' @param Periods: 11
-#' @param Type: 11
-#' @param M.fit: 11
-#' @param Plot: 11
-#' @param Strategy: 11
-#' @param logaxe: 11
-#' @param CI: 11
-#' @param iter: 11
-#' @param goodtest: 11
-#' @param Resolution: 11
-#' @param SAVE: 11
-#' @param name: 12
+#' 
+#' An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation 
+#' of the probability that a given average rainfall intensity will occur. This function allows fit different 
+#' probability distribution functions (see \code{\link{selecDIST}}) by means of four fit methods (see \code{\link{fitDISTRI}})
+#' to determined intensity [mm/h] for different return periods and per specific time durations. Finally, it compute parameters of the equations 
+#' of the IDF curves (see \code{\link{regIDF}})
+#' 
+#' 
+#' @param Data: a numeric matrix with years in the first column and other columns has intensity [mm/h] values by each a the \code{Duration}s time.
+#' @param Station: a string with a name to identify source of \code{Data}.
+#' @param Duration: a logical value or numeric vector. If it is TRUE will be use the durations (in minutes) 
+#' by default: 5, 10 ,15, 20, 30, 60, 120 y 360. In case a numeric vector the durations must be in minutes.
+#' @param Periods: a logical value or numeric vector.
+#' @param Type: a character specifying the name of distribution function that it will 
+#' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
+#' wakeby (see \code{\link{selecDIST}}).
+#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
+#' Maximum Likelihood (\code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).
+#' @param Plot: it is a number of one to four digits. a number (1) to determine if it will be plotted density curves 
+#' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
+#' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
+#' Or use both numbers to get these graphs. If you use other number the graphs 
+#' will not appear. he number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
+#' for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
+#' period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.
+#' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different datas sets: 1 just data from Ideam, 
+#' 2 just data from HIDFUN tool and 3 used this data sets.
+#' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
+#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed.
+#' @param iter: an integer representing number of resamples to conduct when 
+#' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
+#' CI is equal to TRUE.
+#' @param goodtest: a logical value specifying whether goodness-fit tests should be 
+#' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
+#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
+#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
+#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.
+#' @param name: a logical value. TRUE will use a default names to identify strategies: (1) "HIDFUN", (2) "IDEAM", (3) "AMBOS". In other case FALSE
+#' allows: i) selected years of data sets, ii) insert durations to do IDF curves (in minutes)
 #'
 #' @return A list of:
 #'
 #'  \itemize{
-#'    \item \code{Parameters} a list
-#'    \item \code{Int.pdf}
-#'    \item \code{Conf.Inter}
-#'    \item \code{goodness.fit}
-#'    \item \code{Info.PDF}
+#'    \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} compute by \emph{pdf} fitted.
+#'    \item \code{Models} a list with results of the function \code{\link{regIDF}}.
+#'    \item \code{Test.fit} a list with results of the function \code{\link{goodFIT}}.
+#'    \item \code{Distribution} a list with results of the function \code{\link{fitDISRTI}}.
 #'  }
 #' @author David Zamora <dazamoraa@unal.edu.co>
+#' Albeiro Figueroa <cafigueroao@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
 #'
 #' @export
@@ -183,10 +205,10 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     }
     
     Output[[name[estr]]] <- regIDF(Intensity = idf, Periods = Tp, Durations= durations*60, logaxe = logaxe,
-                                   Plot = Plot, Resolution = Resolution, SAVE = SAVE, Strategy = estr,
+                                   Plot = Plot, Resolution = Resolution, SAVE = SAVE, Strategy = estr, Intervals = CI,
                                    M.fit = M.fit, Type = Type, name = name, Station = Station)
     
-    if (length(Strategy) < 2) {
+    if (length(Strategy) > 2) {
       Mgoodness[[name[estr]]] <- M.test.fit
       Midf[[name[estr]]] <- idf
     }
@@ -221,16 +243,16 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
   
   # ----Salidas de la funcion----
   if (length(Strategy) < 2) {
-    return(list(Intesidades = idf, 
-                Modelos = Output,
-                Ajuste = M.test.fit, 
-                Distibucion = distri)
+    return(list(Intesities = idf, 
+                Models = Output,
+                Test.fit = M.test.fit, 
+                Distribution = distri)
     )
   } else {
-    return(list(Intesidades = Midf, 
-                Modelos = Output,
-                Ajuste = Mgoodness, 
-                Distibucion = distri)
+    return(list(Intesities = Midf, 
+                Models = Output,
+                Test.fit = Mgoodness, 
+                Distribution = distri)
     )
   }
 }

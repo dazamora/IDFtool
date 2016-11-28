@@ -23,7 +23,7 @@ matrix dimension must be 3 rows and 1 column.}
 for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
 period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.}
 
-\item{Intervals:}{1}
+\item{Intervals:}{a logical value specifying whether confidence and prediction intervals will be computed.}
 
 \item{Resolution:}{a number to determine resolution that the plot function used to save graphs. 
 It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}

@@ -7,7 +7,7 @@
 #' it will be employed: exponential, gamma, gev, gumbel, log.normal3, normal, 
 #' log.pearson3 and wakeby. 
 #'
-#' @return a character with a abbreviation of of distribution function defined in \code{Type}.
+#' @return a character with a abbreviation of distribution function defined in \code{Type}.
 #' 
 #' @author David Zamora <dazamoraa@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH

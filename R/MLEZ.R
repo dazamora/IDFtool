@@ -9,25 +9,37 @@
 #' @param type: a character specifying the name of distribution function that it will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
-#' @param para.int: Initial parameters as a vector \eqn{\Theta}}.
-#' @param silent: A logical to silence the \code{\link{try}}() function wrapping the \code{\link{DEoptim}}() function.
-#' @param null.on.not.converge: A logical to trigging simple return of NULL if the optim() function returns a nonzero convergence status.
-#' @param ... 
+#' @param para.int: Initial parameters as a vector \eqn{\Theta}.
+#' @param silent: a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.
+#' @param null.on.not.converge: A logical to trigging simple return of NULL if the \code{\link{DEoptim}} function 
+#' returns a nonzero convergence status.
 #'
-#' @return
-#' @export
+#' @return A list of:
+#' 
+#'  \itemize{
+#'    \item \code{Parameters} a list with type of distribution fitted and values of its parameters
+#'  }
+#' 
+#' @export lmomco
 #'
 #' @examples
+#' 
+#' data(inten)
+#' TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
+#'                  ptransf = function(t) return(t), pretransf = function(t) return(t))
+#' 
+#' ## Results: xi = 71.178 ; alpha = 15.204 
+#' 
 MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
-                ptransf = function(t) return(t), pretransf = function(t) return(t), 
-                ...) 
-{
+                ptransf = function(t) return(t), pretransf = function(t) return(t)) {
+  
   x <- Intensity
+  type <- tolower(type)
   type <- selecDIST(Type = type)
   
   if (is.null(para.int)) {
     lmr <- lmomco::lmoms(x)
-    para.int <- lmomco::lmom2par(lmr, type = type, ...)
+    para.int <- lmomco::lmom2par(lmr, type = type)
   }
   if (is.null(para.int)) {
     warning("could not estimate initial parameters via L-moments")
@@ -58,12 +70,7 @@ MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.c
   if (is.null(rt)) {
     warning("optim() attempt is NULL")
     return(NULL)
-  }
-  else {
-    if (null.on.not.converge & rt$convergence != 0) {
-      warning("optim() reports convergence error")
-      return(NULL)
-    }
+  } else {
     lmomco.para <- lmomco::vec2par(pretransf(rt$optim$bestmem), type = type)
     lmomco.para$AIC <- 2 * length(rt$optim$bestmem) - 2 * (-1 * rt$value)
     lmomco.para$optim <- rt
