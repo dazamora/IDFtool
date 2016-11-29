@@ -2,9 +2,11 @@
 
 export(IDFCurve)
 export(InfoCRIT)
+export(MLEZ)
+export(MME_DIST)
 export(bootstrapCI)
+export(fitDISTRI)
 export(goodFIT)
-export(lmomco)
 export(pexp1)
 export(pgam1)
 export(pgev1)

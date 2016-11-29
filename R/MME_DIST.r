@@ -29,7 +29,7 @@
 #' @author Albeiro Figueroa <cafigueroao@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
 #'   
-#' @export lmomco
+#' @export
 #' 
 #' @examples
 #' 
@@ -59,7 +59,7 @@ MME_DIST <- function (Intensity, PDF, ...) {
   v <- var(data)
   ##################################################################
   ##   Distribución Normal (2P - norm),
-  if (distname == "norm") {
+  if (distname == "nor") {
     estimate <- c(mean = m, sd = sqrt(v))
     order <- 1:2
     PAR <- lmomco::vec2par(c(location = m, scale = sqrt(v)), type="norm")
@@ -77,7 +77,7 @@ MME_DIST <- function (Intensity, PDF, ...) {
   }
   ##################################################################
   ##   Distribución Gamma (2P - gamma),
-  if (distname == "gamma") {
+  if (distname == "gam") {
     shape <- m^2/v
     scale <- v/m
     PAR <- lmomco::vec2par(c(alpha=shape, beta=scale), type="gam")

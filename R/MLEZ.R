@@ -20,7 +20,7 @@
 #'    \item \code{Parameters} a list with type of distribution fitted and values of its parameters
 #'  }
 #' 
-#' @export lmomco
+#' @export
 #'
 #' @examples
 #' 

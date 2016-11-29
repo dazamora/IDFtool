@@ -48,7 +48,7 @@
 #' @author David Zamora <dazamoraa@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
 #'   
-#' @export lmomco
+#' @export
 #'
 #' @examples
 #' 
