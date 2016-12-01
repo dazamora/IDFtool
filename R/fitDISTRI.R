@@ -92,15 +92,29 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
     Parameters <- MLEZ(Intensity, type = Type)
     INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit == "mme"){
+    
+    if(Type == "log.pearson3"){
+      Intensity <- 10^Intensity
+    }
     Parameters <- MME_DIST(Intensity, PDF = Type)
-    INT <- lmomco::par2qua(FR,Parameters)
+    
+    if (is.null(Parameters)){
+      INT <- NULL
+    } else {
+      INT <- lmomco::par2qua(FR,Parameters) 
+    }
+    
   }else{
     stop("Error on selecction fit model")
   }
   
-  if(Type=="log.pearson3"){
+  if(Type=="log.pearson3" & M.fit != "mme"){
     INT <- 10^INT
     Intensity <- 10^Intensity
+  } else if (Type=="log.pearson3" & M.fit == "mme") {
+    INT <- 10^INT
+  } else {
+    
   }
   
   if(is.null(INT)){

@@ -47,7 +47,7 @@ MME_DIST <- function (Intensity, PDF, ...) {
     stop("distr must be a character string naming a distribution")
   }else{ distname <- distr }
   
-  if (is.element(distname, c("norm", "lnorm", "gam", "exp", "pe3", "lpe3","gum", "gev"))){ 
+  if (is.element(distname, c("nor", "ln3", "gam", "exp", "pe3", "lpe3","gum", "gev"))){ 
     meth <- "closed formula"
   }else{ stop("distribution not allowed") }
 
@@ -62,19 +62,37 @@ MME_DIST <- function (Intensity, PDF, ...) {
   if (distname == "nor") {
     estimate <- c(mean = m, sd = sqrt(v))
     order <- 1:2
-    PAR <- lmomco::vec2par(c(location = m, scale = sqrt(v)), type="norm")
+    PAR <- lmomco::vec2par(c(location = m, scale = sqrt(v)), type="nor")
     return(PAR)
   }
-  ##################################################################
-  ##   Distribución Log Normal (2P - lnorm),
-  if (distname == "lnorm") {
-    if (any(data <= 0)){
-      stop("values must be positive to fit a lognormal distribution")
+  #################################################################################
+  ##   Distribución Log Normal (3P - ln3), from EnvStats with Method of Moments Estimation
+    if (distname == "ln3") {
+      if (any(data <= 0)){
+        stop("values must be positive to fit a lognormal distribution")
+      }
+      
+      m2 <- ((n - 1)/n) * v
+      sqrt.b1 <- EnvStats::skewness(data, method = "moment")
+      if (sqrt.b1 <= 0){
+        print(paste("The sample skew is not positive. ",
+                   "Admissible moment estimates do not exist"))
+        PAR <- NULL
+      } else {
+      b1 <- sqrt.b1^2
+      t1 <- 1 + b1/2
+      t2 <- sqrt(t1^2 - 1)
+      omega <- (t1 + t2)^(1/3) + (t1 - t2)^(1/3) - 1
+      varlog <- log(omega)
+      sdlog <- sqrt(varlog)
+      meanlog <- 0.5 * log(m2/(omega * (omega - 1)))
+      threshold <- m - exp(meanlog + varlog/2)
+      
+      PAR <- lmomco::vec2par(c(zeta = threshold,  mu = meanlog, sigma = sdlog), type = "ln3")
+      # is.ln3(PAR)
+      }
+      return(PAR)
     }
-    sd2 <- log(1 + v/m^2)
-    PAR <- lmomco::vec2par(c(location = log(m) - sd2/2,  scale = sqrt(sd2)), type="lnorm")
-    return(PAR)
-  }
   ##################################################################
   ##   Distribución Gamma (2P - gamma),
   if (distname == "gam") {

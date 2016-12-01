@@ -62,10 +62,10 @@ MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.c
   rt <- NULL
   
   total.par <- abs(para.int$para)
-  lower <- para.int$para*0.7*(-1)
-  upper <- para.int$para*1.3
+  lower <- total.par*0.7*(-1)
+  upper <- total.par*1.3
   try(rt <- DEoptim::DEoptim(afunc, lower, upper, x = x, 
-                    control = DEoptim::DEoptim.control(NP = 50, itermax = 100, trace = FALSE, packages = "lmomco")),silent = silent)
+                    control = DEoptim::DEoptim.control(trace = FALSE, packages = "lmomco")),silent = silent)
   
   if (is.null(rt)) {
     warning("optim() attempt is NULL")
@@ -73,7 +73,7 @@ MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.c
   } else {
     lmomco.para <- lmomco::vec2par(pretransf(rt$optim$bestmem), type = type)
     lmomco.para$AIC <- 2 * length(rt$optim$bestmem) - 2 * (-1 * rt$value)
-    lmomco.para$optim <- rt
+    #lmomco.para$optim <- rt
     return(lmomco.para)
   }
 }
