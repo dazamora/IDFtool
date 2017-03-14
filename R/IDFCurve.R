@@ -193,7 +193,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     rownames(M.test.fit) <- nom.dura
     names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$Conf.Inter$nonexceed.prob),0)
     
-    if (CI) {
+    if (CIpdf) {
       colnames(CI.pdf.lower) <- nom.dura
       rownames(CI.pdf.lower) <- as.character(names.periods)
       colnames(CI.pdf.upper) <- nom.dura
