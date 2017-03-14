@@ -236,8 +236,10 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
                        sheetName = "Prediction.by.C-IDF", append = TRUE, row.names = TRUE, col.names = TRUE)
       xlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                        sheetName="Performance-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+      if (CI) {
       xlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                        sheetName="Conf.Int-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+      }
     }
   }
   
