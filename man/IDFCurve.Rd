@@ -6,7 +6,7 @@
 \usage{
 IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
   Periods = FALSE, Type = "gumbel", M.fit = "lmoments", Plot = 1234,
-  Strategy = 1:3, logaxe = "", CI = FALSE, iter = 500,
+  Strategy = 1:3, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 500,
   goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 }
 \arguments{
@@ -41,6 +41,8 @@ period with its confidence and prediction intervals. Or use both numbers to get 
 \item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
 \item{CI:}{a logical value specifying whether confidence and prediction intervals will be computed.}
+
+\item{CIpdf:}{a logical value specifying whether confidence of pdf will be computed.}
 
 \item{iter:}{an integer representing number of resamples to conduct when 
 confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
