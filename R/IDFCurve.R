@@ -1,4 +1,3 @@
-
 #' IDFCurve
 #' 
 #' An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation 
@@ -30,6 +29,7 @@
 #' 2 just data from HIDFUN tool and 3 used this data sets.
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
 #' @param CI: a logical value specifying whether confidence and prediction intervals will be computed.
+#' @param CIpdf: a logical value specifying whether confidence of pdf will be computed.
 #' @param iter: an integer representing number of resamples to conduct when 
 #' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
@@ -66,7 +66,7 @@
 #' 
 IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
                    Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-                   Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE, iter = 500,
+                   Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 500,
                    goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE){
   
   # ----INPUTS----
@@ -170,7 +170,7 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     
     for(i in 1:nd){
       distri[[nom.dura[i]]]<-fitDISTRI(Intensity = intensities[,i], Type = Type, Plot = Plot, M.fit = M.fit,
-                                       Periods = Tp, Dura = nom.dura[i], Station = Station, CI = CI, iter = iter,
+                                       Periods = Tp, Dura = nom.dura[i], Station = Station, CI = CIpdf, iter = iter,
                                        goodtest = goodtest, Resolution = Resolution, SAVE = SAVE)
       idf[i, ] <- distri[[i]]$Int.pdf
       if(!is.null(distri[[i]]$goodness.fit)) {

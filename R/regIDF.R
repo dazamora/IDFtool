@@ -62,7 +62,7 @@
 #'                  M.fit = "lmoments", Type = "gumbel", name = "Test", Station = "2601")
 #'                  
 regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
-         Plot = 34, Intervals = TRUE,Resolution = 300, SAVE = FALSE, Strategy =...,
+         Plot = 34, Intervals = TRUE, Resolution = 300, SAVE = FALSE, Strategy =...,
          M.fit =..., Type =..., name =..., Station =...){
   
   # ----Define variables and outputs----
@@ -164,9 +164,10 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
       LS.PR <- Inter.Pred.R[[k]][ ,3]
       PR.media <- predict(Modelos[[k]])
     } else {
-      Inter.Conf.R <- 0
-      Inter.Pred.R <- 0
+      Inter.Conf.R <- NULL
+      Inter.Pred.R <- NULL
     }
+    
     if (grepl("4",Plot)) {
       
       if (SAVE) {

@@ -39,6 +39,9 @@ MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.c
   
   if (is.null(para.int)) {
     lmr <- lmomco::lmoms(x)
+    if(lmr$ratios[3] < 0 & type == "ln3"){
+      lmr$ratios[3] <- -lmr$ratios[3]
+    }
     para.int <- lmomco::lmom2par(lmr, type = type)
   }
   if (is.null(para.int)) {
