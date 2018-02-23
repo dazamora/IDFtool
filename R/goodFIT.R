@@ -4,7 +4,8 @@
 #' distributions using tests: Kolmogorov-Smirnov, Anderson-Darling and 
 #' Cramer-von Mises, it based on \pkg{goftest} package. Moreover information criteria 
 #' are evaluated: Akaike's Information Criterion and Bayesian Information 
-#' Criterion by means of \code{\link{InfoCRIT}} function.
+#' Criterion, Akaike's Information Criterion with bias correction and Kashyap bayesian Information Criterio
+#' by means of \code{\link{InfoCRIT}} function.
 #'
 #' @param Station: a character specifying a name or number of pluviographic 
 #' station where data were measurement, and it use to save results in *.xls 
@@ -35,6 +36,8 @@
 #'  \item \emph{Cramer-von Mises}: statistic= Omega2 and p-value3
 #'  \item \emph{Akaike's Information Criterion}: AIC
 #'  \item \emph{Bayesian Information Criterion}: BIC
+#'  \item \emph{Akaike's Information Criterion with bais correction}: AICc
+#'  \item \emph{Kashyap bayesian Information Criterion}: KIC
 #' }
 #' 
 #' @author David Zamora <dazamoraa@unal.edu.co> 
@@ -182,6 +185,6 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   return(data.frame(KS = KST$statistic, p.value1 = KST$p.value,
                     AD = ADT$statistic, p.value2 = ADT$p.value,
                     Omega2 = CWT$statistic, p.value3 = CWT$p.value,
-                    AIC = Test.Info[1], BIC = Test.Info[2])
+                    AIC = Test.Info[1], BIC = Test.Info[2], AICc = Test.Info[3], KIC = Test.Info[4])
   )
 }

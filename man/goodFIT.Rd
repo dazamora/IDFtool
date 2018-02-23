@@ -46,6 +46,8 @@ moreover information criteria are evaluated:
  \item \emph{Cramer-von Mises}: statistic= Omega2 and p-value3
  \item \emph{Akaike's Information Criterion}: AIC
  \item \emph{Bayesian Information Criterion}: BIC
+ \item \emph{Akaike's Information Criterion with bais correction}: AICc
+ \item \emph{Kashyap bayesian Information Criterion}: KIC
 }
 }
 \description{
@@ -53,7 +55,8 @@ This function computing of goodness-of-fit for continuous univariate
 distributions using tests: Kolmogorov-Smirnov, Anderson-Darling and 
 Cramer-von Mises, it based on \pkg{goftest} package. Moreover information criteria 
 are evaluated: Akaike's Information Criterion and Bayesian Information 
-Criterion by means of \code{\link{InfoCRIT}} function.
+Criterion, Akaike's Information Criterion with bias correction and Kashyap bayesian Information Criterio
+by means of \code{\link{InfoCRIT}} function.
 }
 \examples{
 
