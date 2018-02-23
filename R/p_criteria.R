@@ -6,11 +6,12 @@
 #' \emph(Siena et al., 2017). 
 #' 
 #'
-#' @param metrics 
-#' @param numod 
-#' @param pdfnames 
+#' @param metrics: 
+#' @param numod: 
+#' @param pdfnames: 
 #'
-#' @return
+#' @return Provided a intregral number of pW criteria and name of the best PDF
+#' 
 #' @export
 #'
 #' @examples
