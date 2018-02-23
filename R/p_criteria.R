@@ -3,18 +3,22 @@
 #' This function determine what probability distribution function has the best
 #' goodness-of-fit to observations, number of parameters and the quality of 
 #' model parameter estimates, taking in account different criterias information in a 
-#' \emph(Siena et al., 2017). 
+#' (\emph{Siena et al., 2017}).
 #' 
 #'
-#' @param metrics 
-#' @param numod 
-#' @param pdfnames 
+#' @param metrics: 
+#' @param numod: 
+#' @param pdfnames: 
 #'
-#' @return
+#' @return Provided a intregral number of pW criteria and name of the best PDF
+#' 
+#' @author Adriana Pina <appinaf@unal.edu.co> and David Zamora <dazamoraa@unal.edu.co> 
+#' Water Resources Engineering Research Group - GIREH
+#' 
 #' @export
 #'
 #' @examples
-#' 
+#' # Tales
 #' 
 p.criteria <- function(metrics = .., numod = .., pdfnames = ..){
   
