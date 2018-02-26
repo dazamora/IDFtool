@@ -31,8 +31,7 @@ pW.1 <- p.criteria(metrics = fractures.crit, critnames = rownames(fractures.crit
 pW.1
 
 head(round(pW.1, 2))
-# GEV: AIC= 1, BIC= 1, AICc= 1, KIC= 1
-
+# GEV: AIC= 1, BIC= 1, AICc= 1, KIC= 1 
 }
 \author{
 Adriana Pina <appinaf@unal.edu.co> and David Zamora <dazamoraa@unal.edu.co> 

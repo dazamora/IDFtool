@@ -29,8 +29,7 @@
 #' pW.1
 #' 
 #' head(round(pW.1, 2))
-#' # GEV: AIC= 1, BIC= 1, AICc= 1, KIC= 1
-#' 
+#' # GEV: AIC= 1, BIC= 1, AICc= 1, KIC= 1 
 p.criteria <- function(metrics = .., critnames = .., pdfnames = ..){
   
   if(is.matrix(metrics)){
