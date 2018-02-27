@@ -1,7 +1,11 @@
+#' @name 
 #' resoPLOT
-#'
-#' @param reso: a number to determine resolution that the plot function used to save 
-#' graphs. It can have two options: 300 and 600 ppi. 
+#' 
+#' @title
+#' Selection of the graphs resolution 
+#' 
+#' @param reso: a number to determine the resolution that the plot function will used to save 
+#' graphs. It has two options: 300 and 600 ppi. 
 #'
 #' @return a vector with four values. They are used 
 #' to save graphs by means of \code{\link{png}} function.

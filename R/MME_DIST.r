@@ -1,15 +1,10 @@
-################################################################
-##   Distribución Normal (2P - norm),
-##   Distribución Log Normal (2P - lnorm),
-##   Distribución Gamma (2P - gamma),
-##   Distribución Exponencial (2P- exp),
-##   Distribución Pearson Tipo III (3P - pe3),
-##   Distribución Log Pearson Tipo III (3P - lpe3),
-##   Distribución Gumbel o Extremos Tipo I(2P - gum),
-##   Distribución Valores Extremos Generalizados (3P - gev), CompRandFld
-################################################################
+#' @name 
 #' MME_DIST
 #' 
+#' @title 
+#' Fitting parameters of PDF by means of moments method
+#' 
+#' @description 
 #' This function allows to fit several distribution functions to observed data
 #' by means of the moments method.
 #'

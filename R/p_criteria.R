@@ -1,5 +1,12 @@
+#' @name
 #' pW Criteria
 #' 
+#' @title 
+#' Identification criteria allow estimating the relative degree of likelihood 
+#' of each model by means of their posterior weights (for AIC and AICc) or 
+#' posterior model probability (for BIC and KIC)
+#' 
+#' @description 
 #' This function determine what probability distribution function has the best
 #' goodness-of-fit to observations, number of parameters and the quality of 
 #' taking in account different information criterias that are evaluated in 
@@ -17,7 +24,9 @@
 #' Water Resources Engineering Research Group - GIREH
 #' 
 #' @references 
-#' 
+#' Siena, M., Riva, M., Giamberini, M., & Gouze, P. (2017). Statistical modeling of gas-permeability 
+#' spatial variability along a limestone core. Spatial Statistics.
+#' https://doi.org/10.1016/j.spasta.2017.07.007
 #' 
 #' @export
 #'
@@ -27,9 +36,7 @@
 #' 
 #' pW.1 <- p.criteria(metrics = fractures.crit, critnames = rownames(fractures.crit), pdfnames = colnames(fractures.crit))
 #' pW.1
-#' 
-#' head(round(pW.1, 2))
-#' # GEV: AIC= 1, BIC= 1, AICc= 1, KIC= 1 
+#' # GEV: AIC= 100, BIC= 100, AICc= 1, KIC= 99 
 p.criteria <- function(metrics = .., critnames = .., pdfnames = ..){
   
   if(is.matrix(metrics)){
@@ -45,7 +52,7 @@ p.criteria <- function(metrics = .., critnames = .., pdfnames = ..){
   aux <- exp(-0.5 * DIC * pMk)
   SumDICi <- rowSums(aux)
   pW <- aux/matrix(SumDICi, dim(IC)[1], dim(IC)[2])
-  
+  pW <- round(pW*100,3)
   colnames(pW) <- pdfnames
   rownames(pW) <- critnames
   

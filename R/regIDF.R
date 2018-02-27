@@ -1,44 +1,49 @@
+#' @name
 #' regIDF
 #' 
+#' @title 
+#' Determine coefficients of IDF curves by means Levenberg-Marquardt algorithm
+#' 
+#' @description 
 #' An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation
 #' of the probability that a given average rainfall intensity will occur. 
-#' This function allows compute the coefficients of a equation that represent 
+#' This function allows compute the coefficients of an equation that represents 
 #' IDF per each return period: 
 #' \deqn{I(D) = \frac{A \{(B+D)^C}}{%
 #' I(D) = A/(B+D)^C} where \emph{I} are intensities [mm/h] per each return periods, \emph{D} is time duration [min] 
 #' and \emph{A}, \emph{B} and \emph{C} are coefficients. The last are calibrated by the Levenberg-Marquardt 
-#' algorithm (see  \code{\link{nls.lm}}). Moreover, \code{regIDF} computed confidence and prediction
-#' intervals to calibrated equiations by means of \code{\link{predFit}} function (see \pkg{investr} package). Finally, this function 
+#' algorithm (see  \code{\link{nls.lm}}). Moreover, \code{regIDF} computes confidence and prediction
+#' intervals to calibrate equiations by means of \code{\link{predFit}} function (see \pkg{investr} package). Finally, this function 
 #' assesses the performance of the equations by means of four metrics: roor mean square error (\code{\link{rmse}}),
 #' coefficient of determination (br2) multiplied by the slope of the regression line between sim and obs (\code{\link{br2}}), 
 #' mean square error \code{\link{mse}} and information criteria \code{\link{AIC}} and \code{\link{BIC}}.
 #'
 #' @param Intensity: a matrix with intensity values per specific time durations 
-#' (by rows) and return \code{Periods} (by columns). For use this function, the smallest 
+#' (by rows) and return \code{Periods} (by columns). To use this function, the smallest 
 #' matrix dimension must be 3 rows and 1 column.
 #' @param Periods: a numeric vector with return periods.
 #' @param Durations: a numeric vector specifying a time duration of the \code{Intensity} in minutes. 
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "". 
-#' @param Plot: The number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
-#'  for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
+#' @param Plot: use (3) to plot IDF curves (\code{Durations} versus \code{Intensity})
+#'  for all return \code{Periods}. Use (4) to plot IDF curve for each return
 #'  period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear. 
 #' @param Intervals: a logical value specifying whether confidence and prediction intervals will be computed.
-#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
-#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}. 
-#' @param Strategy: a numeric vector used to identify Strategy when it is use to \code{SAVE}. 
-#' @param M.fit: a character specifying a name or number of pluviographic station where data were measurement, and it use to save results. 
+#' @param Resolution: a number to determine resolution that the plot function will used to save graphs. 
+#' It can has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
+#' @param SAVE: a logical value. TRUE will save \code{Plot} FALSE just will show \code{Plot} it. 
+#' @param Strategy: a numeric vector used to identify Strategy when it is used to \code{SAVE}. 
+#' @param M.fit: a character specifying a name or number of pluviographic station where data were measured, and it is used to save results. 
 #' @param Type:  a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
 #' log.pearson3 and wakeby (see \code{\link{selecDIST}}).
-#' @param name: a vector of characters used to save graphs and it allows differentiation strategy to compute IDF curves. 
-#' @param Station: a character specifying a name or number of pluviographic station where data were measurement, and it is used to save results.  
+#' @param name: a vector of characters used to save graphs. It allows differentiation strategy to compute IDF curves. 
+#' @param Station: a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.  
 #'
 #' @return A list of
 #' 
 #' \itemize{
 #'  \item \code{Predict} a numeric matrix with the intensities values of the IDF 
 #'  equation calibrated. Durations by rows and return periods by columns.
-#'  \item \code{Coefficients} a numeric matrix with values of the coefficients \emph{A}, \emph{B} and \emph{C} per each return period.
+#'  \item \code{Coefficients} a numeric matrix with values of the coefficients \emph{A}, \emph{B} and \emph{C} for each return period.
 #'  \item \code{test.fit.reg} a numeric matrix with perfomance metrics (\emph{rmse}, \emph{mse}, \emph{br2}, \emph{AIC} and \emph{BIC} by each equation.
 #'  \item \code{Prediction.Int} a list with matrices. Each matrix has the lower and upper limit of the \bold{prediction} interval 
 #'  per each specific time duration. Two columns by \emph{n} durations.

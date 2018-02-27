@@ -2,21 +2,21 @@
 % Please edit documentation in R/selecDIST.R
 \name{selecDIST}
 \alias{selecDIST}
-\title{selecDIST}
+\title{Convert large names of distribution functions in a short one}
 \usage{
 selecDIST(Type = "Gumbel")
 }
 \arguments{
-\item{Type:}{a character specifying the name of distribution function that 
-it will be employed: exponential, gamma, gev, gumbel, log.normal3, normal, 
+\item{Type:}{a character specifying the name of the distribution function that 
+will be employed: exponential, gamma, gev, gumbel, log.normal3, normal, 
 log.pearson3 and wakeby.}
 }
 \value{
-a character with a abbreviation of distribution function defined in \code{Type}.
+a character with an abbreviation of distribution function defined in \code{Type}.
 }
 \description{
-This function converts large names of distribution functions in short one 
-for used it in functions of \pkg{IDFtool} package.
+This function converts large names of distribution functions in a short one 
+to used it in functions of \pkg{IDFtool} package.
 }
 \examples{
 (selecDIST(Type = "log.normal3"))

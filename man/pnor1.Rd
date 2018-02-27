@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pnor1}
 \alias{pnor1}
-\title{pnor1}
+\title{Cumulative probability of Normal distribution}
 \usage{
 pnor1(q, mu, sigma)
 }

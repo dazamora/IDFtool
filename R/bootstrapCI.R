@@ -1,16 +1,20 @@
-
+#' @name
 #' bootstrapCI
 #' 
+#' @title 
+#' Determine confidence intervals to rainfall intensities estimated by a PDF function.
+#' 
+#' @description 
 #' Conducts bootstrap to randomly sample of intensity values 'n' times for a 
-#' specified distribution to estimate confidence interval for each given 
+#' specified distribution to estimate the confidence interval for each given 
 #' non-exceedance probability. Based in code posted by Dave Hutchinson 
 #' \url{http://www.headwateranalytics.com}.
 #'
 #' @param Intensity: a numeric vector with intensity [mm/h] values of different 
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})
 #' @param Parameters: list with three elements: i) type of distribution function 
-#' ii) parameters fitted, and iii) source to call specfic function in the \pkg{lmomco} package.
-#' @param Type: a character specifying a name of probability distribution function fitted 
+#' ii) fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.
+#' @param Type: a character specifying a name of the probability distribution function fitted 
 #' (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.
 #' @param Rsample: An integer representing number of resamples to conduct when 
 #' confidence interval will be computed.

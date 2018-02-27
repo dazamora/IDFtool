@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pgev1}
 \alias{pgev1}
-\title{pgev1}
+\title{Cumulative probability of GEV distribution}
 \usage{
 pgev1(q, xi, alpha, kappa)
 }

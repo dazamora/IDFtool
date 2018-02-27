@@ -2,7 +2,7 @@
 % Please edit documentation in R/MLEZ.R
 \name{MLEZ}
 \alias{MLEZ}
-\title{MLEZ}
+\title{Fitting parameters of PDF by means of maximum likelihood}
 \usage{
 MLEZ(Intensity, type, para.int = NULL, silent = TRUE,
   null.on.not.converge = TRUE, ptransf = function(t) return(t),
@@ -12,7 +12,7 @@ MLEZ(Intensity, type, para.int = NULL, silent = TRUE,
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
-\item{type:}{a character specifying the name of distribution function that it will 
+\item{type:}{a character specifying the name of the distribution function that will 
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
@@ -20,7 +20,7 @@ wakeby (see \code{\link{selecDIST}}).}
 
 \item{silent:}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
 
-\item{null.on.not.converge:}{A logical to trigging simple return of NULL if the \code{\link{DEoptim}} function 
+\item{null.on.not.converge:}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
 returns a nonzero convergence status.}
 }
 \value{
@@ -31,8 +31,8 @@ A list of:
  }
 }
 \description{
-This function fitting parameters of probability distribution functions (see \code{\link{selecDIST}})
-by means of maximum likelihood and Performs evolutionary global optimization via the 
+This function fits parameters of probability distribution functions (see \code{\link{selecDIST}})
+by means of maximum likelihood and performs evolutionary global optimization via the 
 Differential Evolution algorithm (see \pkg{DEoptim} package).
 }
 \examples{

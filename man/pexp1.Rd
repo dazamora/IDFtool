@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pexp1}
 \alias{pexp1}
-\title{pexp1}
+\title{Cumulative probability of Exponential distribution}
 \usage{
 pexp1(q, xi, alpha)
 }

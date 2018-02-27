@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pwak1}
 \alias{pwak1}
-\title{pwak1}
+\title{Cumulative probability of Wakeby distribution}
 \usage{
 pwak1(q, xi, alpha, beta, gamma, delta)
 }
