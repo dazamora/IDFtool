@@ -3,8 +3,8 @@ mledz.optim <-function (x, type, para.int = NULL, silent = TRUE, null.on.not.con
           ...) 
 {
   if (is.null(para.int)) {
-    lmr <- lmoms(x)
-    para.int <- lmom2par(lmr, type = type, ...)
+    lmr <- lmomco::lmoms(x)
+    para.int <- lmomco::lmom2par(lmr, type = type, ...)
   }
   if (is.null(para.int)) {
     warning("could not estimate initial parameters via L-moments")
@@ -15,11 +15,11 @@ mledz.optim <-function (x, type, para.int = NULL, silent = TRUE, null.on.not.con
     return(NULL)
   }
   "afunc" <- function(para, x = NULL, ...) {
-    lmomco.para <- vec2par(pretransf(para), type = type, 
+    lmomco.para <- lmomco::vec2par(pretransf(para), type = type, 
                            paracheck = TRUE)
     if (is.null(lmomco.para)) 
       return(Inf)
-    pdf <- par2pdf(x, lmomco.para)
+    pdf <- lmomco::par2pdf(x, lmomco.para)
     L <- -sum(log(pdf), na.rm = TRUE)
     return(L)
   }
@@ -35,7 +35,7 @@ mledz.optim <-function (x, type, para.int = NULL, silent = TRUE, null.on.not.con
       warning("optim() reports convergence error")
       return(NULL)
     }
-    lmomco.para <- vec2par(pretransf(rt$par), type = type)
+    lmomco.para <- lmomco::vec2par(pretransf(rt$par), type = type)
     lmomco.para$AIC <- 2 * length(rt$par) - 2 * (-1 * rt$value)
     lmomco.para$optim <- rt
     return(lmomco.para)
