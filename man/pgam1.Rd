@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pgam1}
 \alias{pgam1}
-\title{pgam1}
+\title{Cumulative probability of Gamma distribution}
 \usage{
 pgam1(q, alpha, beta)
 }

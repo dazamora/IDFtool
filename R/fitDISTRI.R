@@ -1,5 +1,11 @@
+#' @name 
 #' fitDISTRI
 #' 
+#' @title 
+#' Fit distribution functions by L-moments, probability weighted moments, maximum 
+#' likelihood and moments
+#' 
+#' @description 
 #' This function allows to fit several distribution functions to observed data
 #' by means of the methods L-moments, probability weighted moments, maximum 
 #' likelihood and moments. It also assesses the goodness of fit test with different 
@@ -7,40 +13,40 @@
 #'
 #' @param Intensity: a numeric vector with intensity [mm/h] values of different
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
-#' @param Type: a character specifying the name of distribution function that it will 
+#' @param Type: a character specifying the name of the distribution function that will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
 #' @param Plot: a number (1) to determine if it will be plotted density curves 
 #' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
 #' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
-#' Or use both numbers to get these graphs. If you use other number the graphs 
+#' Or use both numbers to get these graphs. If any other number is used, graphs 
 #' will not appear.
-#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' @param M.fit: a character specifying the name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}). 
 #' @param Periods: a numeric vector with return periods.
 #' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results.
 #' @param Station: a character specifying a name or number of pluviographic station where data were 
-#' measurement, and it is used to save results.  
+#' measured. It is used to save results.  
 #' @param CI: a logical value specifying whether confidence interval should be 
 #' cumputed to \emph{pdf} fitted by means \code{\link{bootstrapCI}} function.
-#' @param iter: An integer representing number of resamples to conduct when 
+#' @param iter: an integer representing number of resamples to conduct when 
 #' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
 #' @param goodtest: a logical value specifying whether goodness-fit tests should be 
 #' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
-#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
-#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.  
+#' @param Resolution: a number to determine resolution that the plot function will used to save graphs. 
+#' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
+#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
 #'
-#' @return A list of:
+#' @return A list with the fitted distribution and the parameters:
 #' 
 #'  \itemize{
 #'    \item \code{Parameters} a list with type of distribution fitted and values of its parameters
 #'    \item \code{Int.pdf} a numeric vector of intensities values per each return \code{Periods} compute by \emph{pdf} fitted. 
 #'    \item \code{Conf.Inter} a matrix with lower and upper limits of confidence 
-#'    interval for \emph{pdf} fitted and computed it for each return \code{Periods}.
+#'    interval for \emph{pdf} fitted and computed for each return \code{Periods}.
 #'    \item \code{goodness.fit} a data frame with statistics values of goodness of fit tests and its respective p-value, 
 #'    moreover information criteria are evaluated (see \code{\link{goodFIT}}) 
 #'    \item \code{Info.PDF} a vector with details about fit method and distribution function employed. 

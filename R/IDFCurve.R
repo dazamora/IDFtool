@@ -1,50 +1,59 @@
+#' @name
 #' IDFCurve
 #' 
+#' @title 
+#' Compute Intensity-Duration-Frequency curve
+#' 
+#' @description 
 #' An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation 
-#' of the probability that a given average rainfall intensity will occur. This function allows fit different 
+#' of the probability that a given average rainfall intensity will occur. This function allows to fit different 
 #' probability distribution functions (see \code{\link{selecDIST}}) by means of four fit methods (see \code{\link{fitDISTRI}})
-#' to determined intensity [mm/h] for different return periods and per specific time durations. Finally, it compute parameters of the equations 
+#' to determine intensity [mm/h] for different return periods and per specific time durations. Finally, it computes equations parameters 
 #' of the IDF curves (see \code{\link{regIDF}})
 #' 
 #' 
-#' @param Data: a numeric matrix with years in the first column and other columns has intensity [mm/h] values by each a the \code{Duration}s time.
+#' @param Data: a numeric matrix with years in the first column and intensity values for each \code{Duration} time in the other columns.
 #' @param Station: a string with a name to identify source of \code{Data}.
-#' @param Duration: a logical value or numeric vector. If it is TRUE will be use the durations (in minutes) 
-#' by default: 5, 10 ,15, 20, 30, 60, 120 y 360. In case a numeric vector the durations must be in minutes.
+#' @param Duration: a logical value or numeric vector. If it is TRUE the durations (in minutes) 
+#' by default will be used: 5, 10 ,15, 20, 30, 60, 120 y 360. In case of a numeric vector the durations must be in minutes.
 #' @param Periods: a logical value or numeric vector.
-#' @param Type: a character specifying the name of distribution function that it will 
+#' @param Type: a character specifying the name of the distribution function that will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
 #' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' Maximum Likelihood (\code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).
-#' @param Plot: it is a number of one to four digits. a number (1) to determine if it will be plotted density curves 
-#' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
+#' @param Plot: it is a number of one to four digits. a number (1) to plot density curves 
+#' both empirical as modeled (\emph{pdf}).(2) to plot if it will be 
 #' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
-#' Or use both numbers to get these graphs. If you use other number the graphs 
-#' will not appear. he number three (3) determined if it will plot IDF curves (\code{Durations} versus \code{Intensity})
-#' for all return \code{Periods}. The number four (4) determined if it will plot IDF curve each for return
-#' period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.
-#' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different datas sets: 1 just data from Ideam, 
+#' Or use (12) to get both graphs. (3) to plot IDF curves for all return periods: (\code{Durations} versus \code{Intensity})
+#' for all return \code{Periods}. (4) to plot IDF curve each for return
+#' \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.
+#' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
 #' 2 just data from HIDFUN tool and 3 used this data sets.
+<<<<<<< HEAD
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
 #' @param CI: a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
+=======
+#' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case use "".
+#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed.
+>>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028
 #' @param CIpdf: a logical value specifying whether confidence of pdf will be computed.
 #' @param iter: an integer representing number of resamples to conduct when 
-#' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
+#' confidence interval is computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
 #' @param goodtest: a logical value specifying whether goodness-fit tests should be 
 #' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
-#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
-#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.
+#' @param Resolution: a number to determine the resolution that the plot function will used to save graphs. 
+#' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
+#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show \code{Plot}.
 #' @param name: a logical value. TRUE will use a default names to identify strategies: (1) "HIDFUN", (2) "IDEAM", (3) "AMBOS". In other case FALSE
-#' allows: i) selected years of data sets, ii) insert durations to do IDF curves (in minutes)
+#' allows: i) selected years of data sets, and ii) to insert durations to do IDF curves (in minutes)
 #'
 #' @return A list of:
 #'
 #'  \itemize{
-#'    \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} compute by \emph{pdf} fitted.
+#'    \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} computed by \emph{pdf} fitted.
 #'    \item \code{Models} a list with results of the function \code{\link{regIDF}}.
 #'    \item \code{Test.fit} a list with results of the function \code{\link{goodFIT}}.
 #'    \item \code{Distribution} a list with results of the function \code{\link{fitDISRTI}}.
@@ -197,7 +206,7 @@ IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
     }
     names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$Conf.Inter$nonexceed.prob),0)
     
-    if (CI) {
+    if (CIpdf) {
       colnames(CI.pdf.lower) <- nom.dura
       rownames(CI.pdf.lower) <- as.character(names.periods)
       colnames(CI.pdf.upper) <- nom.dura
@@ -228,6 +237,7 @@ IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
       
       openxlsx::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "IDF.by.PDF", row.names = TRUE, col.names = TRUE)
+<<<<<<< HEAD
       openxlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "CIL-IDF.by.PDF", row.names = TRUE, col.names = TRUE)
       openxlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
@@ -242,6 +252,24 @@ IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
                        sheetName="Performance-IDF.reg", row.names = TRUE, col.names = TRUE)
       openxlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
                        sheetName="Conf.Int-IDF.reg", row.names = TRUE, col.names = TRUE)
+=======
+      xlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+                       sheetName = "CIL-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
+      xlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+                       sheetName = "CIU-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
+      xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "goodness.fit", append = TRUE, row.names = TRUE, col.names = TRUE)
+      xlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "Coefficients", append = TRUE, row.names = TRUE, col.names = TRUE)
+      xlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "Prediction.by.C-IDF", append = TRUE, row.names = TRUE, col.names = TRUE)
+      xlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName="Performance-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+      if (CI) {
+      xlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName="Conf.Int-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+      }
+>>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028
     }
   }
   

@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{ppe31}
 \alias{ppe31}
-\title{ppe31}
+\title{Cumulative probability of Pearson Type III distribution}
 \usage{
 ppe31(q, mu, sigma, gamma)
 }

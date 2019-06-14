@@ -1,10 +1,16 @@
+#' @name 
 #' goodFIT
+#'
+#' @title
+#' Computing of goodness-of-fit metrics and information criterias
 #' 
+#' @description    
 #' This function computing of goodness-of-fit for continuous univariate 
 #' distributions using tests: Kolmogorov-Smirnov, Anderson-Darling and 
-#' Cramer-von Mises, it based on \pkg{goftest} package. Moreover information criteria 
+#' Cramer-von Mises. It is based on \pkg{goftest} package. Moreover information criteria 
 #' are evaluated: Akaike's Information Criterion and Bayesian Information 
-#' Criterion by means of \code{\link{InfoCRIT}} function.
+#' Criterion, Akaike's Information Criterion with bias correction and Kashyap bayesian Information Criterio
+#' by means of \code{\link{InfoCRIT}} function.
 #'
 #' @param Station: a character specifying a name or number of pluviographic 
 #' station where data were measurement, and it use to save results in *.xls 
@@ -14,17 +20,17 @@
 #' @param Intensity: a numeric vector with intensity values for a specific time 
 #' duration in different return periods. 
 #' @param Parameters: a list with three elements: i) Type of distribution function ii)
-#' Parameters fitted, and iii) source to call specfic function in the \pkg{lmomco} package.
+#' fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.
 #' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' and Maximum Likelihood (\emph{MLE}). 
 #' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results. 
 #' @param Plot: a number (1) to determine if it will be plotted density curves both empirical 
-#' as modeled (\emph{pdf}). If you use other number the graphs will not appear. 
-#' @param Resolution: a number to determine resolution that the plot function used to save graphs. 
-#' It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}. 
-#' @param SAVE: a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.  
+#' as modeled (\emph{pdf}). If any other number is used graphs will not appear. 
+#' @param Resolution: a number to determine the resolution that the plot function will used to save graphs. 
+#' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}. 
+#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
 #'
 #' @return A data frame with statistics values of goodness of fit tests and its respective p-value, 
 #' moreover information criteria are evaluated:
@@ -35,10 +41,20 @@
 #'  \item \emph{Cramer-von Mises}: statistic= Omega2 and p-value3
 #'  \item \emph{Akaike's Information Criterion}: AIC
 #'  \item \emph{Bayesian Information Criterion}: BIC
+#'  \item \emph{Akaike's Information Criterion with bais correction}: AICc
+#'  \item \emph{Kashyap bayesian Information Criterion}: KIC
 #' }
 #' 
 #' @author David Zamora <dazamoraa@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
+#' 
+#' @references 
+#' Hurvich, C. M., & Tsai, C. L. (1989). Regression and time series model 
+#' selection in small samples. Biometrika, 76(2), 297-307.
+#' 
+#' Kashyap, R. L. (1982). Optimal choice of AR and MA parts in autoregressive
+#' moving average models. IEEE Transactions on Pattern Analysis and Machine
+#' Intelligence, (2), 99-104.
 #' 
 #' @export
 #'
@@ -182,6 +198,6 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   return(data.frame(KS = KST$statistic, p.value1 = KST$p.value,
                     AD = ADT$statistic, p.value2 = ADT$p.value,
                     Omega2 = CWT$statistic, p.value3 = CWT$p.value,
-                    AIC = Test.Info[1], BIC = Test.Info[2])
+                    AIC = Test.Info[1], BIC = Test.Info[2], AICc = Test.Info[3], KIC = Test.Info[4])
   )
 }

@@ -2,7 +2,8 @@
 % Please edit documentation in R/fitDISTRI.R
 \name{fitDISTRI}
 \alias{fitDISTRI}
-\title{fitDISTRI}
+\title{Fit distribution functions by L-moments, probability weighted moments, maximum 
+likelihood and moments}
 \usage{
 fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2,
   M.fit = "MLE", Periods = ..., Dura = ..., Station = ...,
@@ -13,17 +14,17 @@ fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2,
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
-\item{Type:}{a character specifying the name of distribution function that it will 
+\item{Type:}{a character specifying the name of the distribution function that will 
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
 \item{Plot:}{a number (1) to determine if it will be plotted density curves 
 both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
 plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
-Or use both numbers to get these graphs. If you use other number the graphs 
+Or use both numbers to get these graphs. If any other number is used, graphs 
 will not appear.}
 
-\item{M.fit:}{a character specifying a name of fit method employed on pdf, just three 
+\item{M.fit:}{a character specifying the name of fit method employed on pdf, just three 
 options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).}
 
@@ -33,31 +34,31 @@ Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}
 This parameter is used to save results.}
 
 \item{Station:}{a character specifying a name or number of pluviographic station where data were 
-measurement, and it is used to save results.}
+measured. It is used to save results.}
 
 \item{CI:}{a logical value specifying whether confidence interval should be 
 cumputed to \emph{pdf} fitted by means \code{\link{bootstrapCI}} function.}
 
-\item{iter:}{An integer representing number of resamples to conduct when 
+\item{iter:}{an integer representing number of resamples to conduct when 
 confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 CI is equal to TRUE.}
 
 \item{goodtest:}{a logical value specifying whether goodness-fit tests should be 
 cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.}
 
-\item{Resolution:}{a number to determine resolution that the plot function used to save graphs. 
-It can have two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
+\item{Resolution:}{a number to determine resolution that the plot function will used to save graphs. 
+It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
 
-\item{SAVE:}{a logical value. TRUE will save \code{Plot} but if is FALSE just show \code{Plot}.}
+\item{SAVE:}{a logical value. TRUE will save \code{Plot}, FALSE will just show it.}
 }
 \value{
-A list of:
+A list with the fitted distribution and the parameters:
 
  \itemize{
    \item \code{Parameters} a list with type of distribution fitted and values of its parameters
    \item \code{Int.pdf} a numeric vector of intensities values per each return \code{Periods} compute by \emph{pdf} fitted. 
    \item \code{Conf.Inter} a matrix with lower and upper limits of confidence 
-   interval for \emph{pdf} fitted and computed it for each return \code{Periods}.
+   interval for \emph{pdf} fitted and computed for each return \code{Periods}.
    \item \code{goodness.fit} a data frame with statistics values of goodness of fit tests and its respective p-value, 
    moreover information criteria are evaluated (see \code{\link{goodFIT}}) 
    \item \code{Info.PDF} a vector with details about fit method and distribution function employed. 

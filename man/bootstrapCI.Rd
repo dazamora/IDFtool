@@ -2,7 +2,7 @@
 % Please edit documentation in R/bootstrapCI.R
 \name{bootstrapCI}
 \alias{bootstrapCI}
-\title{bootstrapCI}
+\title{Determine confidence intervals to rainfall intensities estimated by a PDF function.}
 \usage{
 bootstrapCI(Intensity = .., Parameters = .., Type = "Gumbel",
   Rsample = 1000, Return.P = ..., Conf.Inter = 0.95)
@@ -12,9 +12,9 @@ bootstrapCI(Intensity = .., Parameters = .., Type = "Gumbel",
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})}
 
 \item{Parameters:}{list with three elements: i) type of distribution function 
-ii) parameters fitted, and iii) source to call specfic function in the \pkg{lmomco} package.}
+ii) fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.}
 
-\item{Type:}{a character specifying a name of probability distribution function fitted 
+\item{Type:}{a character specifying a name of the probability distribution function fitted 
 (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.}
 
 \item{Rsample:}{An integer representing number of resamples to conduct when 
@@ -37,7 +37,7 @@ A list of:
 }
 \description{
 Conducts bootstrap to randomly sample of intensity values 'n' times for a 
-specified distribution to estimate confidence interval for each given 
+specified distribution to estimate the confidence interval for each given 
 non-exceedance probability. Based in code posted by Dave Hutchinson 
 \url{http://www.headwateranalytics.com}.
 }

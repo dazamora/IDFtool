@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pln31}
 \alias{pln31}
-\title{pln31}
+\title{Cumulative probability of LogNormal distribution}
 \usage{
 pln31(q, zeta, mulog, sigmalog)
 }

@@ -2,35 +2,42 @@
 % Please edit documentation in R/InforCRIT.R
 \name{InfoCRIT}
 \alias{InfoCRIT}
-\title{InfoCRIT}
+\title{Generic function calculating information criterias for fitted PDF}
 \usage{
 InfoCRIT(Intensity = ..., Parameters = ...)
 }
 \arguments{
-\item{Intensity:}{numeric vector with intensity values for a duration 
-specific in different return periods.}
+\item{Intensity:}{numeric vector with intensity values for a specific duration 
+in different return periods.}
 
 \item{Parameters:}{list with three elements: i) type of distribution 
-function ii) parameters fitted, and iii) source to call specfic function
+function ii) fitted parameters, and iii) source to call specfic function
 in the package \pkg{lmomco}.}
 }
 \value{
-Provided a numeric vector with the corresponding AIC and BIC values.
+Provided a numeric vector with the corresponding AIC,  BIC, AICc and KIC values.
 }
 \description{
 This function determine values of the criteria Akaike's Information Criterion
-(AIC) and Bayesian Information Criterion to fitted probability density 
-functions with lmomco package
+(AIC), Bayesian Information Criterion (BIC), AICc with bias correction and  
+to fitted probability density functions with \pkg{lmomco} package
 }
 \examples{
 # Meteorology station in the Airport Farfan in Tulua, Colombia. 
 data(Intgum5min)
 data(Pargumbel)
 InfoCRIT(Intensity=Intgum5min,Parameters=Pargumbel)
-# Result: AIC= 86.73 & BIC= 86.62
+# Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC=  
 
 }
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
+<<<<<<< HEAD
+=======
+\references{
+
+}
+
+>>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028

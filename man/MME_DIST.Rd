@@ -2,7 +2,7 @@
 % Please edit documentation in R/MME_DIST.r
 \name{MME_DIST}
 \alias{MME_DIST}
-\title{MME_DIST}
+\title{Fitting parameters of PDF by means of moments method}
 \usage{
 MME_DIST(Intensity, PDF, ...)
 }

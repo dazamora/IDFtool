@@ -2,13 +2,13 @@
 % Please edit documentation in R/resoPLOT.R
 \name{resoPLOT}
 \alias{resoPLOT}
-\title{resoPLOT}
+\title{Selection of the graphs resolution}
 \usage{
 resoPLOT(reso = 300)
 }
 \arguments{
-\item{reso:}{a number to determine resolution that the plot function used to save 
-graphs. It can have two options: 300 and 600 ppi.}
+\item{reso:}{a number to determine the resolution that the plot function will used to save 
+graphs. It has two options: 300 and 600 ppi.}
 }
 \value{
 a vector with four values. They are used 
@@ -20,9 +20,6 @@ to save graphs by means of \code{\link{png}} function.
  \item \code{hth}
  \item \code{hth1}
 }
-}
-\description{
-resoPLOT
 }
 \examples{
 

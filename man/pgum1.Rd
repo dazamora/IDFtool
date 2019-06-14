@@ -2,7 +2,7 @@
 % Please edit documentation in R/CDFs.R
 \name{pgum1}
 \alias{pgum1}
-\title{pgum1}
+\title{Cumulative probability of Gumbel distribution}
 \usage{
 pgum1(q, xi, alpha)
 }

@@ -1,6 +1,10 @@
-
+#' @name 
 #' pexp1
 #' 
+#' @title
+#' Cumulative probability of Exponential distribution
+#' 
+#' @description     
 #' This function computes the cumulative probability or nonexceedance probability
 #' of the Exponential distribution given parameters \eqn{\xi} and \eqn{\alpha}. Based in function 
 #' of \pkg{lmomco} package.
@@ -23,8 +27,13 @@ pexp1 <- function(q, xi, alpha) {
   lmomco::cdfexp(q, list(type = "exp", para = c(xi, alpha), source = "parexp"))
 }
 
+#' @name 
 #' pgam1
 #' 
+#' @title 
+#' Cumulative probability of Gamma distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance probability 
 #' of the Gamma distribution given parameters (\eqn{\alpha} and \eqn{\beta}) 
 #' computed. Based in function of \pkg{lmomco} package.
@@ -47,8 +56,13 @@ pgam1 <- function(q, alpha, beta) {
   lmomco::cdfgam(q, list(type = "gam", para = c(alpha, beta), source = "pargam"))
 }
 
+#' @name
 #' pgev1
 #' 
+#' @title 
+#' Cumulative probability of GEV distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance probability 
 #' of the Generalized Extreme Value distribution given parameters (\eqn{\xi}, \eqn{\alpha} and \eqn{\kappa}). 
 #' Based in function of \pkg{lmomco} package.
@@ -72,8 +86,13 @@ pgev1 <- function(q, xi, alpha, kappa) {
   lmomco::cdfgev(q, list(type = "gev", para = c(xi, alpha, kappa), source = "pargev"))
 }
 
+#' @name 
 #' pgum1
 #' 
+#' @title 
+#' Cumulative probability of Gumbel distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance probability 
 #' of the Gumbel distribution given parameters (\eqn{\xi} and \eqn{\alpha}). Based in function of 
 #' lmomco package.
@@ -97,8 +116,13 @@ pgum1 <- function(q, xi, alpha) {
 }
 
 
+#' @name 
 #' pln31
 #' 
+#' @title 
+#' Cumulative probability of LogNormal distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance probability 
 #' of the Log-Normal3 distribution given parameters (\eqn{\zeta}, \eqn{\mu} and \eqn{\sigma}). Based in function 
 #' of \pkg{lmomco} package.
@@ -122,8 +146,13 @@ pln31 <- function(q, zeta, mulog, sigmalog) {
   lmomco::cdfln3(q, list(type = "ln3", para = c(zeta, mulog, sigmalog), source = "parln3"))
 }
 
+#' @name 
 #' pnor1
 #' 
+#' @title 
+#' Cumulative probability of Normal distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance 
 #' probability of the Normal distribution given parameters (\eqn{\mu} and \eqn{\sigma}). 
 #' Based in function of \pkg{lmomco} package.
@@ -146,8 +175,13 @@ pnor1 <- function(q, mu, sigma) {
   lmomco::cdfnor(q, list(type = "nor", para = c(mu, sigma), source = "parnor"))
 }
 
+#' @name 
 #' ppe31
 #' 
+#' @title 
+#' Cumulative probability of Pearson Type III distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance 
 #' probability of the Pearson Type III distribution given parameters 
 #' (\eqn{\mu}, \eqn{\sigma}, and \eqn{\gamma}). Based in function of \pkg{lmomco} package.
@@ -171,8 +205,13 @@ ppe31 <- function(q, mu, sigma, gamma) {
   lmomco::cdfpe3(q, list(type = "pe3", para = c(mu, sigma, gamma), source = "parpe3"))
 }
 
+#' @name 
 #' pwak1
 #' 
+#' @title 
+#' Cumulative probability of Wakeby distribution
+#' 
+#' @description 
 #' This function computes the cumulative probability or nonexceedance 
 #' probability of the Wakeby distribution given parameters (\eqn{\xi}, \eqn{\alpha}, \eqn{\beta}, \eqn{\gamma} and \eqn{\delta}). 
 #' Based in function of \pkg{lmomco} package.
