@@ -18,4 +18,3 @@ A dataset containing the values of four information criterias calculated
 five probability density functions.
 }
 \keyword{datasets}
-

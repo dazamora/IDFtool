@@ -23,9 +23,6 @@ This function computes the cumulative probability or nonexceedance probability
 of the Generalized Extreme Value distribution given parameters (\eqn{\xi}, \eqn{\alpha} and \eqn{\kappa}). 
 Based in function of \pkg{lmomco} package.
 }
-\examples{
-
-}
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE

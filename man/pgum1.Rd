@@ -21,9 +21,6 @@ This function computes the cumulative probability or nonexceedance probability
 of the Gumbel distribution given parameters (\eqn{\xi} and \eqn{\alpha}). Based in function of 
 lmomco package.
 }
-\examples{
-
-}
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE

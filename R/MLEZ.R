@@ -17,7 +17,8 @@
 #' @param para.int: Initial parameters as a vector \eqn{\Theta}.
 #' @param silent: a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.
 #' @param null.on.not.converge: a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
-#' returns a nonzero convergence status.
+#' returns a nonzero convergence status.#' 
+#' @param pretransf
 #'
 #' @return A list of:
 #' 
@@ -29,14 +30,15 @@
 #'
 #' @examples
 #' 
-#' data(inten)
-#' TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
-#'                  ptransf = function(t) return(t), pretransf = function(t) return(t))
-#' 
+#' data(inten) 
+#' TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", 
+#'                  para.int = NULL, silent = TRUE, 
+#'                  null.on.not.converge = TRUE, 
+#'                  pretransf = function(t) return(t))
 #' ## Results: xi = 71.178 ; alpha = 15.204 
 #' 
 MLEZ <- function (Intensity, type, para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
-                ptransf = function(t) return(t), pretransf = function(t) return(t)) {
+                 pretransf = function(t) return(t)) {
   
   x <- Intensity
   type <- tolower(type)

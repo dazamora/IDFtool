@@ -21,9 +21,6 @@ This function computes the cumulative probability or nonexceedance probability
 of the Gamma distribution given parameters (\eqn{\alpha} and \eqn{\beta}) 
 computed. Based in function of \pkg{lmomco} package.
 }
-\examples{
-
-}
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE

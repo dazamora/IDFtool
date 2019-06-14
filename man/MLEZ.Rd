@@ -5,10 +5,11 @@
 \title{Fitting parameters of PDF by means of maximum likelihood}
 \usage{
 MLEZ(Intensity, type, para.int = NULL, silent = TRUE,
-  null.on.not.converge = TRUE, ptransf = function(t) return(t),
-  pretransf = function(t) return(t))
+  null.on.not.converge = TRUE, pretransf = function(t) return(t))
 }
 \arguments{
+\item{pretransf}{}
+
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
@@ -21,7 +22,7 @@ wakeby (see \code{\link{selecDIST}}).}
 \item{silent:}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
 
 \item{null.on.not.converge:}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
-returns a nonzero convergence status.}
+returns a nonzero convergence status.#'}
 }
 \value{
 A list of:
@@ -37,10 +38,11 @@ Differential Evolution algorithm (see \pkg{DEoptim} package).
 }
 \examples{
 
-data(inten)
-TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
-                 ptransf = function(t) return(t), pretransf = function(t) return(t))
-
+data(inten) 
+TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", 
+                 para.int = NULL, silent = TRUE, 
+                 null.on.not.converge = TRUE, 
+                 pretransf = function(t) return(t))
 ## Results: xi = 71.178 ; alpha = 15.204 
 
 }

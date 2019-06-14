@@ -20,8 +20,6 @@
 #'  
 #' @export
 #'
-#' @examples
-#' 
 pexp1 <- function(q, xi, alpha) {
   # ----Exponencial----
   lmomco::cdfexp(q, list(type = "exp", para = c(xi, alpha), source = "parexp"))
@@ -49,8 +47,6 @@ pexp1 <- function(q, xi, alpha) {
 #' 
 #' @export
 #'
-#' @examples
-#' 
 pgam1 <- function(q, alpha, beta) {
   # ----Gamma----
   lmomco::cdfgam(q, list(type = "gam", para = c(alpha, beta), source = "pargam"))
@@ -79,8 +75,6 @@ pgam1 <- function(q, alpha, beta) {
 #' 
 #' @export
 #'
-#' @examples
-#' 
 pgev1 <- function(q, xi, alpha, kappa) {
   # ----GEV----
   lmomco::cdfgev(q, list(type = "gev", para = c(xi, alpha, kappa), source = "pargev"))
@@ -108,8 +102,6 @@ pgev1 <- function(q, xi, alpha, kappa) {
 #'  
 #' @export
 #'
-#' @examples
-#' 
 pgum1 <- function(q, xi, alpha) {
   # ----Gumbel----
   lmomco::cdfgum(q, list(type = "gum", para = c(xi, alpha), source = "pargum"))
@@ -139,8 +131,6 @@ pgum1 <- function(q, xi, alpha) {
 #'
 #' @export
 #'
-#' @examples
-#' 
 pln31 <- function(q, zeta, mulog, sigmalog) {
   # ----Log Normal 3----
   lmomco::cdfln3(q, list(type = "ln3", para = c(zeta, mulog, sigmalog), source = "parln3"))
@@ -168,8 +158,6 @@ pln31 <- function(q, zeta, mulog, sigmalog) {
 #'
 #' @export
 #'
-#' @examples
-#' 
 pnor1 <- function(q, mu, sigma) {
   # ----Normal----
   lmomco::cdfnor(q, list(type = "nor", para = c(mu, sigma), source = "parnor"))
@@ -198,8 +186,6 @@ pnor1 <- function(q, mu, sigma) {
 #'
 #' @export
 #'
-#' @examples
-#' 
 ppe31 <- function(q, mu, sigma, gamma) {
   # ----Person III----
   lmomco::cdfpe3(q, list(type = "pe3", para = c(mu, sigma, gamma), source = "parpe3"))
@@ -230,8 +216,6 @@ ppe31 <- function(q, mu, sigma, gamma) {
 #'
 #' @export
 #'
-#' @examples
-#' 
 pwak1 <- function(q, xi, alpha, beta, gamma, delta) {
   # ----Wakeby----
   lmomco::cdfwak(q, list(type = "wak", para = c(xi, alpha, beta, gamma, delta), source = "parwak"))

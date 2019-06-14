@@ -20,4 +20,3 @@ calculated for seven return periods. This values were obtained from processed da
 meteorology station in the Farfan Airport in Tulua, Colombia.
 }
 \keyword{datasets}
-

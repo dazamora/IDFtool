@@ -47,8 +47,8 @@
 #' (CI.test$Conf.Inter[,2])
 #' # result = 125.9501, 139.6132, 154.6232, 173.6736, 197.5024, 215.0634, 232.4939
 #'  
-bootstrapCI <- function(Intensity =.., Parameters =..,Type = "Gumbel",
-                        Rsample = 1000, Return.P =..., Conf.Inter = 0.95) {
+bootstrapCI <- function(Intensity, Parameters ,Type = "Gumbel",
+                        Rsample = 1000, Return.P , Conf.Inter = 0.95) {
   
   # extract fitted model parameters
   base.params <- Parameters
@@ -104,7 +104,7 @@ bootstrapCI <- function(Intensity =.., Parameters =..,Type = "Gumbel",
   p <- c((1-Conf.Inter)/2, (1+Conf.Inter)/2)
   Conf.Inter <- sapply(colnames(quantile.estimates),
                        FUN=function(x){
-                         quantile(quantile.estimates[,x], probs=p, na.rm=TRUE)})
+                         stats::quantile(quantile.estimates[,x], probs=p, na.rm=TRUE)})
   
   # now return list object containing output
   return(list(Conf.Inter = data.frame(

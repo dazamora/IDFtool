@@ -35,7 +35,7 @@
 #' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
 #' @param goodtest: a logical value specifying whether goodness-fit tests should be 
-#' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
+#' cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.
 #' @param Resolution: a number to determine resolution that the plot function will used to save graphs. 
 #' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
 #' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
@@ -64,8 +64,8 @@
 #'                      Periods =c(2,3,5,10,25,50,100), Dura ="5 min", Station ="2610", CI = TRUE,
 #'                      iter =100, goodtest = TRUE,Resolution = 300, SAVE = FALSE)
 #' 
-fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
-         Periods =..., Dura =..., Station =..., CI = FALSE, iter = ..,
+fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
+         Periods, Dura, Station, CI = FALSE, iter ,
          goodtest = FALSE, Resolution = 300, SAVE = FALSE){
 
   # ----Fix variables----
@@ -205,6 +205,6 @@ fitDISTRI <- function(Intensity =..., Type ="Gumbel", Plot = 2, M.fit = "MLE",
               Int.pdf = INT,
               Conf.Inter = CI.result,
               goodness.fit = test.fit,
-              Info.PDF = c(Type,M.fit))
+              Info.PDF = c(Type, M.fit))
   )
 }

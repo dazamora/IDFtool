@@ -76,7 +76,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   if(Type == "exponential"){
     # ----Exponencial----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pexp1", xi = Parameters$para[1], alpha = Parameters$para[2], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pexp1", xi = Parameters$para[1], alpha = Parameters$para[2], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pexp1", xi = Parameters$para[1], alpha = Parameters$para[2])
     #--------Cramer-von Mises----
@@ -85,7 +85,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "gamma"){
     # ----Gamma----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pgam1", alpha = Parameters$para[1], beta = Parameters$para[2], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pgam1", alpha = Parameters$para[1], beta = Parameters$para[2], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pgam1", alpha = Parameters$para[1], beta = Parameters$para[2])
     #--------Cramer-von Mises----
@@ -94,7 +94,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "gev"){
     # ----GEV----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pgev1", xi = Parameters$para[1], alpha = Parameters$para[2], kappa = Parameters$para[3], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pgev1", xi = Parameters$para[1], alpha = Parameters$para[2], kappa = Parameters$para[3], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pgev1", xi = Parameters$para[1], alpha = Parameters$para[2], kappa = Parameters$para[3])
     #--------Cramer-von Mises----
@@ -103,7 +103,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "gumbel"){
     # ----Gumbel----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pgum1", xi = Parameters$para[1], alpha = Parameters$para[2], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pgum1", xi = Parameters$para[1], alpha = Parameters$para[2], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pgum1", xi = Parameters$para[1], alpha = Parameters$para[2])
     #----Cramer-von Mises----
@@ -112,7 +112,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "log.normal3"){
     # ----Log Normal 3----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pln31", zeta = Parameters$para[1], mulog = Parameters$para[2], sigmalog = Parameters$para[3], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pln31", zeta = Parameters$para[1], mulog = Parameters$para[2], sigmalog = Parameters$para[3], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pln31", zeta = Parameters$para[1], mulog = Parameters$para[2], sigmalog = Parameters$para[3])
     #----Cramer-von Mises----
@@ -121,7 +121,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "normal"){
     # ----Normal----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pnor1", mu = Parameters$para[1], sigma = Parameters$para[2], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "pnor1", mu = Parameters$para[1], sigma = Parameters$para[2], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pnor1", mu = Parameters$para[1], sigma = Parameters$para[2])
     #----Cramer-von Mises----
@@ -133,7 +133,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
       Intensity<-log10(Intensity)
     }
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3], alternative  =  "two.sided")
+    KST <- stats::ks.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3], alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "ppe31", mu = Parameters$para[1], sigma = Parameters$para[2], gamma = Parameters$para[3])
     #----Cramer-von Mises----
@@ -142,7 +142,7 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
   }else if(Type == "wakeby"){
     # ----Wakeby----
     #----Kolmogorov-Smirnov----
-    KST <- ks.test(Intensity, "pwak1", xi = Parameters$para[1], alpha = Parameters$para[2], beta = Parameters$para[3], gamma = Parameters$para[4], delta = Parameters$para[5],
+    KST <- stats::ks.test(Intensity, "pwak1", xi = Parameters$para[1], alpha = Parameters$para[2], beta = Parameters$para[3], gamma = Parameters$para[4], delta = Parameters$para[5],
                  alternative  =  "two.sided")
     #----Anderson-Darling----
     ADT <- goftest::ad.test(Intensity, "pwak1", xi = Parameters$para[1], alpha = Parameters$para[2], beta = Parameters$para[3], gamma = Parameters$para[4], delta = Parameters$para[5])

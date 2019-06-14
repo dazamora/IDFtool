@@ -31,19 +31,14 @@
 #' \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.
 #' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
 #' 2 just data from HIDFUN tool and 3 used this data sets.
-<<<<<<< HEAD
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
 #' @param CI: a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
-=======
-#' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case use "".
-#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed.
->>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028
 #' @param CIpdf: a logical value specifying whether confidence of pdf will be computed.
 #' @param iter: an integer representing number of resamples to conduct when 
 #' confidence interval is computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
 #' @param goodtest: a logical value specifying whether goodness-fit tests should be 
-#' cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.
+#' cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.
 #' @param Resolution: a number to determine the resolution that the plot function will used to save graphs. 
 #' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
 #' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show \code{Plot}.
@@ -56,7 +51,7 @@
 #'    \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} computed by \emph{pdf} fitted.
 #'    \item \code{Models} a list with results of the function \code{\link{regIDF}}.
 #'    \item \code{Test.fit} a list with results of the function \code{\link{goodFIT}}.
-#'    \item \code{Distribution} a list with results of the function \code{\link{fitDISRTI}}.
+#'    \item \code{Distribution} a list with results of the function \code{\link{fitDISTRI}}.
 #'  }
 #' @author David Zamora <dazamoraa@unal.edu.co>
 #' Albeiro Figueroa <cafigueroao@unal.edu.co> 
@@ -73,7 +68,7 @@
 #' Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 100,
 #' goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 #' 
-IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
+IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
                    Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
                    Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 500,
                    goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE){
@@ -173,7 +168,7 @@ IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
     #options(warn = 0) # Para mostrar wanings 0
     distri <- list() # Almacena todos los resultados de la funcion fitDISTRI
     idf <- matrix(nrow = nd, ncol = nTp)
-    M.test.fit <- matrix(NA, nrow = nd, ncol = 8)
+    M.test.fit <- matrix(NA, nrow = nd, ncol = 10)
     CI.pdf.lower <- c()
     CI.pdf.upper <- c()
     
@@ -234,57 +229,32 @@ IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
         dir.create(paste(".", "RESULTS", Station, sep = "/"), recursive = TRUE)
         path.result <- paste(".", "RESULTS", Station, sep = "/")
       }
+      sheets.content <- list(idf, CI.pdf.lower, CI.pdf.upper, M.test.fit, Output[[name[estr]]]$Coefficients,
+                             Output[[name[estr]]]$Prediction.Int, Output[[name[estr]]]$test.fit.reg,
+                             Output[[name[estr]]]$Confidence.Int)
+      sheets.names <- c("IDF.by.PDF", "CIL-IDF.by.PDF", "CIU-IDF.by.PDF", "goodness.fit",
+                        "Coefficients", "Prediction.by.C-IDF", "Performance-IDF.reg", "Conf.Int-IDF.reg")
+      openxlsx::write.xlsx(sheets.content, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+                       sheetName = sheets.names, row.names = TRUE, col.names = TRUE)
       
-      openxlsx::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "IDF.by.PDF", row.names = TRUE, col.names = TRUE)
-<<<<<<< HEAD
-      openxlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIL-IDF.by.PDF", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIU-IDF.by.PDF", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "goodness.fit", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Coefficients", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Prediction.by.C-IDF", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Performance-IDF.reg", row.names = TRUE, col.names = TRUE)
-      openxlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Conf.Int-IDF.reg", row.names = TRUE, col.names = TRUE)
-=======
-      xlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIL-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIU-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "goodness.fit", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Coefficients", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Prediction.by.C-IDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Performance-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
       if (CI) {
-      xlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Conf.Int-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+        wb <- openxlsx::loadWorkbook(paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""))  
+        openxlsx::writeData(wb, 'Conf.Int-IDF.reg', Output[[name[estr]]]$Confidence.Int)
+        openxlsx::saveWorkbook(wb, paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""), overwrite = T)
       }
->>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028
     }
   }
   
   # ----Salidas de la funcion----
   if (length(Strategy) < 2) {
-    return(list(Intesities = idf, 
+    return(list(Intensities = idf, 
                 Models = Output,
                 Test.fit = M.test.fit, 
-                Distribution = distri)
-    )
+                Distribution = distri))
   } else {
-    return(list(Intesities = Midf, 
+    return(list(Intensities = Midf, 
                 Models = Output,
                 Test.fit = Mgoodness, 
-                Distribution = distri)
-    )
+                Distribution = distri))
   }
 }

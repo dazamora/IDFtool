@@ -4,7 +4,7 @@
 \alias{IDFCurve}
 \title{Compute Intensity-Duration-Frequency curve}
 \usage{
-IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
+IDFCurve(Data, Station = "2610516", Duration = FALSE,
   Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
   Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE,
   CIpdf = TRUE, iter = 500, goodtest = FALSE, Resolution = 300,
@@ -38,7 +38,7 @@ for all return \code{Periods}. (4) to plot IDF curve each for return
 \item{Strategy:}{a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
 2 just data from HIDFUN tool and 3 used this data sets.}
 
-\item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case use "".}
+\item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
 \item{CI:}{a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.}
 
@@ -49,7 +49,7 @@ confidence interval is computed (see \code{\link{bootstrapCI}}). Use it only if
 CI is equal to TRUE.}
 
 \item{goodtest:}{a logical value specifying whether goodness-fit tests should be 
-cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.}
+cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.}
 
 \item{Resolution:}{a number to determine the resolution that the plot function will used to save graphs. 
 It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
@@ -66,7 +66,7 @@ A list of:
    \item \code{Intesities} a numeric matrix of intensities values per each return \code{Periods} computed by \emph{pdf} fitted.
    \item \code{Models} a list with results of the function \code{\link{regIDF}}.
    \item \code{Test.fit} a list with results of the function \code{\link{goodFIT}}.
-   \item \code{Distribution} a list with results of the function \code{\link{fitDISRTI}}.
+   \item \code{Distribution} a list with results of the function \code{\link{fitDISTRI}}.
  }
 }
 \description{

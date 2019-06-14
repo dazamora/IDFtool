@@ -23,9 +23,6 @@ This function computes the cumulative probability or nonexceedance
 probability of the Pearson Type III distribution given parameters 
 (\eqn{\mu}, \eqn{\sigma}, and \eqn{\gamma}). Based in function of \pkg{lmomco} package.
 }
-\examples{
-
-}
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE

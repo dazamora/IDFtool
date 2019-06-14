@@ -10,10 +10,9 @@
 #'
 #' @param Intensity: a numeric vector with intensity [mm/h] values of different
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
-#' @param PDF: a character specifying the name of distribution function that it will 
+#' @param Type: a character specifying the name of distribution function that it will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}). 
-#' @param ... 
 #'
 #' @return A list of:
 #' 
@@ -30,10 +29,10 @@
 #' 
 #' # Meteorology station in the Farfan Airport in Tulua, Colombia.
 #' data(inten)
-#' Test.moments <- MME_DIST(Intensity = inten[,4], Type = "gumbel") 
+#' Test.moments <- MME_DIST(Intensity = inten[,4], Type = "Gumbel") 
 #' ## Results: xi = 71.50 ; alpha = 14.21
 #' 
-MME_DIST <- function (Intensity, PDF, ...) {
+MME_DIST <- function (Intensity, Type) {
   
   data <- Intensity
   distr <- selecDIST(PDF)
@@ -50,8 +49,8 @@ MME_DIST <- function (Intensity, PDF, ...) {
     stop("data must be a numeric vector of length greater than 1")
   }
   n <- length(data)
-  m <- mean(data)
-  v <- var(data)
+  m <- stats::mean(data)
+  v <- stats::var(data)
   ##################################################################
   ##   Distribución Normal (2P - norm),
   if (distname == "nor") {

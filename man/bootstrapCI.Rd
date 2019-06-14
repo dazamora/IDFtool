@@ -4,8 +4,8 @@
 \alias{bootstrapCI}
 \title{Determine confidence intervals to rainfall intensities estimated by a PDF function.}
 \usage{
-bootstrapCI(Intensity = .., Parameters = .., Type = "Gumbel",
-  Rsample = 1000, Return.P = ..., Conf.Inter = 0.95)
+bootstrapCI(Intensity, Parameters, Type = "Gumbel", Rsample = 1000,
+  Return.P, Conf.Inter = 0.95)
 }
 \arguments{
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different 

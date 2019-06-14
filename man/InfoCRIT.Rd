@@ -4,7 +4,7 @@
 \alias{InfoCRIT}
 \title{Generic function calculating information criterias for fitted PDF}
 \usage{
-InfoCRIT(Intensity = ..., Parameters = ...)
+InfoCRIT(Intensity, Parameters)
 }
 \arguments{
 \item{Intensity:}{numeric vector with intensity values for a specific duration 
@@ -27,17 +27,12 @@ to fitted probability density functions with \pkg{lmomco} package
 data(Intgum5min)
 data(Pargumbel)
 InfoCRIT(Intensity=Intgum5min,Parameters=Pargumbel)
-# Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC=  
+## Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC= -35.23 
+}
+\references{
 
 }
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-<<<<<<< HEAD
-=======
-\references{
-
-}
-
->>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028

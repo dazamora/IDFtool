@@ -23,9 +23,6 @@ This function computes the cumulative probability or nonexceedance probability
 of the Log-Normal3 distribution given parameters (\eqn{\zeta}, \eqn{\mu} and \eqn{\sigma}). Based in function 
 of \pkg{lmomco} package.
 }
-\examples{
-
-}
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE

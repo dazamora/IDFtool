@@ -34,7 +34,8 @@
 #' # Example of five PDFs and their respectives values of four information criterias.
 #' data(fractures.crit)
 #' 
-#' pW.1 <- p.criteria(metrics = fractures.crit, critnames = rownames(fractures.crit), pdfnames = colnames(fractures.crit))
+#' pW.1 <- p.criteria(metrics = fractures.crit, critnames = rownames(fractures.crit), 
+#'                    pdfnames = colnames(fractures.crit))
 #' pW.1
 #' # GEV: AIC= 100, BIC= 100, AICc= 1, KIC= 99 
 p.criteria <- function(metrics = .., critnames = .., pdfnames = ..){

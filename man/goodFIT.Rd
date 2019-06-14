@@ -69,12 +69,6 @@ test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min
                     Parameters = Pargumbel,M.fit = "Lmoments", Dura ="5_min", Plot = 0)
  
 }
-\author{
-David Zamora <dazamoraa@unal.edu.co> 
-Water Resources Engineering Research Group - GIREH
-}
-<<<<<<< HEAD
-=======
 \references{
 Hurvich, C. M., & Tsai, C. L. (1989). Regression and time series model 
 selection in small samples. Biometrika, 76(2), 297-307.
@@ -83,5 +77,7 @@ Kashyap, R. L. (1982). Optimal choice of AR and MA parts in autoregressive
 moving average models. IEEE Transactions on Pattern Analysis and Machine
 Intelligence, (2), 99-104.
 }
-
->>>>>>> 4f552ae714e82ba031d3ac9d423e881276fe1028
+\author{
+David Zamora <dazamoraa@unal.edu.co> 
+Water Resources Engineering Research Group - GIREH
+}

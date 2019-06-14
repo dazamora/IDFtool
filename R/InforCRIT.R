@@ -30,9 +30,8 @@
 #' data(Intgum5min)
 #' data(Pargumbel)
 #' InfoCRIT(Intensity=Intgum5min,Parameters=Pargumbel)
-#' # Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC=  
-#' 
-InfoCRIT<- function (Intensity=...,Parameters=...){
+#' ## Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC= -35.23 
+InfoCRIT <- function (Intensity, Parameters){
   n <- length(Intensity)
   p <- length(Parameters$para)
   f <- lmomco::dlmomco(Intensity, Parameters)

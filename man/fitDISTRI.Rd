@@ -5,10 +5,9 @@
 \title{Fit distribution functions by L-moments, probability weighted moments, maximum 
 likelihood and moments}
 \usage{
-fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2,
-  M.fit = "MLE", Periods = ..., Dura = ..., Station = ...,
-  CI = FALSE, iter = .., goodtest = FALSE, Resolution = 300,
-  SAVE = FALSE)
+fitDISTRI(Intensity, Type = "Gumbel", Plot = 2, M.fit = "MLE",
+  Periods, Dura, Station, CI = FALSE, iter, goodtest = FALSE,
+  Resolution = 300, SAVE = FALSE)
 }
 \arguments{
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
@@ -44,7 +43,7 @@ confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it onl
 CI is equal to TRUE.}
 
 \item{goodtest:}{a logical value specifying whether goodness-fit tests should be 
-cumputed to \emph{pdf} fitted by means of \code{\link{goodfit}} function.}
+cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.}
 
 \item{Resolution:}{a number to determine resolution that the plot function will used to save graphs. 
 It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}

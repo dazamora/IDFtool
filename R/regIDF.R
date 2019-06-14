@@ -62,8 +62,9 @@
 #' 
 #' # Meteorology station in the Airport Farfan in Tulua, Colombia.
 #' data(IDFdata)
-#' TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), Durations = c(5,10,15,20,30,60,120,360),
-#'                  logaxe = "", Plot = 34, Resolution = 300, SAVE = FALSE, Strategy = 1,
+#' TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), 
+#'                  Durations = c(5,10,15,20,30,60,120,360), logaxe = "", Plot = 34, 
+#'                  Resolution = 300, SAVE = FALSE, Strategy = 1,
 #'                  M.fit = "lmoments", Type = "gumbel", name = "Test", Station = "2601")
 #'                  
 regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,

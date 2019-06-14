@@ -22,9 +22,6 @@
 #' 
 #' @export
 #'
-#' @examples
-#' 
-#' 
 resoPLOT <- function(reso = 300){
 
   if (reso == 300) {

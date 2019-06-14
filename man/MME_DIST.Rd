@@ -4,11 +4,9 @@
 \alias{MME_DIST}
 \title{Fitting parameters of PDF by means of moments method}
 \usage{
-MME_DIST(Intensity, PDF, ...)
+MME_DIST(Intensity, PDF)
 }
 \arguments{
-\item{...}{}
-
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 

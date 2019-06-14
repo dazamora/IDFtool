@@ -21,9 +21,8 @@ to save graphs by means of \code{\link{png}} function.
  \item \code{hth1}
 }
 }
-\examples{
-
-
+\description{
+Selection of the graphs resolution
 }
 \author{
 David Zamora <dazamoraa@unal.edu.co> 
