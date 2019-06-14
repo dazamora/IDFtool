@@ -28,7 +28,7 @@
 #' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different datas sets: 1 just data from Ideam, 
 #' 2 just data from HIDFUN tool and 3 used this data sets.
 #' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
-#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed.
+#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
 #' @param CIpdf: a logical value specifying whether confidence of pdf will be computed.
 #' @param iter: an integer representing number of resamples to conduct when 
 #' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
@@ -61,10 +61,10 @@
 #' data(inten)
 #' Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 #' Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-#' Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, iter = 100,
+#' Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 100,
 #' goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 #' 
-IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
+IDFCurve<-function(Data =..., Station = '2610516', Duration = FALSE,
                    Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
                    Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 500,
                    goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE){
@@ -189,8 +189,12 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
     
     colnames(idf) <- as.character(Tp)
     rownames(idf) <- nom.dura
-    colnames(M.test.fit) <- names(distri[[i]]$goodness.fit)
-    rownames(M.test.fit) <- nom.dura
+    if(is.null(M.test.fit)){
+      M.test.fit <- M.test.fit
+    } else {
+      colnames(M.test.fit) <- names(distri[[i]]$goodness.fit)
+      rownames(M.test.fit) <- nom.dura
+    }
     names.periods <- round(lmomco::prob2T(distri[[1]]$Conf.Inter$Conf.Inter$nonexceed.prob),0)
     
     if (CI) {
@@ -222,22 +226,22 @@ IDFCurve<-function(Data =..., Station='2610516', Duration = FALSE,
         path.result <- paste(".", "RESULTS", Station, sep = "/")
       }
       
-      xlsx::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+      openxlsx::write.xlsx(idf, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
                        sheetName = "IDF.by.PDF", row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIL-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
-                       sheetName = "CIU-IDF.by.PDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "goodness.fit", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Coefficients", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName = "Prediction.by.C-IDF", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Performance-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
-      xlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
-                       sheetName="Conf.Int-IDF.reg", append = TRUE, row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(CI.pdf.lower, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+                       sheetName = "CIL-IDF.by.PDF", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(CI.pdf.upper, file = paste(path.result,"/", "IDF_", Station, "_", name[estr], ".xlsx",sep=""),
+                       sheetName = "CIU-IDF.by.PDF", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(M.test.fit, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "goodness.fit", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(Output[[name[estr]]]$Coefficients, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "Coefficients", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(Output[[name[estr]]]$Predict,file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName = "Prediction.by.C-IDF", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(Output[[name[estr]]]$test.fit.reg, file =  paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName="Performance-IDF.reg", row.names = TRUE, col.names = TRUE)
+      openxlsx::write.xlsx(Output[[name[estr]]]$Confidence.Int, file = paste(path.result, "/", "IDF_", Station, "_", name[estr], ".xlsx", sep = ""),
+                       sheetName="Conf.Int-IDF.reg", row.names = TRUE, col.names = TRUE)
     }
   }
   

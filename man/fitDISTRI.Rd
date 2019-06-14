@@ -4,9 +4,10 @@
 \alias{fitDISTRI}
 \title{fitDISTRI}
 \usage{
-fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2, M.fit = "MLE",
-  Periods = ..., Dura = ..., Station = ..., CI = FALSE, iter = ..,
-  goodtest = FALSE, Resolution = 300, SAVE = FALSE)
+fitDISTRI(Intensity = ..., Type = "Gumbel", Plot = 2,
+  M.fit = "MLE", Periods = ..., Dura = ..., Station = ...,
+  CI = FALSE, iter = .., goodtest = FALSE, Resolution = 300,
+  SAVE = FALSE)
 }
 \arguments{
 \item{Intensity:}{a numeric vector with intensity [mm/h] values of different
@@ -81,4 +82,3 @@ fit.pdf <- fitDISTRI(Intensity =inten[15:35,2], Type ="Gumbel", Plot = 12, M.fit
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

@@ -30,4 +30,3 @@ probability of the Pearson Type III distribution given parameters
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE
 }
-

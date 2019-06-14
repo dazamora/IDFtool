@@ -39,4 +39,3 @@ Test.moments <- MME_DIST(Intensity = inten[,4], Type = "gumbel")
 Albeiro Figueroa <cafigueroao@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

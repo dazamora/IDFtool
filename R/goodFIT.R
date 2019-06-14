@@ -163,15 +163,15 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
     }
     par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
     par(mgp = c(2.5, 0.2, 0))
-    plot(yd,  main = paste("Densidad Empirica vs FDP ", Type, "-", M.fit, "\n", Station, sep = ""),
+    plot(yd,  main = paste("Empirical density vs PDF ", Type, "-", M.fit, "\n", Station, sep = ""),
          ylim = limy, xaxt = "n", yaxt = "n", bty = "n", col = "red", lty = 1, lwd = 1,
-         ylab = "Densidad", cex.lab = 1, cex.main = 0.9)
+         ylab = "Density", cex.lab = 1, cex.main = 0.9)
     lines(xd,  yd2,  lty = 2,  col = "blue",  lwd = 1.5)
     box(col = "gray56", lwd = 0.7)
     magicaxis::magaxis(1, tcl=-0.5, cex.axis=0.9, col = "gray56")
     magicaxis::magaxis(2, las=2, cex.axis=0.9, col = "gray56")
     mtext(side = 1, text = paste("Intensity [mm/h] - ", Dura, sep = ""), line = 1.6, cex = 1.1)
-    legend("topright",  legend = c("Empirico",  "Modelado"),  col = c("red",  "blue"),
+    legend("topright",  legend = c("Empirical",  "Modeling"),  col = c("red",  "blue"),
            lty = c(1, 2),  lwd = c(1,  1.5),  bty = "n", cex=0.8)
     if (SAVE) {
       dev.off()

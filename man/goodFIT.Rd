@@ -4,8 +4,9 @@
 \alias{goodFIT}
 \title{goodFIT}
 \usage{
-goodFIT(Station = ..., Type = ..., Intensity = ..., Parameters = ...,
-  M.fit = ..., Dura = .., Plot = ..., Resolution = 300, SAVE = FALSE)
+goodFIT(Station = ..., Type = ..., Intensity = ...,
+  Parameters = ..., M.fit = ..., Dura = .., Plot = ...,
+  Resolution = 300, SAVE = FALSE)
 }
 \arguments{
 \item{Station:}{a character specifying a name or number of pluviographic 
@@ -69,4 +70,3 @@ test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

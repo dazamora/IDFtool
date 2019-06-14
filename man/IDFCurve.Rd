@@ -5,9 +5,10 @@
 \title{IDFCurve}
 \usage{
 IDFCurve(Data = ..., Station = "2610516", Duration = FALSE,
-  Periods = FALSE, Type = "gumbel", M.fit = "lmoments", Plot = 1234,
-  Strategy = 1:3, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 500,
-  goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
+  Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
+  Plot = 1234, Strategy = 1:3, logaxe = "", CI = FALSE,
+  CIpdf = TRUE, iter = 500, goodtest = FALSE, Resolution = 300,
+  SAVE = FALSE, name = TRUE)
 }
 \arguments{
 \item{Data:}{a numeric matrix with years in the first column and other columns has intensity [mm/h] values by each a the \code{Duration}s time.}
@@ -40,7 +41,7 @@ period with its confidence and prediction intervals. Or use both numbers to get 
 
 \item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
-\item{CI:}{a logical value specifying whether confidence and prediction intervals will be computed.}
+\item{CI:}{a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.}
 
 \item{CIpdf:}{a logical value specifying whether confidence of pdf will be computed.}
 
@@ -82,7 +83,7 @@ of the IDF curves (see \code{\link{regIDF}})
 data(inten)
 Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, iter = 100,
+Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 100,
 goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 
 }
@@ -91,4 +92,3 @@ David Zamora <dazamoraa@unal.edu.co>
 Albeiro Figueroa <cafigueroao@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

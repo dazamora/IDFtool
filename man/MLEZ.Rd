@@ -44,4 +44,3 @@ TEST.MLE <- MLEZ(Intensity = inten[,4], type = "Gumbel", para.int = NULL, silent
 ## Results: xi = 71.178 ; alpha = 15.204 
 
 }
-

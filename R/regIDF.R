@@ -166,6 +166,8 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
     } else {
       Inter.Conf.R <- NULL
       Inter.Pred.R <- NULL
+      LI.IC <- LS.IC <- LI.PR <- LS.PR <- NA
+      PR.media <- predict(Modelos[[k]])
     }
     
     if (grepl("4",Plot)) {
@@ -184,7 +186,7 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
             pointsize = 10, res = custom[1], bg = "transparent")
       }
       
-      limyR <- c(min(idf[,k],LI.PR,LI.IC,na.rm=T),max(idf[,k],LS.PR,LS.IC,na.rm=T))
+      limyR <- c(min(idf[,k], LI.PR, LI.IC, na.rm = T),max(idf[,k], LS.PR, LS.IC, na.rm = T))
       
       par(mar=c(3.5, 3.2, 2.5, 2) + 0.1)
       par(mgp=c(2.2, 0.2, 0))

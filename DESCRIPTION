@@ -1,21 +1,22 @@
-Package: AdFUNAL
-Title: Computes Intensity-Duration-Frequency curves per specific time duration. An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation of the probability that a given average rainfall intensity will occur.
-Version: 0.0.2
+Package: IDFtool
+Title: Fitted rainfall intensity data series to PDF and Computes Intensity-Duration-Frequency curves
+Version: 0.0.9000
 Authors@R: c(person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre")),
-             person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("aut")))
-Description: Water Resources Engineering Research Group - GIREH
+             person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("ctb")))
+Description: Computes Intensity-Duration-Frequency curves per specific time duration. An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation of the probability that a given average rainfall intensity will occur.
 Depends:
     R (>= 3.2.3)
-Imports: lmomco,
-         hydroGOF,
-         minpack.lm,
-         investr,
-         magicaxis,
-         scales,
-         xlsx,
-         DEoptim,
-         EnvStats,
+Imports: 
+    DEoptim,
+    EnvStats,
+    hydroGOF,
+    investr,
+    lmomco,
+    magicaxis,
+    minpack.lm,
+    openxlsx,
+    scales
 License: GPL-2
 Encoding: UTF-8
 LazyData: true
-RoxygenNote: 5.0.1
+RoxygenNote: 6.1.1

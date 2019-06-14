@@ -4,9 +4,10 @@
 \alias{regIDF}
 \title{regIDF}
 \usage{
-regIDF(Intensity = ..., Periods = ..., Durations = ..., logaxe = ...,
-  Plot = 34, Intervals = TRUE, Resolution = 300, SAVE = FALSE,
-  Strategy = ..., M.fit = ..., Type = ..., name = ..., Station = ...)
+regIDF(Intensity = ..., Periods = ..., Durations = ...,
+  logaxe = ..., Plot = 34, Intervals = TRUE, Resolution = 300,
+  SAVE = FALSE, Strategy = ..., M.fit = ..., Type = ...,
+  name = ..., Station = ...)
 }
 \arguments{
 \item{Intensity:}{a matrix with intensity values per specific time durations 
@@ -82,4 +83,3 @@ TEST.out <- regIDF(Intensity = IDFdata, Periods = c(2,3,5,10,25,50,100), Duratio
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

@@ -27,4 +27,3 @@ for used it in functions of \pkg{IDFtool} package.
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-

@@ -30,4 +30,3 @@ Based in function of \pkg{lmomco} package.
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIRE
 }
-

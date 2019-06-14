@@ -57,4 +57,3 @@ Rsample = 1000, Return.P =FR, Conf.Inter = 0.90)
 David Zamora <dazamoraa@unal.edu.co> 
 Water Resources Engineering Research Group - GIREH
 }
-
