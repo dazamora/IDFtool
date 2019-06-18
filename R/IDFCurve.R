@@ -12,37 +12,37 @@
 #' of the IDF curves (see \code{\link{regIDF}})
 #' 
 #' 
-#' @param Data: a numeric matrix with years in the first column and intensity values for each \code{Duration} time in the other columns.
-#' @param Station: a string with a name to identify source of \code{Data}.
-#' @param Duration: a logical value or numeric vector. If it is TRUE the durations (in minutes) 
+#' @param Data a numeric matrix with years in the first column and intensity values for each \code{Duration} time in the other columns.
+#' @param Station a string with a name to identify source of \code{Data}.
+#' @param Duration a logical value or numeric vector. If it is TRUE the durations (in minutes) 
 #' by default will be used: 5, 10 ,15, 20, 30, 60, 120 y 360. In case of a numeric vector the durations must be in minutes.
-#' @param Periods: a logical value or numeric vector.
-#' @param Type: a character specifying the name of the distribution function that will 
+#' @param Periods a logical value or numeric vector.
+#' @param Type a character specifying the name of the distribution function that will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
-#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' @param M.fit a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' Maximum Likelihood (\code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).
-#' @param Plot: it is a number of one to four digits. a number (1) to plot density curves 
+#' @param Plot it is a number of one to four digits. a number (1) to plot density curves 
 #' both empirical as modeled (\emph{pdf}).(2) to plot if it will be 
 #' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
 #' Or use (12) to get both graphs. (3) to plot IDF curves for all return periods: (\code{Durations} versus \code{Intensity})
 #' for all return \code{Periods}. (4) to plot IDF curve each for return
 #' \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.
-#' @param Strategy: a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
+#' @param Strategy a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
 #' 2 just data from HIDFUN tool and 3 used this data sets.
-#' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "".
-#' @param CI: a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
-#' @param CIpdf: a logical value specifying whether confidence of pdf will be computed.
-#' @param iter: an integer representing number of resamples to conduct when 
+#' @param logaxe a character to plot axis in log scale: x, y or both (xy). In other case used "".
+#' @param CI a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
+#' @param CIpdf a logical value specifying whether confidence of pdf will be computed.
+#' @param iter an integer representing number of resamples to conduct when 
 #' confidence interval is computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
-#' @param goodtest: a logical value specifying whether goodness-fit tests should be 
+#' @param goodtest a logical value specifying whether goodness-fit tests should be 
 #' cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.
-#' @param Resolution: a number to determine the resolution that the plot function will used to save graphs. 
+#' @param Resolution a number to determine the resolution that the plot function will used to save graphs. 
 #' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show \code{Plot}.
-#' @param name: a logical value. TRUE will use a default names to identify strategies: (1) "HIDFUN", (2) "IDEAM", (3) "AMBOS". In other case FALSE
+#' @param SAVE a logical value. TRUE will save \code{Plot}, FALSE will just show \code{Plot}.
+#' @param name a logical value. TRUE will use a default names to identify strategies: (1) "HIDFUN", (2) "IDEAM", (3) "AMBOS". In other case FALSE
 #' allows: i) selected years of data sets, and ii) to insert durations to do IDF curves (in minutes)
 #'
 #' @return A list of:

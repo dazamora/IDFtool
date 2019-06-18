@@ -13,10 +13,10 @@
 #' the criteria proposed by (\emph{Siena et al., 2017}).
 #' 
 #'
-#' @param metrics: a numeric matrix with the values of criterias AIC, BIC, AICc and KIC (rows)
+#' @param metrics a numeric matrix with the values of criterias AIC, BIC, AICc and KIC (rows)
 #' evaluated by each PDFs (columns). 
-#' @param critnames: a character vector with the names of information criteria evaluated.
-#' @param pdfnames: a character vector with the names of PDFs evaluated. 
+#' @param critnames a character vector with the names of information criteria evaluated.
+#' @param pdfnames a character vector with the names of PDFs evaluated. 
 #'
 #' @return Provided a matrix with values of pW criteria by each PDFs and information criterias.
 #' 
@@ -38,7 +38,7 @@
 #'                    pdfnames = colnames(fractures.crit))
 #' pW.1
 #' # GEV: AIC= 100, BIC= 100, AICc= 1, KIC= 99 
-p.criteria <- function(metrics = .., critnames = .., pdfnames = ..){
+p.criteria <- function(metrics, critnames, pdfnames){
   
   if(is.matrix(metrics)){
     IC <- metrics 

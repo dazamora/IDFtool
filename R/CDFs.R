@@ -9,9 +9,9 @@
 #' of the Exponential distribution given parameters \eqn{\xi} and \eqn{\alpha}. Based in function 
 #' of \pkg{lmomco} package.
 #'
-#' @param q: A real value vector.
-#' @param xi: \eqn{\xi} is a location parameter (see \code{\link{parexp}} function).
-#' @param alpha: \eqn{\alpha} s a scale parameter (see \code{\link{parexp}} function).
+#' @param q A real value vector.
+#' @param xi \eqn{\xi} is a location parameter (see \code{\link{parexp}} function).
+#' @param alpha \eqn{\alpha} s a scale parameter (see \code{\link{parexp}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -36,9 +36,9 @@ pexp1 <- function(q, xi, alpha) {
 #' of the Gamma distribution given parameters (\eqn{\alpha} and \eqn{\beta}) 
 #' computed. Based in function of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param alpha: \eqn{\alpha} is a scale parameter (see \code{\link{pargam}} function).
-#' @param beta: \eqn{\beta} is a location parameter (see \code{\link{pargam}} function).
+#' @param q a real value vector.
+#' @param alpha \eqn{\alpha} is a scale parameter (see \code{\link{pargam}} function).
+#' @param beta \eqn{\beta} is a location parameter (see \code{\link{pargam}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -63,10 +63,10 @@ pgam1 <- function(q, alpha, beta) {
 #' of the Generalized Extreme Value distribution given parameters (\eqn{\xi}, \eqn{\alpha} and \eqn{\kappa}). 
 #' Based in function of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param xi: \eqn{\xi} is a location parameter (see \code{\link{pargev}} function).
-#' @param alpha: \eqn{\alpha} is a scale parameter (see \code{\link{pargev}} function).
-#' @param kappa: \eqn{\kappa} is a shape parameter (see \code{\link{pargev}} function).
+#' @param q a real value vector.
+#' @param xi \eqn{\xi} is a location parameter (see \code{\link{pargev}} function).
+#' @param alpha \eqn{\alpha} is a scale parameter (see \code{\link{pargev}} function).
+#' @param kappa \eqn{\kappa} is a shape parameter (see \code{\link{pargev}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -91,9 +91,9 @@ pgev1 <- function(q, xi, alpha, kappa) {
 #' of the Gumbel distribution given parameters (\eqn{\xi} and \eqn{\alpha}). Based in function of 
 #' lmomco package.
 #'
-#' @param q: a real value vector.
-#' @param xi: \eqn{\xi} is a location parameter (see \code{\link{pargum}} function).
-#' @param alpha: \eqn{\alpha} is a scale paramete (see \code{\link{pargum}} function).
+#' @param q a real value vector.
+#' @param xi \eqn{\xi} is a location parameter (see \code{\link{pargum}} function).
+#' @param alpha \eqn{\alpha} is a scale paramete (see \code{\link{pargum}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -119,10 +119,10 @@ pgum1 <- function(q, xi, alpha) {
 #' of the Log-Normal3 distribution given parameters (\eqn{\zeta}, \eqn{\mu} and \eqn{\sigma}). Based in function 
 #' of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param zeta: \eqn{\zeta} is a lower bounds (see \code{\link{parln3}} function).
-#' @param mulog: \eqn{\mu} is a location parameter (see \code{\link{parln3}} function).
-#' @param sigmalog: \eqn{\sigma} is a scale parameter (see \code{\link{parln3}} function).
+#' @param q a real value vector.
+#' @param zeta \eqn{\zeta} is a lower bounds (see \code{\link{parln3}} function).
+#' @param mulog \eqn{\mu} is a location parameter (see \code{\link{parln3}} function).
+#' @param sigmalog \eqn{\sigma} is a scale parameter (see \code{\link{parln3}} function).
 #' 
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -147,9 +147,9 @@ pln31 <- function(q, zeta, mulog, sigmalog) {
 #' probability of the Normal distribution given parameters (\eqn{\mu} and \eqn{\sigma}). 
 #' Based in function of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param mu: \eqn{\mu} is the arithmetic mean (see \code{\link{parnor}} function).
-#' @param sigma: \eqn{\sigma} is the standard deviation (see \code{\link{parnor}} function).
+#' @param q a real value vector.
+#' @param mu \eqn{\mu} is the arithmetic mean (see \code{\link{parnor}} function).
+#' @param sigma \eqn{\sigma} is the standard deviation (see \code{\link{parnor}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -174,10 +174,10 @@ pnor1 <- function(q, mu, sigma) {
 #' probability of the Pearson Type III distribution given parameters 
 #' (\eqn{\mu}, \eqn{\sigma}, and \eqn{\gamma}). Based in function of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param mu: \eqn{\mu} is the mean (see \code{\link{parexp}} function).
-#' @param sigma: \eqn{\sigma} is the standard deviation (see \code{\link{parexp}} function).
-#' @param gamma: \eqn{\gamma} is the skew (see \code{\link{parexp}} function).
+#' @param q a real value vector.
+#' @param mu \eqn{\mu} is the mean (see \code{\link{parexp}} function).
+#' @param sigma \eqn{\sigma} is the standard deviation (see \code{\link{parexp}} function).
+#' @param gamma \eqn{\gamma} is the skew (see \code{\link{parexp}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 
@@ -202,12 +202,12 @@ ppe31 <- function(q, mu, sigma, gamma) {
 #' probability of the Wakeby distribution given parameters (\eqn{\xi}, \eqn{\alpha}, \eqn{\beta}, \eqn{\gamma} and \eqn{\delta}). 
 #' Based in function of \pkg{lmomco} package.
 #'
-#' @param q: a real value vector.
-#' @param xi: \eqn{\xi} is a location parameter (see \code{\link{parwak}} function).
-#' @param alpha: \eqn{\alpha} is a location parameter (see \code{\link{parwak}} function).
-#' @param beta: \eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).
-#' @param gamma: \eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).
-#' @param delta: \eqn{\delta} is a shape parameter (see \code{\link{parwak}} function).
+#' @param q a real value vector.
+#' @param xi \eqn{\xi} is a location parameter (see \code{\link{parwak}} function).
+#' @param alpha \eqn{\alpha} is a location parameter (see \code{\link{parwak}} function).
+#' @param beta \eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).
+#' @param gamma \eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).
+#' @param delta \eqn{\delta} is a shape parameter (see \code{\link{parwak}} function).
 #'
 #' @return Nonexceedance probability (\emph{F}) for q.
 #' 

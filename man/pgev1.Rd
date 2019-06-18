@@ -7,13 +7,13 @@
 pgev1(q, xi, alpha, kappa)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{xi:}{\eqn{\xi} is a location parameter (see \code{\link{pargev}} function).}
+\item{xi}{\eqn{\xi} is a location parameter (see \code{\link{pargev}} function).}
 
-\item{alpha:}{\eqn{\alpha} is a scale parameter (see \code{\link{pargev}} function).}
+\item{alpha}{\eqn{\alpha} is a scale parameter (see \code{\link{pargev}} function).}
 
-\item{kappa:}{\eqn{\kappa} is a shape parameter (see \code{\link{pargev}} function).}
+\item{kappa}{\eqn{\kappa} is a shape parameter (see \code{\link{pargev}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

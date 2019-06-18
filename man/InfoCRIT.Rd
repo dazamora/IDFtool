@@ -7,10 +7,10 @@
 InfoCRIT(Intensity, Parameters)
 }
 \arguments{
-\item{Intensity:}{numeric vector with intensity values for a specific duration 
+\item{Intensity}{numeric vector with intensity values for a specific duration 
 in different return periods.}
 
-\item{Parameters:}{list with three elements: i) type of distribution 
+\item{Parameters}{list with three elements: i) type of distribution 
 function ii) fitted parameters, and iii) source to call specfic function
 in the package \pkg{lmomco}.}
 }
@@ -26,11 +26,8 @@ to fitted probability density functions with \pkg{lmomco} package
 # Meteorology station in the Airport Farfan in Tulua, Colombia. 
 data(Intgum5min)
 data(Pargumbel)
-InfoCRIT(Intensity=Intgum5min,Parameters=Pargumbel)
+crit  <- InfoCRIT(Intensity = Intgum5min, Parameters = Pargumbel)
 ## Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC= -35.23 
-}
-\references{
-
 }
 \author{
 David Zamora <dazamoraa@unal.edu.co> 

@@ -4,7 +4,7 @@
 #' @title
 #' Selection of the graphs resolution 
 #' 
-#' @param reso: a number to determine the resolution that the plot function will used to save 
+#' @param reso a number to determine the resolution that the plot function will used to save 
 #' graphs. It has two options: 300 and 600 ppi. 
 #'
 #' @return a vector with four values. They are used 

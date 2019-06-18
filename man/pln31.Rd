@@ -7,13 +7,13 @@
 pln31(q, zeta, mulog, sigmalog)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{zeta:}{\eqn{\zeta} is a lower bounds (see \code{\link{parln3}} function).}
+\item{zeta}{\eqn{\zeta} is a lower bounds (see \code{\link{parln3}} function).}
 
-\item{mulog:}{\eqn{\mu} is a location parameter (see \code{\link{parln3}} function).}
+\item{mulog}{\eqn{\mu} is a location parameter (see \code{\link{parln3}} function).}
 
-\item{sigmalog:}{\eqn{\sigma} is a scale parameter (see \code{\link{parln3}} function).}
+\item{sigmalog}{\eqn{\sigma} is a scale parameter (see \code{\link{parln3}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

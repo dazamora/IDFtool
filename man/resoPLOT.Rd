@@ -7,7 +7,7 @@
 resoPLOT(reso = 300)
 }
 \arguments{
-\item{reso:}{a number to determine the resolution that the plot function will used to save 
+\item{reso}{a number to determine the resolution that the plot function will used to save 
 graphs. It has two options: 300 and 600 ppi.}
 }
 \value{

@@ -4,38 +4,37 @@
 \alias{goodFIT}
 \title{Computing of goodness-of-fit metrics and information criterias}
 \usage{
-goodFIT(Station = ..., Type = ..., Intensity = ...,
-  Parameters = ..., M.fit = ..., Dura = .., Plot = ...,
+goodFIT(Station, Type, Intensity, Parameters, M.fit, Dura, Plot,
   Resolution = 300, SAVE = FALSE)
 }
 \arguments{
-\item{Station:}{a character specifying a name or number of pluviographic 
+\item{Station}{a character specifying a name or number of pluviographic 
 station where data were measurement, and it use to save results in *.xls 
 format.}
 
-\item{Type:}{a character specifying a name of probability distribution 
+\item{Type}{a character specifying a name of probability distribution 
 function fitted (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.}
 
-\item{Intensity:}{a numeric vector with intensity values for a specific time 
+\item{Intensity}{a numeric vector with intensity values for a specific time 
 duration in different return periods.}
 
-\item{Parameters:}{a list with three elements: i) Type of distribution function ii)
+\item{Parameters}{a list with three elements: i) Type of distribution function ii)
 fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.}
 
-\item{M.fit:}{a character specifying a name of fit method employed on pdf, just three 
+\item{M.fit}{a character specifying a name of fit method employed on pdf, just three 
 options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 and Maximum Likelihood (\emph{MLE}).}
 
-\item{Dura:}{a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+\item{Dura}{a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 This parameter is used to save results.}
 
-\item{Plot:}{a number (1) to determine if it will be plotted density curves both empirical 
+\item{Plot}{a number (1) to determine if it will be plotted density curves both empirical 
 as modeled (\emph{pdf}). If any other number is used graphs will not appear.}
 
-\item{Resolution:}{a number to determine the resolution that the plot function will used to save graphs. 
+\item{Resolution}{a number to determine the resolution that the plot function will used to save graphs. 
 It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
 
-\item{SAVE:}{a logical value. TRUE will save \code{Plot}, FALSE will just show it.}
+\item{SAVE}{a logical value. TRUE will save \code{Plot}, FALSE will just show it.}
 }
 \value{
 A data frame with statistics values of goodness of fit tests and its respective p-value, 

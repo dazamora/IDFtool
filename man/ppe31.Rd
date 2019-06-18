@@ -7,13 +7,13 @@
 ppe31(q, mu, sigma, gamma)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{mu:}{\eqn{\mu} is the mean (see \code{\link{parexp}} function).}
+\item{mu}{\eqn{\mu} is the mean (see \code{\link{parexp}} function).}
 
-\item{sigma:}{\eqn{\sigma} is the standard deviation (see \code{\link{parexp}} function).}
+\item{sigma}{\eqn{\sigma} is the standard deviation (see \code{\link{parexp}} function).}
 
-\item{gamma:}{\eqn{\gamma} is the skew (see \code{\link{parexp}} function).}
+\item{gamma}{\eqn{\gamma} is the skew (see \code{\link{parexp}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

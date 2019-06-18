@@ -8,21 +8,21 @@ MLEZ(Intensity, type, para.int = NULL, silent = TRUE,
   null.on.not.converge = TRUE, pretransf = function(t) return(t))
 }
 \arguments{
-\item{pretransf}{}
-
-\item{Intensity:}{a numeric vector with intensity [mm/h] values of different
+\item{Intensity}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
-\item{type:}{a character specifying the name of the distribution function that will 
+\item{type}{a character specifying the name of the distribution function that will 
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
-\item{para.int:}{Initial parameters as a vector \eqn{\Theta}.}
+\item{para.int}{Initial parameters as a vector \eqn{\Theta}.}
 
-\item{silent:}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
+\item{silent}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
 
-\item{null.on.not.converge:}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
+\item{null.on.not.converge}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
 returns a nonzero convergence status.#'}
+
+\item{pretransf}{}
 }
 \value{
 A list of:

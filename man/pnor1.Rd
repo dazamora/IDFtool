@@ -7,11 +7,11 @@
 pnor1(q, mu, sigma)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{mu:}{\eqn{\mu} is the arithmetic mean (see \code{\link{parnor}} function).}
+\item{mu}{\eqn{\mu} is the arithmetic mean (see \code{\link{parnor}} function).}
 
-\item{sigma:}{\eqn{\sigma} is the standard deviation (see \code{\link{parnor}} function).}
+\item{sigma}{\eqn{\sigma} is the standard deviation (see \code{\link{parnor}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

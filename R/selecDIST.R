@@ -8,7 +8,7 @@
 #' This function converts large names of distribution functions in a short one 
 #' to used it in functions of \pkg{IDFtool} package. 
 #'
-#' @param Type: a character specifying the name of the distribution function that 
+#' @param Type a character specifying the name of the distribution function that 
 #' will be employed: exponential, gamma, gev, gumbel, log.normal3, normal, 
 #' log.pearson3 and wakeby. 
 #'

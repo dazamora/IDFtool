@@ -10,45 +10,45 @@ fitDISTRI(Intensity, Type = "Gumbel", Plot = 2, M.fit = "MLE",
   Resolution = 300, SAVE = FALSE)
 }
 \arguments{
-\item{Intensity:}{a numeric vector with intensity [mm/h] values of different
+\item{Intensity}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
-\item{Type:}{a character specifying the name of the distribution function that will 
+\item{Type}{a character specifying the name of the distribution function that will 
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 
-\item{Plot:}{a number (1) to determine if it will be plotted density curves 
+\item{Plot}{a number (1) to determine if it will be plotted density curves 
 both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
 plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
 Or use both numbers to get these graphs. If any other number is used, graphs 
 will not appear.}
 
-\item{M.fit:}{a character specifying the name of fit method employed on pdf, just three 
+\item{M.fit}{a character specifying the name of fit method employed on pdf, just three 
 options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}).}
 
-\item{Periods:}{a numeric vector with return periods.}
+\item{Periods}{a numeric vector with return periods.}
 
-\item{Dura:}{a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+\item{Dura}{a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 This parameter is used to save results.}
 
-\item{Station:}{a character specifying a name or number of pluviographic station where data were 
+\item{Station}{a character specifying a name or number of pluviographic station where data were 
 measured. It is used to save results.}
 
-\item{CI:}{a logical value specifying whether confidence interval should be 
+\item{CI}{a logical value specifying whether confidence interval should be 
 cumputed to \emph{pdf} fitted by means \code{\link{bootstrapCI}} function.}
 
-\item{iter:}{an integer representing number of resamples to conduct when 
+\item{iter}{an integer representing number of resamples to conduct when 
 confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 CI is equal to TRUE.}
 
-\item{goodtest:}{a logical value specifying whether goodness-fit tests should be 
+\item{goodtest}{a logical value specifying whether goodness-fit tests should be 
 cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.}
 
-\item{Resolution:}{a number to determine resolution that the plot function will used to save graphs. 
+\item{Resolution}{a number to determine resolution that the plot function will used to save graphs. 
 It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
 
-\item{SAVE:}{a logical value. TRUE will save \code{Plot}, FALSE will just show it.}
+\item{SAVE}{a logical value. TRUE will save \code{Plot}, FALSE will just show it.}
 }
 \value{
 A list with the fitted distribution and the parameters:

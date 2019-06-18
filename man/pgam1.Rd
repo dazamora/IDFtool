@@ -7,11 +7,11 @@
 pgam1(q, alpha, beta)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{alpha:}{\eqn{\alpha} is a scale parameter (see \code{\link{pargam}} function).}
+\item{alpha}{\eqn{\alpha} is a scale parameter (see \code{\link{pargam}} function).}
 
-\item{beta:}{\eqn{\beta} is a location parameter (see \code{\link{pargam}} function).}
+\item{beta}{\eqn{\beta} is a location parameter (see \code{\link{pargam}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

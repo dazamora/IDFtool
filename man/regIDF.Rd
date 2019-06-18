@@ -4,43 +4,42 @@
 \alias{regIDF}
 \title{Determine coefficients of IDF curves by means Levenberg-Marquardt algorithm}
 \usage{
-regIDF(Intensity = ..., Periods = ..., Durations = ...,
-  logaxe = ..., Plot = 34, Intervals = TRUE, Resolution = 300,
-  SAVE = FALSE, Strategy = ..., M.fit = ..., Type = ...,
-  name = ..., Station = ...)
+regIDF(Intensity, Periods, Durations, logaxe, Plot = 34,
+  Intervals = TRUE, Resolution = 300, SAVE = FALSE, Strategy, M.fit,
+  Type, name, Station)
 }
 \arguments{
-\item{Intensity:}{a matrix with intensity values per specific time durations 
+\item{Intensity}{a matrix with intensity values per specific time durations 
 (by rows) and return \code{Periods} (by columns). To use this function, the smallest 
 matrix dimension must be 3 rows and 1 column.}
 
-\item{Periods:}{a numeric vector with return periods.}
+\item{Periods}{a numeric vector with return periods.}
 
-\item{Durations:}{a numeric vector specifying a time duration of the \code{Intensity} in minutes.}
+\item{Durations}{a numeric vector specifying a time duration of the \code{Intensity} in minutes.}
 
-\item{logaxe:}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
+\item{logaxe}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
-\item{Plot:}{use (3) to plot IDF curves (\code{Durations} versus \code{Intensity})
+\item{Plot}{use (3) to plot IDF curves (\code{Durations} versus \code{Intensity})
 for all return \code{Periods}. Use (4) to plot IDF curve for each return
 period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear.}
 
-\item{Intervals:}{a logical value specifying whether confidence and prediction intervals will be computed.}
+\item{Intervals}{a logical value specifying whether confidence and prediction intervals will be computed.}
 
-\item{Resolution:}{a number to determine resolution that the plot function will used to save graphs. 
+\item{Resolution}{a number to determine resolution that the plot function will used to save graphs. 
 It can has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.}
 
-\item{SAVE:}{a logical value. TRUE will save \code{Plot} FALSE just will show \code{Plot} it.}
+\item{SAVE}{a logical value. TRUE will save \code{Plot} FALSE just will show \code{Plot} it.}
 
-\item{Strategy:}{a numeric vector used to identify Strategy when it is used to \code{SAVE}.}
+\item{Strategy}{a numeric vector used to identify Strategy when it is used to \code{SAVE}.}
 
-\item{M.fit:}{a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.}
+\item{M.fit}{a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.}
 
-\item{Type:}{a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
+\item{Type}{a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
 log.pearson3 and wakeby (see \code{\link{selecDIST}}).}
 
-\item{name:}{a vector of characters used to save graphs. It allows differentiation strategy to compute IDF curves.}
+\item{name}{a vector of characters used to save graphs. It allows differentiation strategy to compute IDF curves.}
 
-\item{Station:}{a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.}
+\item{Station}{a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.}
 }
 \value{
 A list of

@@ -12,25 +12,25 @@
 #' Criterion, Akaike's Information Criterion with bias correction and Kashyap bayesian Information Criterio
 #' by means of \code{\link{InfoCRIT}} function.
 #'
-#' @param Station: a character specifying a name or number of pluviographic 
+#' @param Station a character specifying a name or number of pluviographic 
 #' station where data were measurement, and it use to save results in *.xls 
 #' format. 
-#' @param Type: a character specifying a name of probability distribution 
+#' @param Type a character specifying a name of probability distribution 
 #' function fitted (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function. 
-#' @param Intensity: a numeric vector with intensity values for a specific time 
+#' @param Intensity a numeric vector with intensity values for a specific time 
 #' duration in different return periods. 
-#' @param Parameters: a list with three elements: i) Type of distribution function ii)
+#' @param Parameters a list with three elements: i) Type of distribution function ii)
 #' fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.
-#' @param M.fit: a character specifying a name of fit method employed on pdf, just three 
+#' @param M.fit a character specifying a name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' and Maximum Likelihood (\emph{MLE}). 
-#' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+#' @param Dura a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results. 
-#' @param Plot: a number (1) to determine if it will be plotted density curves both empirical 
+#' @param Plot a number (1) to determine if it will be plotted density curves both empirical 
 #' as modeled (\emph{pdf}). If any other number is used graphs will not appear. 
-#' @param Resolution: a number to determine the resolution that the plot function will used to save graphs. 
+#' @param Resolution a number to determine the resolution that the plot function will used to save graphs. 
 #' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}. 
-#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
+#' @param SAVE a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
 #'
 #' @return A data frame with statistics values of goodness of fit tests and its respective p-value, 
 #' moreover information criteria are evaluated:
@@ -67,8 +67,8 @@
 #' test.fit <- goodFIT(Station = "2610516", Type = "Gumbel", Intensity = Intgum5min,
 #'                     Parameters = Pargumbel,M.fit = "Lmoments", Dura ="5_min", Plot = 0)
 #'  
-goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
-                    M.fit =..., Dura =.., Plot =..., Resolution = 300, SAVE = FALSE){
+goodFIT <- function(Station, Type, Intensity, Parameters,
+                    M.fit, Dura, Plot, Resolution = 300, SAVE = FALSE){
   
   Type <- tolower(Type)
   Plot <- as.character(Plot)
@@ -174,23 +174,23 @@ goodFIT <- function(Station =..., Type =..., Intensity =..., Parameters =...,
 
       custom <- resoPLOT(reso = Resolution)
 
-      png(filename = paste(path.fig, "/Den", "_", Type, "_", M.fit, "_", Dura, ".png", sep = ""),
+      grDevices::png(filename = paste(path.fig, "/Den", "_", Type, "_", M.fit, "_", Dura, ".png", sep = ""),
           width = custom[2], height = custom[4], pointsize = 10,  res = custom[1], bg = "transparent")
     }
-    par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
-    par(mgp = c(2.5, 0.2, 0))
-    plot(yd,  main = paste("Empirical density vs PDF ", Type, "-", M.fit, "\n", Station, sep = ""),
+    graphics::par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
+    graphics::par(mgp = c(2.5, 0.2, 0))
+    graphics::plot(yd,  main = paste("Empirical density vs PDF ", Type, "-", M.fit, "\n", Station, sep = ""),
          ylim = limy, xaxt = "n", yaxt = "n", bty = "n", col = "red", lty = 1, lwd = 1,
          ylab = "Density", cex.lab = 1, cex.main = 0.9)
-    lines(xd,  yd2,  lty = 2,  col = "blue",  lwd = 1.5)
-    box(col = "gray56", lwd = 0.7)
+    graphics::lines(xd,  yd2,  lty = 2,  col = "blue",  lwd = 1.5)
+    graphics::box(col = "gray56", lwd = 0.7)
     magicaxis::magaxis(1, tcl=-0.5, cex.axis=0.9, col = "gray56")
     magicaxis::magaxis(2, las=2, cex.axis=0.9, col = "gray56")
-    mtext(side = 1, text = paste("Intensity [mm/h] - ", Dura, sep = ""), line = 1.6, cex = 1.1)
-    legend("topright",  legend = c("Empirical",  "Modeling"),  col = c("red",  "blue"),
+    graphics::mtext(side = 1, text = paste("Intensity [mm/h] - ", Dura, sep = ""), line = 1.6, cex = 1.1)
+    graphics::legend("topright",  legend = c("Empirical",  "Modeling"),  col = c("red",  "blue"),
            lty = c(1, 2),  lwd = c(1,  1.5),  bty = "n", cex=0.8)
     if (SAVE) {
-      dev.off()
+      grDevices::dev.off()
     }
   }
 

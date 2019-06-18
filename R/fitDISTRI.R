@@ -11,34 +11,34 @@
 #' likelihood and moments. It also assesses the goodness of fit test with different 
 #' statistics (see \code{\link{goodFIT}}).
 #'
-#' @param Intensity: a numeric vector with intensity [mm/h] values of different
+#' @param Intensity a numeric vector with intensity [mm/h] values of different
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
-#' @param Type: a character specifying the name of the distribution function that will 
+#' @param Type a character specifying the name of the distribution function that will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}).
-#' @param Plot: a number (1) to determine if it will be plotted density curves 
+#' @param Plot a number (1) to determine if it will be plotted density curves 
 #' both empirical as modeled (\emph{pdf}). a number (2) to determine if it will be 
 #' plotted curves between return \code{Periods} and intensity computed by \emph{pdf} fitted. 
 #' Or use both numbers to get these graphs. If any other number is used, graphs 
 #' will not appear.
-#' @param M.fit: a character specifying the name of fit method employed on pdf, just three 
+#' @param M.fit a character specifying the name of fit method employed on pdf, just three 
 #' options are available: L-moments (\emph{Lmoments}), Probability-Weighted Moments (\emph{PWD}), 
 #' Maximum Likelihood (\emph{MLE}) (see \code{\link{MLEZ}}) and Moments (\emph{MME}) (see \code{\link{MME_DIST}}). 
-#' @param Periods: a numeric vector with return periods.
-#' @param Dura: a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
+#' @param Periods a numeric vector with return periods.
+#' @param Dura a character specifying a time duration of the \code{Intensity}, (e.g. 30 min). 
 #' This parameter is used to save results.
-#' @param Station: a character specifying a name or number of pluviographic station where data were 
+#' @param Station a character specifying a name or number of pluviographic station where data were 
 #' measured. It is used to save results.  
-#' @param CI: a logical value specifying whether confidence interval should be 
+#' @param CI a logical value specifying whether confidence interval should be 
 #' cumputed to \emph{pdf} fitted by means \code{\link{bootstrapCI}} function.
-#' @param iter: an integer representing number of resamples to conduct when 
+#' @param iter an integer representing number of resamples to conduct when 
 #' confidence interval will be computed (see \code{\link{bootstrapCI}}). Use it only if 
 #' CI is equal to TRUE.
-#' @param goodtest: a logical value specifying whether goodness-fit tests should be 
+#' @param goodtest a logical value specifying whether goodness-fit tests should be 
 #' cumputed to \emph{pdf} fitted by means of \code{\link{goodFIT}} function.
-#' @param Resolution: a number to determine resolution that the plot function will used to save graphs. 
+#' @param Resolution a number to determine resolution that the plot function will used to save graphs. 
 #' It has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
+#' @param SAVE a logical value. TRUE will save \code{Plot}, FALSE will just show it.  
 #'
 #' @return A list with the fitted distribution and the parameters:
 #' 
@@ -178,26 +178,26 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
     graphics::abline(v = axTicks(1), h = axTicks(2), col = "gray80", lty = 3)
     graphics::polygon(c(Ttick, rev(Ttick)), c(CI.result$Conf.Inter[ ,2], rev(CI.result$Conf.Inter[ ,3])),
             col = scales::alpha("gray75", alpha = 0.2), border = scales::alpha("gray75", alpha = 0.2))
-    graphics::lines(Ttick,CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
-    graphics::lines(Ttick,CI.result$Conf.Inter[ ,3], lty = 2, lwd = 0.7, col = "gray68")
-    graphics::lines(Ttick,lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
+    graphics::lines(Ttick, CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
+    graphics::lines(Ttick, CI.result$Conf.Inter[ ,3], lty = 2, lwd = 0.7, col = "gray68")
+    graphics::lines(Ttick, lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
 
     NEP.obs <- lmomco::par2cdf(Intensity,Parameters)
     Tp.obs <- lmomco::prob2T(NEP.obs)
-    points(Tp.obs, Intensity, pch = 21, bg = "blue", col = "blue",cex = 0.8)
-    legend("bottomright", c("CI 95 %", "Fit pdf", "Observed"), col = c("gray68", "red", "blue"),
+    graphics::points(Tp.obs, Intensity, pch = 21, bg = "blue", col = "blue",cex = 0.8)
+    graphics::legend("bottomright", c("CI 95 %", "Fit pdf", "Observed"), col = c("gray68", "red", "blue"),
            pt.bg = c(scales::alpha("gray75", alpha = 0.2), NA ,"blue"), pch = c(22,-1,21),
            lty = c(-1, 4, -1), lwd = 1, bty = "n", border = NULL, cex = 0.7, pt.cex = 1.1,
            title = paste("Duration\n", Dura, sep = ""), title.col = "magenta")
 
     magicaxis::magaxis(1, labels = FALSE, col = "gray56")
-    axis(1,axTicks(1),axTicks(1), tick = FALSE, line = -0.05,cex.axis = 0.9)
+    graphics::axis(1,axTicks(1),axTicks(1), tick = FALSE, line = -0.05,cex.axis = 0.9)
     magicaxis::magaxis(2, las = 2, col = "gray56")
     #axis(2,axTicks(2),axTicks(2), lwd.ticks = 0.5, tck = 0.02, las = 2, cex.axis = 0.9)
-    box(col = "gray56", lwd = 0.7)
+    graphics::box(col = "gray56", lwd = 0.7)
 
     if (SAVE) {
-      dev.off()
+      grDevices::dev.off()
     }
   }
 

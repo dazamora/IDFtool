@@ -7,11 +7,11 @@
 pgum1(q, xi, alpha)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{xi:}{\eqn{\xi} is a location parameter (see \code{\link{pargum}} function).}
+\item{xi}{\eqn{\xi} is a location parameter (see \code{\link{pargum}} function).}
 
-\item{alpha:}{\eqn{\alpha} is a scale paramete (see \code{\link{pargum}} function).}
+\item{alpha}{\eqn{\alpha} is a scale paramete (see \code{\link{pargum}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

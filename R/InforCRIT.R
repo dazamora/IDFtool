@@ -9,9 +9,9 @@
 #' (AIC), Bayesian Information Criterion (BIC), AICc with bias correction and  
 #' to fitted probability density functions with \pkg{lmomco} package
 #'
-#' @param Intensity: numeric vector with intensity values for a specific duration 
+#' @param Intensity numeric vector with intensity values for a specific duration 
 #' in different return periods. 
-#' @param Parameters: list with three elements: i) type of distribution 
+#' @param Parameters list with three elements: i) type of distribution 
 #' function ii) fitted parameters, and iii) source to call specfic function
 #' in the package \pkg{lmomco}.
 #'

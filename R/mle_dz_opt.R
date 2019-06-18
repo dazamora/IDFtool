@@ -1,4 +1,19 @@
-mledz.optim <-function (x, type, para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
+#' Title
+#'
+#' @param x 
+#' @param type 
+#' @param para.int 
+#' @param silent 
+#' @param null.on.not.converge 
+#' @param ptransf 
+#' @param pretransf 
+#' @param ... 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+mledz.optim <- function (x, type, para.int = NULL, silent = TRUE, null.on.not.converge = TRUE, 
           ptransf = function(t) return(t), pretransf = function(t) return(t), 
           ...) 
 {

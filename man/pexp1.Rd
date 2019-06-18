@@ -7,11 +7,11 @@
 pexp1(q, xi, alpha)
 }
 \arguments{
-\item{q:}{A real value vector.}
+\item{q}{A real value vector.}
 
-\item{xi:}{\eqn{\xi} is a location parameter (see \code{\link{parexp}} function).}
+\item{xi}{\eqn{\xi} is a location parameter (see \code{\link{parexp}} function).}
 
-\item{alpha:}{\eqn{\alpha} s a scale parameter (see \code{\link{parexp}} function).}
+\item{alpha}{\eqn{\alpha} s a scale parameter (see \code{\link{parexp}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

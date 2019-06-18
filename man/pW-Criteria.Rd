@@ -7,15 +7,15 @@
 of each model by means of their posterior weights (for AIC and AICc) or 
 posterior model probability (for BIC and KIC)}
 \usage{
-p.criteria(metrics = .., critnames = .., pdfnames = ..)
+p.criteria(metrics, critnames, pdfnames)
 }
 \arguments{
-\item{metrics:}{a numeric matrix with the values of criterias AIC, BIC, AICc and KIC (rows)
+\item{metrics}{a numeric matrix with the values of criterias AIC, BIC, AICc and KIC (rows)
 evaluated by each PDFs (columns).}
 
-\item{critnames:}{a character vector with the names of information criteria evaluated.}
+\item{critnames}{a character vector with the names of information criteria evaluated.}
 
-\item{pdfnames:}{a character vector with the names of PDFs evaluated.}
+\item{pdfnames}{a character vector with the names of PDFs evaluated.}
 }
 \value{
 Provided a matrix with values of pW criteria by each PDFs and information criterias.

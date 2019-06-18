@@ -7,10 +7,10 @@
 MME_DIST(Intensity, Type)
 }
 \arguments{
-\item{Intensity:}{a numeric vector with intensity [mm/h] values of different
+\item{Intensity}{a numeric vector with intensity [mm/h] values of different
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).}
 
-\item{Type:}{a character specifying the name of distribution function that it will 
+\item{Type}{a character specifying the name of distribution function that it will 
 be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 wakeby (see \code{\link{selecDIST}}).}
 }

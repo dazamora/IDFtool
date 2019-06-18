@@ -18,25 +18,25 @@
 #' coefficient of determination (br2) multiplied by the slope of the regression line between sim and obs (\code{\link{br2}}), 
 #' mean square error \code{\link{mse}} and information criteria \code{\link{AIC}} and \code{\link{BIC}}.
 #'
-#' @param Intensity: a matrix with intensity values per specific time durations 
+#' @param Intensity a matrix with intensity values per specific time durations 
 #' (by rows) and return \code{Periods} (by columns). To use this function, the smallest 
 #' matrix dimension must be 3 rows and 1 column.
-#' @param Periods: a numeric vector with return periods.
-#' @param Durations: a numeric vector specifying a time duration of the \code{Intensity} in minutes. 
-#' @param logaxe: a character to plot axis in log scale: x, y or both (xy). In other case used "". 
-#' @param Plot: use (3) to plot IDF curves (\code{Durations} versus \code{Intensity})
+#' @param Periods a numeric vector with return periods.
+#' @param Durations a numeric vector specifying a time duration of the \code{Intensity} in minutes. 
+#' @param logaxe a character to plot axis in log scale: x, y or both (xy). In other case used "". 
+#' @param Plot use (3) to plot IDF curves (\code{Durations} versus \code{Intensity})
 #'  for all return \code{Periods}. Use (4) to plot IDF curve for each return
 #'  period with its confidence and prediction intervals. Or use both numbers to get these graphs. If you use other number the graphs will not appear. 
-#' @param Intervals: a logical value specifying whether confidence and prediction intervals will be computed.
-#' @param Resolution: a number to determine resolution that the plot function will used to save graphs. 
+#' @param Intervals a logical value specifying whether confidence and prediction intervals will be computed.
+#' @param Resolution a number to determine resolution that the plot function will used to save graphs. 
 #' It can has two options: 300 and 600 ppi. See \code{\link{resoPLOT}}.
-#' @param SAVE: a logical value. TRUE will save \code{Plot} FALSE just will show \code{Plot} it. 
-#' @param Strategy: a numeric vector used to identify Strategy when it is used to \code{SAVE}. 
-#' @param M.fit: a character specifying a name or number of pluviographic station where data were measured, and it is used to save results. 
-#' @param Type:  a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
+#' @param SAVE a logical value. TRUE will save \code{Plot} FALSE just will show \code{Plot} it. 
+#' @param Strategy a numeric vector used to identify Strategy when it is used to \code{SAVE}. 
+#' @param M.fit a character specifying a name or number of pluviographic station where data were measured, and it is used to save results. 
+#' @param Type  a character specifying the name of distribution function that it will be employed: exponencial, gamma, gev, gumbel, log.normal3, normal,
 #' log.pearson3 and wakeby (see \code{\link{selecDIST}}).
-#' @param name: a vector of characters used to save graphs. It allows differentiation strategy to compute IDF curves. 
-#' @param Station: a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.  
+#' @param name a vector of characters used to save graphs. It allows differentiation strategy to compute IDF curves. 
+#' @param Station a character specifying a name or number of pluviographic station where data were measured, and it is used to save results.  
 #'
 #' @return A list of
 #' 
@@ -67,9 +67,9 @@
 #'                  Resolution = 300, SAVE = FALSE, Strategy = 1,
 #'                  M.fit = "lmoments", Type = "gumbel", name = "Test", Station = "2601")
 #'                  
-regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
-         Plot = 34, Intervals = TRUE, Resolution = 300, SAVE = FALSE, Strategy =...,
-         M.fit =..., Type =..., name =..., Station =...){
+regIDF <- function(Intensity, Periods, Durations, logaxe,
+         Plot = 34, Intervals = TRUE, Resolution = 300, SAVE = FALSE, Strategy,
+         M.fit, Type, name, Station){
   
   # ----Define variables and outputs----
   estr <- Strategy
@@ -97,8 +97,8 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
     M.coeficientes[iT, ] <- coef(mod.lm)
     yfit[ ,iT]  <-  predict(mod.lm, interval = "confidence", level=0.95)
     
-    fit.model[iT,1] <- AIC(mod.lm)
-    fit.model[iT,2] <- BIC(mod.lm)
+    fit.model[iT,1] <- stats::AIC(mod.lm)
+    fit.model[iT,2] <- stats::BIC(mod.lm)
     fit.model[iT,3] <- hydroGOF::br2(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,4] <- hydroGOF::mse(idf[ ,iT], yfit[ ,iT])
     fit.model[iT,5] <- hydroGOF::rmse(idf[ ,iT], yfit[ ,iT])
@@ -124,39 +124,39 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
         path.fig <- paste(".", "FIGURES", Station, M.fit, Type, sep = "/")
       }
       custom <- resoPLOT(reso = Resolution)
-      png(filename = paste(path.fig, "/", name[Strategy], "_IDF.png", sep = ""),
+      grDevices::png(filename = paste(path.fig, "/", name[Strategy], "_IDF.png", sep = ""),
           width = custom[2], height = custom[4], pointsize = 10, res = custom[1], bg = "transparent")
     }
     
-    par(mar = c(3.5, 3.2, 1.5, 2) + 0.1)
-    par(mgp = c(2.2, 0.2, 0))
+    graphics::par(mar = c(3.5, 3.2, 1.5, 2) + 0.1)
+    graphics::par(mgp = c(2.2, 0.2, 0))
     psym <- seq(1, nTp) # Symbols that represent different return periods
     xtick <- c(5, 10, 15, 20, 30, 60, 120, 360) # set axis labels and location of the gridlines
     ymax <- max(idf)
     # Intensity vs duration for the first return period
-    plot(durations.2, idf[, 1], xaxt = "n", yaxt = "n", type = "n", pch = psym[1], log = logaxe,
+    graphics::plot(durations.2, idf[, 1], xaxt = "n", yaxt = "n", type = "n", pch = psym[1], log = logaxe,
          xlim = c(4, 6*60), ylim = c(1, ymax),xlab = "Duration [min]",
          ylab = "", main = paste("IDF curves - Data: ", name[estr], "\n Station: ",
                                  Station, sep = ""), cex.main = 0.7, font = 1)
     
-    abline(v = xtick, h = axTicks(1), col = "gray55", lwd = 0.6, lty = 3)
+    graphics::abline(v = xtick, h = graphics::axTicks(1), col = "gray55", lwd = 0.6, lty = 3)
     
     for (iT in 1:nTp) {
       # Plot I vs D for the others return period
-      points(durations.2, idf[, iT], pch = psym[iT], col = rainbow(nTp)[iT], cex = 0.6)
+      graphics::points(durations.2, idf[, iT], pch = psym[iT], col = grDevices::rainbow(nTp)[iT], cex = 0.6)
       # Add lines of the regression models fitted (IDF)
-      lines(durations.2, yfit[,iT], lty = psym[iT], lwd = 0.7, col = "gray72")
+      graphics::lines(durations.2, yfit[,iT], lty = psym[iT], lwd = 0.7, col = "gray72")
     }
     
     magicaxis::magaxis(2, ylab = "Intensity [mm/hr]", las = 2, cex.axis = 0.8)
-    axis(1, at = xtick, labels = xtick, cex.axis = 0.8)
-    legend("topright", bg = scales::alpha("white", alpha = 0.2), pch = -1, lty = psym, legend = rep("", nTp), title = "Ret.Periods [Year]",
+    graphics::axis(1, at = xtick, labels = xtick, cex.axis = 0.8)
+    graphics::legend("topright", bg = scales::alpha("white", alpha = 0.2), pch = -1, lty = psym, legend = rep("", nTp), title = "Ret.Periods [Year]",
            title.adj = 0.7, cex = 0.5, col = "gray72")
-    legend("topright", bg = NULL, bty = "n",pch = psym, lty = -1, legend = as.character(Tp), title = "",
+    graphics::legend("topright", bg = NULL, bty = "n",pch = psym, lty = -1, legend = as.character(Tp), title = "",
            cex = 0.5,col = rainbow(nTp))
     
     if (SAVE) {
-      dev.off()
+      grDevices::dev.off()
     }
   }
   
@@ -187,39 +187,39 @@ regIDF <- function(Intensity =..., Periods =..., Durations=..., logaxe =...,
         }
         
         custom  <-  resoPLOT(reso = Resolution)
-        png(filename =paste(path.fig, "/", name[Strategy], "_IDF_I-CP_Periodo-R", Tp[k],
+        grDevices::png(filename =paste(path.fig, "/", name[Strategy], "_IDF_I-CP_Periodo-R", Tp[k],
                             ".png", sep = ""), width = custom[2], height = custom[4],
             pointsize = 10, res = custom[1], bg = "transparent")
       }
       
       limyR <- c(min(idf[,k], LI.PR, LI.IC, na.rm = T),max(idf[,k], LS.PR, LS.IC, na.rm = T))
       
-      par(mar=c(3.5, 3.2, 2.5, 2) + 0.1)
-      par(mgp=c(2.2, 0.2, 0))
-      plot(0, ylim = limyR, xlim = c(min(durations.2), max(durations.2)), type = "n", axes = FALSE, xlab = "", ylab = "",bty = "n")
-      abline(v = durations.2, h = axTicks(2), col = "gray45", lty = 3,lwd = 0.5)
+      graphics::par(mar=c(3.5, 3.2, 2.5, 2) + 0.1)
+      graphics::par(mgp=c(2.2, 0.2, 0))
+      graphics::plot(0, ylim = limyR, xlim = c(min(durations.2), max(durations.2)), type = "n", axes = FALSE, xlab = "", ylab = "",bty = "n")
+      graphics::abline(v = durations.2, h = axTicks(2), col = "gray45", lty = 3,lwd = 0.5)
       magicaxis::magaxis(2, las = 2, cex.axis = 0.8)
       magicaxis::magaxis(1, cex.axis = 0.8)
-      par(new=TRUE)
+      graphics::par(new=TRUE)
       investr::plotFit(Modelos[[k]], interval = "both", col.conf = scales::alpha("cyan", alpha = 0.2),
                        col.pred = scales::alpha("gray70",alpha=0.2), col.fit = "red", axes = FALSE,
                        shade = TRUE, xlab = "Duration [min]", ylab = "Intensity [mm/h]",
                        lwd.conf = 0.01, lwd.pred = 0.01, pch = 20, col = scales::alpha("white", alpha = 0.5),cex=0.9,
                        main = paste("IDF curve for a return period of", Tp[k], "years", sep = " "),
                        cex.main = 0.9, ylim = limyR, xaxt = "n", yaxt = "n")
-      par(new=TRUE)
+      graphics::par(new=TRUE)
       investr::plotFit(Modelos[[k]], interval = "both", col.conf = scales::alpha("cyan", alpha = 0.7),
                        col.pred = scales::alpha("gray70", alpha = 0.7), col.fit = NULL, xaxt = "n", yaxt = "n",
                        lty.conf = 2, lty.pred = 4, lwd.conf = 1, lwd.pred = 1,
                        xlab = "", ylab = "", pch = "", bty = "n", ylim = limyR)
-      points(durations.2, PR.media, pch = 20, col = scales::alpha("blue", alpha = 0.5))
-      legend("topright", c("Prediction","Observed","Conf. Int. 95 %","Pred. Int 95 %"),
+      graphics::points(durations.2, PR.media, pch = 20, col = scales::alpha("blue", alpha = 0.5))
+      graphics::legend("topright", c("Prediction","Observed","Conf. Int. 95 %","Pred. Int 95 %"),
              col = c("red", scales::alpha("blue", alpha = 0.5), scales::alpha("cyan", alpha=0.2), scales::alpha("gray70", alpha = 0.2)),
              lty = c(1,-1, -1, -1), pt.bg = c(NULL, NULL, scales::alpha("cyan",alpha=0.7), scales::alpha("gray70", alpha = 0.7)),
              pch = c(-1, 20, 22, 22), bg = scales::alpha("white", alpha = 0.3), pt.cex = 1.4, cex = 0.7, box.col = scales::alpha("white",alpha = 0.1))
-      box()
+      graphics::box()
       if (SAVE) {
-        dev.off()
+        grDevices::dev.off()
       }
     }
   }

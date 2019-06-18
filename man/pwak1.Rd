@@ -7,17 +7,17 @@
 pwak1(q, xi, alpha, beta, gamma, delta)
 }
 \arguments{
-\item{q:}{a real value vector.}
+\item{q}{a real value vector.}
 
-\item{xi:}{\eqn{\xi} is a location parameter (see \code{\link{parwak}} function).}
+\item{xi}{\eqn{\xi} is a location parameter (see \code{\link{parwak}} function).}
 
-\item{alpha:}{\eqn{\alpha} is a location parameter (see \code{\link{parwak}} function).}
+\item{alpha}{\eqn{\alpha} is a location parameter (see \code{\link{parwak}} function).}
 
-\item{beta:}{\eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).}
+\item{beta}{\eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).}
 
-\item{gamma:}{\eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).}
+\item{gamma}{\eqn{\gamma} is a shape parameter (see \code{\link{parwak}} function).}
 
-\item{delta:}{\eqn{\delta} is a shape parameter (see \code{\link{parwak}} function).}
+\item{delta}{\eqn{\delta} is a shape parameter (see \code{\link{parwak}} function).}
 }
 \value{
 Nonexceedance probability (\emph{F}) for q.

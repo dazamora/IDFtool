@@ -8,9 +8,9 @@
 #' This function allows to fit several distribution functions to observed data
 #' by means of the moments method.
 #'
-#' @param Intensity: a numeric vector with intensity [mm/h] values of different
+#' @param Intensity a numeric vector with intensity [mm/h] values of different
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc}.).
-#' @param Type: a character specifying the name of distribution function that it will 
+#' @param Type a character specifying the name of distribution function that it will 
 #' be employed: exponencial, gamma, gev, gumbel, log.normal3, normal, pearson, log.pearson3 and 
 #' wakeby (see \code{\link{selecDIST}}). 
 #'
@@ -50,7 +50,7 @@ MME_DIST <- function (Intensity, Type) {
   }
   n <- length(data)
   m <- mean(data)
-  v <- var(data)
+  v <- stats::var(data)
   ##################################################################
   ##   Distribución Normal (2P - norm),
   if (distname == "nor") {
@@ -116,9 +116,9 @@ MME_DIST <- function (Intensity, Type) {
   ##################################################################
   ##   Log Pearson Tipo III (3P - lpe3), 
   if (distname == "lpe3") { 
-    skew <- mean((log(data) - mean(log(data)))^3) / (sqrt(var(log(data)))^3)
+    skew <- mean((log(data) - mean(log(data)))^3) / (sqrt(stats::var(log(data)))^3)
     shape  <- (4 / skew^2)
-    scale <- sqrt(var(log(data))) / sqrt(shape)
+    scale <- sqrt(stats::var(log(data))) / sqrt(shape)
     location <- mean(log(data)) - scale * shape
     PAR <- lmomco::vec2par(c(mu=location, sigma=scale, gamma=shape), type="pe3")
     return(PAR)
@@ -134,7 +134,7 @@ MME_DIST <- function (Intensity, Type) {
   ##################################################################
   ##   Distribución Valores Extremos Generalizados (3P - gev),
   if (distname == "gev"){
-    scale <- sqrt(6 * var(data))/pi
+    scale <- sqrt(6 * stats::var(data))/pi
     location <- mean(data) - 0.58 * scale
     k <- round(0.5 * n)
     mind <- min(data)

@@ -8,21 +8,21 @@ bootstrapCI(Intensity, Parameters, Type = "Gumbel", Rsample = 1000,
   Return.P, Conf.Inter = 0.95)
 }
 \arguments{
-\item{Intensity:}{a numeric vector with intensity [mm/h] values of different 
+\item{Intensity}{a numeric vector with intensity [mm/h] values of different 
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})}
 
-\item{Parameters:}{list with three elements: i) type of distribution function 
+\item{Parameters}{list with three elements: i) type of distribution function 
 ii) fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.}
 
-\item{Type:}{a character specifying a name of the probability distribution function fitted 
+\item{Type}{a character specifying a name of the probability distribution function fitted 
 (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.}
 
-\item{Rsample:}{An integer representing number of resamples to conduct when 
+\item{Rsample}{An integer representing number of resamples to conduct when 
 confidence interval will be computed.}
 
-\item{Return.P:}{a numeric vector with return periods like non-exceedance probabilities.}
+\item{Return.P}{a numeric vector with return periods like non-exceedance probabilities.}
 
-\item{Conf.Inter:}{level of the confidence interval.}
+\item{Conf.Inter}{level of the confidence interval.}
 }
 \value{
 A list of:
