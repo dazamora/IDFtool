@@ -20,16 +20,13 @@
 #' @author David Zamora <dazamoraa@unal.edu.co> 
 #' Water Resources Engineering Research Group - GIREH
 #' 
-#' @references 
-#' 
-#' 
 #' @export
 #'
 #' @examples
 #' # Meteorology station in the Airport Farfan in Tulua, Colombia. 
 #' data(Intgum5min)
 #' data(Pargumbel)
-#' InfoCRIT(Intensity=Intgum5min,Parameters=Pargumbel)
+#' crit  <- InfoCRIT(Intensity = Intgum5min, Parameters = Pargumbel)
 #' ## Result: AIC= 86.73, BIC= 86.62, AICc= 89.73, KIC= -35.23 
 InfoCRIT <- function (Intensity, Parameters){
   n <- length(Intensity)

@@ -92,7 +92,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
     INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit == "pwd"){
     PMP <- lmomco::pwm(Intensity)
-    Parameters<-lmomco::lmom2par(pwm2lmom(PMP),type = distribution)
+    Parameters<-lmomco::lmom2par(lmomco::pwm2lmom(PMP),type = distribution)
     INT <- lmomco::par2qua(FR,Parameters)
   }else if(M.fit == "mle"){
     Parameters <- MLEZ(Intensity, type = Type)
@@ -102,7 +102,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
     if(Type == "log.pearson3"){
       Intensity <- 10^Intensity
     }
-    Parameters <- MME_DIST(Intensity, PDF = Type)
+    Parameters <- MME_DIST(Intensity, Type = Type)
     
     if (is.null(Parameters)){
       INT <- NULL
@@ -160,7 +160,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
       }
 
       custom <- resoPLOT(reso = Resolution)
-      png(filename = paste(path.fig, "/IvsF", "_", Type, "_", M.fit, "_", Dura, ".png", sep = ""),
+      grDevices::png(filename = paste(path.fig, "/IvsF", "_", Type, "_", M.fit, "_", Dura, ".png", sep = ""),
           width = custom[2], height = custom[4], pointsize = 10, res = custom[1], bg = "transparent")
     }
 
@@ -168,19 +168,19 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
     lim.min <- min(CI.result$Conf.Inter[ ,2], na.rm = T)
     lim.vert <- c(lim.min, lim.max)
 
-    par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
-    par(mgp = c(2.2, 0.2, 0))
-    plot(Ttick,lmomco::par2qua(FR.plot,Parameters),type = "n",
+    graphics::par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
+    graphics::par(mgp = c(2.2, 0.2, 0))
+    graphics::plot(Ttick,lmomco::par2qua(FR.plot,Parameters),type = "n",
          main = paste("Intensity vs Frequency ", Type, "-", M.fit, "\n", Station, sep = ""),
          ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Return periods [year]",
          ylab = "Intensity [mm/h]", cex.lab = 1, cex.main = 0.9,log = "yx")
 
-    abline(v = axTicks(1), h = axTicks(2), col = "gray80", lty = 3)
-    polygon(c(Ttick, rev(Ttick)), c(CI.result$Conf.Inter[ ,2], rev(CI.result$Conf.Inter[ ,3])),
+    graphics::abline(v = axTicks(1), h = axTicks(2), col = "gray80", lty = 3)
+    graphics::polygon(c(Ttick, rev(Ttick)), c(CI.result$Conf.Inter[ ,2], rev(CI.result$Conf.Inter[ ,3])),
             col = scales::alpha("gray75", alpha = 0.2), border = scales::alpha("gray75", alpha = 0.2))
-    lines(Ttick,CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
-    lines(Ttick,CI.result$Conf.Inter[ ,3], lty = 2, lwd = 0.7, col = "gray68")
-    lines(Ttick,lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
+    graphics::lines(Ttick,CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
+    graphics::lines(Ttick,CI.result$Conf.Inter[ ,3], lty = 2, lwd = 0.7, col = "gray68")
+    graphics::lines(Ttick,lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
 
     NEP.obs <- lmomco::par2cdf(Intensity,Parameters)
     Tp.obs <- lmomco::prob2T(NEP.obs)

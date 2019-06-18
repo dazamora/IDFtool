@@ -29,13 +29,13 @@
 #' 
 #' # Meteorology station in the Farfan Airport in Tulua, Colombia.
 #' data(inten)
-#' Test.moments <- MME_DIST(Intensity = inten[,4], Type = "Gumbel") 
+#' Test.moments <- MME_DIST(Intensity = inten[,4], Type = "gumbel") 
 #' ## Results: xi = 71.50 ; alpha = 14.21
 #' 
 MME_DIST <- function (Intensity, Type) {
   
   data <- Intensity
-  distr <- selecDIST(PDF)
+  distr <- selecDIST(Type)
   
   if (!is.character(distr)) {
     stop("distr must be a character string naming a distribution")
@@ -44,13 +44,13 @@ MME_DIST <- function (Intensity, Type) {
   if (is.element(distname, c("nor", "ln3", "gam", "exp", "pe3", "lpe3","gum", "gev"))){ 
     meth <- "closed formula"
   }else{ stop("distribution not allowed") }
-
+  
   if (!(is.numeric(data) & length(data) > 1)) {
     stop("data must be a numeric vector of length greater than 1")
   }
   n <- length(data)
-  m <- stats::mean(data)
-  v <- stats::var(data)
+  m <- mean(data)
+  v <- var(data)
   ##################################################################
   ##   Distribución Normal (2P - norm),
   if (distname == "nor") {
@@ -61,18 +61,18 @@ MME_DIST <- function (Intensity, Type) {
   }
   #################################################################################
   ##   Distribución Log Normal (3P - ln3), from EnvStats with Method of Moments Estimation
-    if (distname == "ln3") {
-      if (any(data <= 0)){
-        stop("values must be positive to fit a lognormal distribution")
-      }
-      
-      m2 <- ((n - 1)/n) * v
-      sqrt.b1 <- EnvStats::skewness(data, method = "moment")
-      if (sqrt.b1 <= 0){
-        print(paste("The sample skew is not positive. ",
-                   "Admissible moment estimates do not exist"))
-        PAR <- NULL
-      } else {
+  if (distname == "ln3") {
+    if (any(data <= 0)){
+      stop("values must be positive to fit a lognormal distribution")
+    }
+    
+    m2 <- ((n - 1)/n) * v
+    sqrt.b1 <- EnvStats::skewness(data, method = "moment")
+    if (sqrt.b1 <= 0){
+      print(paste("The sample skew is not positive. ",
+                  "Admissible moment estimates do not exist"))
+      PAR <- NULL
+    } else {
       b1 <- sqrt.b1^2
       t1 <- 1 + b1/2
       t2 <- sqrt(t1^2 - 1)
@@ -84,9 +84,9 @@ MME_DIST <- function (Intensity, Type) {
       
       PAR <- lmomco::vec2par(c(zeta = threshold,  mu = meanlog, sigma = sdlog), type = "ln3")
       # is.ln3(PAR)
-      }
-      return(PAR)
     }
+    return(PAR)
+  }
   ##################################################################
   ##   Distribución Gamma (2P - gamma),
   if (distname == "gam") {
@@ -128,7 +128,7 @@ MME_DIST <- function (Intensity, Type) {
   if (distname == "gum") {
     scale <- (6^0.5) / pi *  sqrt(v)
     location <- m - (0.5772 * scale)
-    PAR <- lmomco::vec2par(c(xi=location, alpha=scale), type="gum")
+    PAR <- lmomco::vec2par(c(xi = location, alpha = scale), type="gum")
     return(PAR)
   }	
   ##################################################################
