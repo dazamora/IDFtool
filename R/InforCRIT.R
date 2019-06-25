@@ -33,7 +33,7 @@ InfoCRIT <- function (Intensity, Parameters){
   p <- length(Parameters$para)
   f <- lmomco::dlmomco(Intensity, Parameters)
   l <- log(f)
-  Q <- mledz.optim(Intensity, type = Parameters$type, hessian = TRUE)
+  Q <- mledz.optim(x=Intensity, type = Parameters$type, hessian = TRUE)
   LogLik <- sum(l)
   AIC <- -2 * LogLik + 2 * p
   BIC <- -2 * LogLik + p * log(n)

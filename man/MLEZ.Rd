@@ -20,7 +20,7 @@ wakeby (see \code{\link{selecDIST}}).}
 \item{silent}{a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.}
 
 \item{null.on.not.converge}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
-returns a nonzero convergence status.#'}
+returns a nonzero convergence status.}
 
 \item{pretransf}{}
 }

@@ -39,7 +39,7 @@ mledz.optim <- function (x, type, para.int = NULL, silent = TRUE, null.on.not.co
     return(L)
   }
   rt <- NULL
-  try(rt <- optim(par = ptransf(para.int$para), fn = afunc, 
+  try(rt <- stats::optim(par = ptransf(para.int$para), fn = afunc, 
                   x = x,...), silent = silent)
   if (is.null(rt)) {
     warning("optim() attempt is NULL")

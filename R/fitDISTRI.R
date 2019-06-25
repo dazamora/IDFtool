@@ -175,7 +175,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
          ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Return periods [year]",
          ylab = "Intensity [mm/h]", cex.lab = 1, cex.main = 0.9,log = "yx")
 
-    graphics::abline(v = axTicks(1), h = axTicks(2), col = "gray80", lty = 3)
+    graphics::abline(v = graphics::axTicks(1), h = graphics::axTicks(2), col = "gray80", lty = 3)
     graphics::polygon(c(Ttick, rev(Ttick)), c(CI.result$Conf.Inter[ ,2], rev(CI.result$Conf.Inter[ ,3])),
             col = scales::alpha("gray75", alpha = 0.2), border = scales::alpha("gray75", alpha = 0.2))
     graphics::lines(Ttick, CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
@@ -191,7 +191,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
            title = paste("Duration\n", Dura, sep = ""), title.col = "magenta")
 
     magicaxis::magaxis(1, labels = FALSE, col = "gray56")
-    graphics::axis(1,axTicks(1),axTicks(1), tick = FALSE, line = -0.05,cex.axis = 0.9)
+    graphics::axis(1, graphics::axTicks(1), graphics::axTicks(1), tick = FALSE, line = -0.05,cex.axis = 0.9)
     magicaxis::magaxis(2, las = 2, col = "gray56")
     #axis(2,axTicks(2),axTicks(2), lwd.ticks = 0.5, tck = 0.02, las = 2, cex.axis = 0.9)
     graphics::box(col = "gray56", lwd = 0.7)

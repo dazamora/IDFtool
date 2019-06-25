@@ -17,8 +17,8 @@
 #' @param para.int Initial parameters as a vector \eqn{\Theta}.
 #' @param silent a logical to silence the \code{\link{try}} function wrapping the \code{\link{DEoptim}} function.
 #' @param null.on.not.converge a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
-#' returns a nonzero convergence status.#' 
-#' @param pretransf
+#' returns a nonzero convergence status. 
+#' @param pretransf 
 #'
 #' @return A list of:
 #' 

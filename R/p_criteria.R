@@ -47,13 +47,13 @@ p.criteria <- function(metrics, critnames, pdfnames){
   }
   
   pMk <- 1/dim(metrics)[2] 
-  MinIC <- apply(IC,1,min)
+  MinIC <- apply(IC, 1, min)
   
   DIC <- IC - matrix(MinIC, nrow = dim(IC)[1], ncol = dim(IC)[2])
   aux <- exp(-0.5 * DIC * pMk)
   SumDICi <- rowSums(aux)
   pW <- aux/matrix(SumDICi, dim(IC)[1], dim(IC)[2])
-  pW <- round(pW*100,3)
+  pW <- round(pW*100, 3)
   colnames(pW) <- pdfnames
   rownames(pW) <- critnames
   

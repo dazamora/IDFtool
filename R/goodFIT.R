@@ -159,7 +159,7 @@ goodFIT <- function(Station, Type, Intensity, Parameters,
   # ----FIGURE----
   if(grepl("1", Plot)){
     # ---- Grafica el resultado de la PDF observada y la teorica----
-    yd <- density(Intensity)
+    yd <- stats::density(Intensity)
     xd <- seq(min(yd$x,  na.rm = TRUE),  max(yd$x, na.rm = TRUE),  , 100)
     yd2 <- lmomco::dlmomco(xd, Parameters)
     limy <- c(min(yd$y, yd2, na.rm = T), max(yd$y, yd2, na.rm = T))

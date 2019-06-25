@@ -94,8 +94,8 @@ regIDF <- function(Intensity, Periods, Durations, logaxe,
     mod.lm <- minpack.lm::nlsLM(Inten~((A)/((B+Dura)^C)), data = MD.INT,
                                 start = list(A = 1000, B = 0.2, C = 0.01), control = minpack.lm::nls.lm.control(maxiter=1000))
     Modelos[[as.character(Tp[iT])]] <- mod.lm
-    M.coeficientes[iT, ] <- coef(mod.lm)
-    yfit[ ,iT]  <-  predict(mod.lm, interval = "confidence", level=0.95)
+    M.coeficientes[iT, ] <- stats::coef(mod.lm)
+    yfit[ ,iT]  <-  stats::predict(mod.lm, interval = "confidence", level=0.95)
     
     fit.model[iT,1] <- stats::AIC(mod.lm)
     fit.model[iT,2] <- stats::BIC(mod.lm)
@@ -153,7 +153,7 @@ regIDF <- function(Intensity, Periods, Durations, logaxe,
     graphics::legend("topright", bg = scales::alpha("white", alpha = 0.2), pch = -1, lty = psym, legend = rep("", nTp), title = "Ret.Periods [Year]",
            title.adj = 0.7, cex = 0.5, col = "gray72")
     graphics::legend("topright", bg = NULL, bty = "n",pch = psym, lty = -1, legend = as.character(Tp), title = "",
-           cex = 0.5,col = rainbow(nTp))
+           cex = 0.5,col = grDevices::rainbow(nTp))
     
     if (SAVE) {
       grDevices::dev.off()
@@ -168,12 +168,12 @@ regIDF <- function(Intensity, Periods, Durations, logaxe,
       LS.IC <- Inter.Conf.R[[k]][ ,3]
       LI.PR <- Inter.Pred.R[[k]][ ,2]
       LS.PR <- Inter.Pred.R[[k]][ ,3]
-      PR.media <- predict(Modelos[[k]])
+      PR.media <- stats::predict(Modelos[[k]])
     } else {
       Inter.Conf.R <- NULL
       Inter.Pred.R <- NULL
       LI.IC <- LS.IC <- LI.PR <- LS.PR <- NA
-      PR.media <- predict(Modelos[[k]])
+      PR.media <- stats::predict(Modelos[[k]])
     }
     
     if (grepl("4",Plot)) {
@@ -197,7 +197,7 @@ regIDF <- function(Intensity, Periods, Durations, logaxe,
       graphics::par(mar=c(3.5, 3.2, 2.5, 2) + 0.1)
       graphics::par(mgp=c(2.2, 0.2, 0))
       graphics::plot(0, ylim = limyR, xlim = c(min(durations.2), max(durations.2)), type = "n", axes = FALSE, xlab = "", ylab = "",bty = "n")
-      graphics::abline(v = durations.2, h = axTicks(2), col = "gray45", lty = 3,lwd = 0.5)
+      graphics::abline(v = durations.2, h = graphics::axTicks(2), col = "gray45", lty = 3,lwd = 0.5)
       magicaxis::magaxis(2, las = 2, cex.axis = 0.8)
       magicaxis::magaxis(1, cex.axis = 0.8)
       graphics::par(new=TRUE)
