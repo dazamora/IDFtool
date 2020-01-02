@@ -22,7 +22,10 @@ wakeby (see \code{\link{selecDIST}}).}
 \item{null.on.not.converge}{a logical to trigger simple return of NULL if the \code{\link{DEoptim}} function 
 returns a nonzero convergence status.}
 
-\item{pretransf}{}
+\item{pretransf}{An optional parameter retransformation function (see Examples) that is useful to 
+guide the optimization run. For example, suppose the first parameter of 
+a three parameter distribution resides in the positive domain, 
+then \code{pretransf(t) = function(t) c(exp(t[1]), t[2], t[3])}.}
 }
 \value{
 A list of:

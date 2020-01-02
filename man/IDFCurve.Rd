@@ -35,8 +35,8 @@ Or use (12) to get both graphs. (3) to plot IDF curves for all return periods: (
 for all return \code{Periods}. (4) to plot IDF curve each for return
 \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.}
 
-\item{Strategy}{a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
-2 just data from HIDFUN tool and 3 used this data sets.}
+\item{Strategy}{a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from HIDFUN tool, 
+2 just data from Ideam and 3 used this data sets.}
 
 \item{logaxe}{a character to plot axis in log scale: x, y or both (xy). In other case used "".}
 
@@ -82,7 +82,7 @@ of the IDF curves (see \code{\link{regIDF}})
 data(inten)
 Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 100,
+Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 50,
 goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 
 }

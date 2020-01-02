@@ -29,8 +29,9 @@
 #' Or use (12) to get both graphs. (3) to plot IDF curves for all return periods: (\code{Durations} versus \code{Intensity})
 #' for all return \code{Periods}. (4) to plot IDF curve each for return
 #' \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.
-#' @param Strategy a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from Ideam, 
-#' 2 just data from HIDFUN tool and 3 used this data sets.
+#' @param Strategy a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from HIDFUN tool, 
+#' 2 just data from Ideam and 3 used this data sets. These strategies were created just for Colombian pluviograph data. For your data
+#' use strategy number 1.
 #' @param logaxe a character to plot axis in log scale: x, y or both (xy). In other case used "".
 #' @param CI a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
 #' @param CIpdf a logical value specifying whether confidence of pdf will be computed.
@@ -65,7 +66,7 @@
 #' data(inten)
 #' Test.idftool <- IDFCurve(Data = inten, Station='2610516', Duration = FALSE,
 #' Periods = FALSE, Type = "gumbel", M.fit = "lmoments",
-#' Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 100,
+#' Plot = 1234, Strategy = 1, logaxe = "", CI = FALSE, CIpdf = TRUE, iter = 50,
 #' goodtest = FALSE, Resolution = 300, SAVE = FALSE, name = TRUE)
 #' 
 IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,

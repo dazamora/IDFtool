@@ -4,7 +4,7 @@
 \alias{InfoCRIT}
 \title{Generic function calculating information criterias for fitted PDF}
 \usage{
-InfoCRIT(Intensity, Parameters)
+InfoCRIT(Intensity, Parameters, ...)
 }
 \arguments{
 \item{Intensity}{numeric vector with intensity values for a specific duration 
@@ -13,13 +13,15 @@ in different return periods.}
 \item{Parameters}{list with three elements: i) type of distribution 
 function ii) fitted parameters, and iii) source to call specfic function
 in the package \pkg{lmomco}.}
+
+\item{...}{Additional arguments for the \code{optim()} function and other uses}
 }
 \value{
 Provided a numeric vector with the corresponding AIC,  BIC, AICc and KIC values.
 }
 \description{
 This function determine values of the criteria Akaike's Information Criterion
-(AIC), Bayesian Information Criterion (BIC), AICc with bias correction and  
+(AIC), Bayesian Information Criterion (BIC), AICc with bias correction and KIC 
 to fitted probability density functions with \pkg{lmomco} package
 }
 \examples{

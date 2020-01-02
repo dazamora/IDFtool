@@ -48,7 +48,7 @@ data(Pargumbel)
 Tp <- c(2, 3, 5, 10, 25, 50, 100)
 FR <- 1 - 1/Tp
 CI.test <- bootstrapCI(Intensity = inten, Parameters = Pargumbel, Type = "gumbel",
-Rsample = 1000, Return.P =FR, Conf.Inter = 0.90)
+Rsample = 50, Return.P =FR, Conf.Inter = 0.90)
 (CI.test$Conf.Inter[,2])
 # result = 125.9501, 139.6132, 154.6232, 173.6736, 197.5024, 215.0634, 232.4939
  

@@ -1,13 +1,13 @@
 Package: IDFtool
 Title: The rainfall intensity data series can be fitted to eight different probability distribution function and the Intensity-Duration-Frequency curves are computed
-Version: 0.0.9000
+Version: 1.0.0
 Authors@R: c(person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre")),
              person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("ctb")),
              person("Adriana", "Piña", email = "appinaf@unal.edu.co", role = c("ctb")))
 Description: IDFTool computes intensity-duration-frequency curves per specific
     time duration and different return periods. The intensity-duration-frequency curves 
-    are used in hydrology to express in a synthetic way, fixed a return period T and a 
-    duration d of a rainfall event. IDFToll included an uncertainty 
+    are used in hydrology to express in a synthetic way, fixed a return period (T) and a 
+    duration (d) of a rainfall event. IDFToll included an uncertainty 
     analysis in PDFs and IDF curves, by bootstrap method.
 Depends:
     R (>= 3.4.1)
