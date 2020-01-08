@@ -7,8 +7,7 @@
 #' @description 
 #' Conducts bootstrap to randomly sample of intensity values 'n' times for a 
 #' specified distribution to estimate the confidence interval for each given 
-#' non-exceedance probability. Based in code posted by Dave Hutchinson 
-#' \url{http://www.headwateranalytics.com}.
+#' non-exceedance probability.
 #'
 #' @param Intensity a numeric vector with intensity [mm/h] values of different 
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})
