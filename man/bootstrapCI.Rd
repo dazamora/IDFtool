@@ -11,8 +11,8 @@ bootstrapCI(Intensity, Parameters, Type = "Gumbel", Rsample = 1000,
 \item{Intensity}{a numeric vector with intensity [mm/h] values of different 
 years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})}
 
-\item{Parameters}{list with three elements: i) type of distribution function 
-ii) fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.}
+\item{Parameters}{list with three elements: (i) type of distribution function 
+(ii) fitted parameters, and (iii) source to call specfic function in the \pkg{lmomco} package.}
 
 \item{Type}{a character specifying a name of the probability distribution function fitted 
 (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.}
