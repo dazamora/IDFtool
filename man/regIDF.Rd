@@ -59,9 +59,9 @@ A list of
 An Intensity-Duration-Frequency curve (IDF Curve) is a graphical representation
 of the probability that a given average rainfall intensity will occur. 
 This function allows compute the coefficients of an equation that represents 
-IDF per each return period: 
-\deqn{I(D) = \frac{A \{(B+D)^C}}{%
-I(D) = A/(B+D)^C} where \emph{I} are intensities [mm/h] per each return periods, \emph{D} is time duration [min] 
+IDF per each return period: \emph{I(D) = A/(B+D)^C}
+
+where \emph{I} are intensities [mm/h] per each return periods, \emph{D} is time duration [min] 
 and \emph{A}, \emph{B} and \emph{C} are coefficients. The last are calibrated by the Levenberg-Marquardt 
 algorithm (see  \code{\link{nls.lm}}). Moreover, \code{regIDF} computes confidence and prediction
 intervals to calibrate equiations by means of \code{\link{predFit}} function (see \pkg{investr} package). Finally, this function 

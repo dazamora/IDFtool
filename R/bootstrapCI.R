@@ -11,8 +11,8 @@
 #'
 #' @param Intensity a numeric vector with intensity [mm/h] values of different 
 #' years for a specific time duration (\emph{e.g.} 5, 15, 120 minutes, \emph{etc.})
-#' @param Parameters list with three elements: i) type of distribution function 
-#' ii) fitted parameters, and iii) source to call specfic function in the \pkg{lmomco} package.
+#' @param Parameters list with three elements: (i) type of distribution function 
+#' (ii) fitted parameters, and (iii) source to call specfic function in the \pkg{lmomco} package.
 #' @param Type a character specifying a name of the probability distribution function fitted 
 #' (see \code{\link{selecDIST}}) by \code{\link{fitDISTRI}} function.
 #' @param Rsample An integer representing number of resamples to conduct when 
