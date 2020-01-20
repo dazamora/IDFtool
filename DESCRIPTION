@@ -4,11 +4,11 @@ Version: 1.0.0
 Authors@R: c(person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2256-7054")),
              person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("ctb")),
              person("Adriana", "Piña", email = "appinaf@unal.edu.co", role = c("ctb")))
-Description: IDFtool computes intensity-duration-frequency curves per specific
+Description: Intensity-duration-frequency curves are computed per specific
     time duration and different return periods and can be fitted to eight different PDFs. The intensity-duration-frequency curves 
     are used in hydrology to express in a synthetic way, fixed a return period T and a 
     duration d of a rainfall event. IDFtool included an uncertainty 
-    analysis in PDFs and IDF curves, by bootstrap method.
+    analysis in PDFs and IDF curves, by means of a bootstrapping method. See Davison and Hinkley (1997), <doi: 10.2307/1271471>.
 Depends: R (>= 3.4)
 Imports: 
     DEoptim,
