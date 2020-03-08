@@ -3,7 +3,7 @@ Title: Estimation Intensity-Duration-Frequency Curves for Rainfall Series
 Version: 1.0.0
 Authors@R: c(person("David", "Zamora", email = "dazamoraa@unal.edu.co", role = c("aut", "cre"), comment = c(ORCID = "0000-0002-2256-7054")),
              person("Albeiro", "Figueroa", email = "cafigueroao@unal.edu.co", role = c("ctb")),
-             person("Adriana", "Piña", email = "appinaf@unal.edu.co", role = c("ctb")))
+             person("Adriana", "Piña", email = "appinaf@unal.edu.co", role = c("ctb"), comment = c(ORCID = "0000-0003-2252-2160")))
 Description: Intensity-duration-frequency curves are computed per specific
     time duration and different return periods and can be fitted to eight different PDFs. The intensity-duration-frequency curves 
     are used in hydrology to express in a synthetic way, fixed a return period T and a 
