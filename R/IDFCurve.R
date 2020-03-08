@@ -145,10 +145,18 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
     } else {
       if (estr == 1) { # Solo datos digitalizados
         if (length(Duration) == 1){
-          intensities <- Int.total[-id.info, ]
+          if(!(sum(id.info) == 0)){
+            intensities <- Int.total[-id.info, ]
+          } else {
+            intensities <- Int.total
+          }
         } else {
           in.dura <- is.element(colnames(Int.total),as.character(Duration))
-          intensities <- Int.total[-id.info,in.dura]
+          if(!(sum(id.info) == 0)){
+            intensities <- Int.total[-id.info,in.dura]
+          } else {
+            intensities <- Int.total[ ,in.dura]
+          }
         }
         durations <- duration
         nom.dura <- paste(duration*60, " min", sep = "")
