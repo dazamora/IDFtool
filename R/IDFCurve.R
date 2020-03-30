@@ -154,7 +154,7 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
         } else {
           
           if(length(Duration) == 1){
-          in.dura <- is.element(colnames(Int.total),as.character(duration*60))
+            in.dura <- is.element(colnames(Int.total),as.character(duration*60))
           } else {
             in.dura <- is.element(colnames(Int.total),as.character(Duration))
           }
@@ -172,9 +172,10 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
         durations <- duration[c(3,5:8)]
         nom.dura <- paste(duration[c(3,5:8)]*60, " min", sep = "")
       } else { # Ambos conjunto de datos
-        intensities <- Int.total[,c(3,5:8)]
-        durations <- duration[c(3,5:8)]
-        nom.dura <- paste(duration[c(3,5:8)]*60, " min", sep = "")
+        in.dura <- is.element(colnames(Int.total),as.character(duration*60))
+        intensities <- Int.total[,in.dura]
+        durations <- duration[in.dura]
+        nom.dura <- paste(duration[in.dura]*60, " min", sep = "")
       }
     }
     # ----Ajusta la distribucion y calcula intesidades por duracion y periodo de retorno----
