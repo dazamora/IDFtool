@@ -93,6 +93,7 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
   }
   
   Int.total <- input[ ,2:dim(input)[2]]
+  Int.total <- as.matrix(Int.total)
   id.info <- which(is.na(Int.total[ ,1]) == TRUE)
   Plot <- as.character(Plot)
   
@@ -151,7 +152,13 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
             intensities <- Int.total
           }
         } else {
-          in.dura <- is.element(colnames(Int.total),as.character(Duration))
+          
+          if(length(Duration) == 1){
+          in.dura <- is.element(colnames(Int.total),as.character(duration*60))
+          } else {
+            in.dura <- is.element(colnames(Int.total),as.character(Duration))
+          }
+          
           if(!(sum(id.info) == 0)){
             intensities <- Int.total[-id.info,in.dura]
           } else {
