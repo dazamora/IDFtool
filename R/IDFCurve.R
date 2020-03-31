@@ -93,12 +93,15 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
   }
   
   Int.total <- input[ ,2:dim(input)[2]]
-  Int.total <- as.matrix(Int.total)
+  if(dim(input)[2]==2){
+    Int.total <- as.matrix(Int.total)
+    colnames(Int.total) <- colnames(input)[2]
+  }
   id.info <- which(is.na(Int.total[ ,1]) == TRUE)
   Plot <- as.character(Plot)
   
   # ----Definir Duraciones----
-  if (length(Duration) == 1) {
+  if (is.logical(Duration)) {
     duration <- c(5/60, 10/60, 15/60, 20/60, 30/60, 1, 2, 6)   # durations in hr for idf analysis
   } else {
     duration <- Duration/60
@@ -172,8 +175,8 @@ IDFCurve <- function(Data, Station = '2610516', Duration = FALSE,
         durations <- duration[c(3,5:8)]
         nom.dura <- paste(duration[c(3,5:8)]*60, " min", sep = "")
       } else { # Ambos conjunto de datos
-        in.dura <- is.element(colnames(Int.total),as.character(duration*60))
-        intensities <- Int.total[,in.dura]
+        in.dura <- is.element(as.character(duration*60),colnames(Int.total))
+        intensities <- as.matrix(Int.total[,in.dura])
         durations <- duration[in.dura]
         nom.dura <- paste(duration[in.dura]*60, " min", sep = "")
       }
