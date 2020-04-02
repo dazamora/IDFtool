@@ -65,24 +65,24 @@
 #'                      iter =100, goodtest = TRUE,Resolution = 300, SAVE = FALSE)
 #' 
 fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
-         Periods, Dura, Station, CI = FALSE, iter ,
-         goodtest = FALSE, Resolution = 300, SAVE = FALSE){
-
+                      Periods, Dura, Station, CI = FALSE, iter ,
+                      goodtest = FALSE, Resolution = 300, SAVE = FALSE){
+  
   # ----Fix variables----
   M.fit <- tolower(M.fit)
   Type <- tolower(Type)
   Tp <- Periods
   DR <- colnames(Intensity)
   Plot <- as.character(Plot)
-
+  
   # ----Fit distribution----
   if(Type=="log.pearson3"){
     Intensity<-log10(Intensity)
   }
-
+  
   distribution<-selecDIST(Type = Type)
   FR<-lmomco::T2prob(Tp)
-
+  
   if(M.fit=="lmoments"){
     LMOM <- lmomco::lmoms(Intensity)
     if(LMOM$ratios[3] < 0 & distribution == "ln3"){
@@ -150,7 +150,7 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
   }
   # ----Plot Frecuency versus Intesity----
   if (grepl("2", Plot) & CI) {
-
+    
     if (SAVE) {
       if(file.exists(paste(".", "FIGURES", Station, M.fit, Type, sep = "/"))){
         path.fig <- paste(".", "FIGURES", Station, M.fit, Type, sep = "/")
@@ -158,49 +158,58 @@ fitDISTRI <- function(Intensity, Type ="Gumbel", Plot = 2, M.fit = "MLE",
         dir.create(paste(".", "FIGURES", Station, M.fit, Type, sep = "/"), recursive = TRUE)
         path.fig <- paste(".", "FIGURES", Station, M.fit, Type, sep = "/")
       }
-
+      
       custom <- resoPLOT(reso = Resolution)
       grDevices::png(filename = paste(path.fig, "/IvsF", "_", Type, "_", M.fit, "_", Dura, ".png", sep = ""),
-          width = custom[2], height = custom[4], pointsize = 10, res = custom[1], bg = "transparent")
+                     width = custom[2], height = custom[4], pointsize = 10, res = custom[1], bg = "transparent")
     }
-
+    
     lim.max <- max(CI.result$Conf.Inter[ ,3], na.rm = T)
     lim.min <- min(CI.result$Conf.Inter[ ,2], na.rm = T)
     lim.vert <- c(lim.min, lim.max)
-
+    
     graphics::par(mar = c(4.1, 3.5, 2.2, 2) + 0.1)
     graphics::par(mgp = c(2.2, 0.2, 0))
     graphics::plot(Ttick,lmomco::par2qua(FR.plot,Parameters),type = "n",
-         main = paste("Intensity vs Frequency ", Type, "-", M.fit, "\n", Station, sep = ""),
-         ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Return periods [year]",
-         ylab = "Intensity [mm/h]", cex.lab = 1, cex.main = 0.9,log = "yx")
-
+                   main = paste("Intensity vs Frequency ", Type, "-", M.fit, "\n", Station, sep = ""),
+                   ylim = lim.vert, xaxt = "n", yaxt = "n", bty = "n", xlab = "Return periods [year]",
+                   ylab = "Intensity [mm/h]", cex.lab = 1, cex.main = 0.9,log = "yx")
+    
     graphics::abline(v = graphics::axTicks(1), h = graphics::axTicks(2), col = "gray80", lty = 3)
     graphics::polygon(c(Ttick, rev(Ttick)), c(CI.result$Conf.Inter[ ,2], rev(CI.result$Conf.Inter[ ,3])),
-            col = scales::alpha("gray75", alpha = 0.2), border = scales::alpha("gray75", alpha = 0.2))
+                      col = scales::alpha("gray75", alpha = 0.2), border = scales::alpha("gray75", alpha = 0.2))
     graphics::lines(Ttick, CI.result$Conf.Inter[ ,2], lty = 2, lwd = 0.7, col = "gray68")
     graphics::lines(Ttick, CI.result$Conf.Inter[ ,3], lty = 2, lwd = 0.7, col = "gray68")
-    graphics::lines(Ttick, lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
-
-    NEP.obs <- lmomco::par2cdf(Intensity,Parameters)
-    Tp.obs <- lmomco::prob2T(NEP.obs)
+    if(Type=="log.pearson3"){
+      graphics::lines(Ttick, 10^lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
+    } else {
+      graphics::lines(Ttick, lmomco::par2qua(FR.plot,Parameters), lty = 4, lwd = 1.1, col = "red")
+    }
+    if(Type=="log.pearson3"){
+      NEP.obs <- lmomco::par2cdf(log10(Intensity), Parameters)
+      Tp.obs <- lmomco::prob2T(NEP.obs)
+    } else {
+      NEP.obs <- lmomco::par2cdf(Intensity, Parameters)
+      Tp.obs <- lmomco::prob2T(NEP.obs)
+    }
     graphics::points(Tp.obs, Intensity, pch = 21, bg = "blue", col = "blue",cex = 0.8)
+    
     graphics::legend("bottomright", c("CI 95 %", "Fit pdf", "Observed"), col = c("gray68", "red", "blue"),
-           pt.bg = c(scales::alpha("gray75", alpha = 0.2), NA ,"blue"), pch = c(22,-1,21),
-           lty = c(-1, 4, -1), lwd = 1, bty = "n", border = NULL, cex = 0.7, pt.cex = 1.1,
-           title = paste("Duration\n", Dura, sep = ""), title.col = "magenta")
-
+                     pt.bg = c(scales::alpha("gray75", alpha = 0.2), NA ,"blue"), pch = c(22,-1,21),
+                     lty = c(-1, 4, -1), lwd = 1, bty = "n", border = NULL, cex = 0.7, pt.cex = 1.1,
+                     title = paste("Duration\n", Dura, sep = ""), title.col = "magenta")
+    
     magicaxis::magaxis(1, labels = FALSE, col = "gray56")
     graphics::axis(1, graphics::axTicks(1), graphics::axTicks(1), tick = FALSE, line = -0.05,cex.axis = 0.9)
     magicaxis::magaxis(2, las = 2, col = "gray56")
     #axis(2,axTicks(2),axTicks(2), lwd.ticks = 0.5, tck = 0.02, las = 2, cex.axis = 0.9)
     graphics::box(col = "gray56", lwd = 0.7)
-
+    
     if (SAVE) {
       grDevices::dev.off()
     }
   }
-
+  
   return(list(Parameters = Parameters,
               Int.pdf = INT,
               Conf.Inter = CI.result,
