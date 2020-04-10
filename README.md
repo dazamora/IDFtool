@@ -4,6 +4,8 @@
 
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+[![Build Status](https://travis-ci.com/dazamora/IDFtool.svg?branch=master)](https://travis-ci.com/dazamora/IDFtool) [![codecov](https://codecov.io/gh/dazamora/IDFtool/branch/master/graph/badge.svg)](https://codecov.io/gh/dazamora/IDFtool)
+
 IDFtool
 =======
 
