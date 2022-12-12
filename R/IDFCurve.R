@@ -30,7 +30,7 @@
 #' for all return \code{Periods}. (4) to plot IDF curve each for return
 #' \code{Periods} with its confidence and prediction intervals. Or use (34) to get both graphs. If other is used the graphs will not appear.
 #' @param Strategy a numeric vector used to identify Strategies to compute IDF curves with different data sets: 1 just data from HIDFUN tool, 
-#' 2 just data from Ideam and 3 used this data sets. These strategies were created just for Colombian pluviograph data. For your data
+#' 2 just data from IDEAM and 3 used this data sets. These strategies were created just for Colombian pluviograph data. For your data
 #' use strategy number 1.
 #' @param logaxe a character to plot axis in log scale: x, y or both (xy). In other case used "".
 #' @param CI a logical value specifying whether confidence and prediction intervals will be computed in IDF curves.
